@@ -49,6 +49,15 @@ BEGIN {
     Write-Verbose "$dotfiles"
     Write-Verbose "$MyDocuments"
 
+    # An array of all modules in the form of @(Target, Path)
+    # If removing a symlink point the target to a non existing file.
+    # Symlinks removed and are recreated every install.
+    # This will enable to install to cleanup old symlinks that no longer exist.
+    $symlinkMappings = @(
+            @("$dotfiles\powershell\profile.ps1", "$MyDocuments\WindowsPowershell\profile.ps1"),
+            @("$dotfiles\sublimetext3\userpreferences", "$($env:APPDATA)\Sublime Text 3\Packages\User")
+        )
+
     function TestIsAdmin() {
         if (!(Test-IsAdmin)) {
             throw "To continue run this script as an admin"
@@ -56,9 +65,16 @@ BEGIN {
         }
     }
 
-    function NewSymlinkWithBackup([String]$Path, [String]$Target) {
+    function NewSymlinkWithBackup([String]$Target, [String]$Path) {
+        Write-Verbose "NewSymlinkWithBackup at $Path targetting $Target"
+
         if (Test-Symlink $path) {
             Remove-Symlink $path
+        }
+
+        if (!(Test-Path $target)) {
+            Write-Verbose "Target doesn't exist. Skipping."
+            return
         }
 
         if (Test-Path $Path) {
@@ -70,7 +86,7 @@ BEGIN {
             mkdir -Force $pathDir | Out-Null
         }
 
-        New-Symlink $Path $Target | Out-Null
+        New-Symlink $Target $Path | Out-Null
     }
 
     function RemoveSymlinkWithBackup([String]$Path) {
@@ -79,77 +95,6 @@ BEGIN {
         }
 
         try { Restore-BackupItem $Path -Delete } catch [Exception] {}
-
-    }
-
-    function AddPowershell() {
-        # Add Powershell Modules
-        Write-Verbose "Adding Powershell Modules"
-        $powershellModules = Resolve-Path "$dotfiles\powershell\PowershellModules"
-
-        Add-VariableToEnvironmentVariable PSModulePath "$powershellModules\" -User
-
-        # Make Symlink to $Profile
-        $profilePath = Resolve-NonExistentPath "$MyDocuments\WindowsPowershell\profile.ps1"
-        $profileTarget = Resolve-Path "$dotfiles\powershell\profile.ps1"
-        NewSymlinkWithBackup $profilePath $profileTarget
-    }
-
-    function RemovePowershell() {
-        # Remove Powershell Modules
-        Write-Verbose "Removing Powershell Modules"
-        $powershellModules = Resolve-Path "$dotfiles\powershell\PowershellModules"
-
-        Remove-VariableFromEnvironmentVariable PSModulePath "$powershellModules\" -User
-
-        # Remove Symlink to $Profile
-        $profilePath = Resolve-NonExistentPath "$MyDocuments\WindowsPowershell\profile.ps1"
-        RemoveSymlinkWithBackup $profilePath
-    }
-
-    function AddGit() {
-    }
-
-    function RemoveGit() {
-    }
-
-    function AddNetworkUtils() {
-        Write-Verbose "Adding NetworkUtils Module"
-        $networkUtilsModule = Resolve-Path "$dotfiles\networkutils\PowershellModules"
-        Add-VariableToEnvironmentVariable PSModulePath "$networkUtilsModule\" -User
-    }
-
-    function RemoveNetworkUtils() {
-        Write-Verbose "Removing NetworkUtils Module"
-        $networkUtilsModule = Resolve-Path "$dotfiles\networkutils\PowershellModules"
-        Remove-VariableFromEnvironmentVariable PSModulePath "$networkUtilsModule\" -User
-    }
-
-    function AddSublimeText3() {
-        Write-Verbose "Adding Sublimetext3"
-        $sublimePreferencesPath = Resolve-NonExistentPath "$($env:APPDATA)\Sublime Text 3\Packages\User"
-        $sublimePreferencesTarget = Resolve-Path "$dotfiles\sublimetext3\userpreferences"
-
-        NewSymlinkWithBackup $sublimePreferencesPath $sublimePreferencesTarget
-    }
-
-    function RemoveSublimeText3() {
-        Write-Verbose "Removing Sublimetext3"
-        $sublimePreferencesPath = Resolve-NonExistentPath "$($env:APPDATA)\Sublime Text 3\Packages\User"
-
-        RemoveSymlinkWithBackup $sublimePreferencesPath
-    }
-
-    function AddTfs() {
-        Write-Verbose "Adding Tfs Module"
-        $tfsModule = Resolve-Path "$dotfiles\tfs\PowershellModules"
-        Add-VariableToEnvironmentVariable PSModulePath "$tfsModule\" -User
-    }
-
-    function RemoveTfs() {
-        Write-Verbose "Removing Tfs Module"
-        $tfsModule = Resolve-Path "$dotfiles\tfs\PowershellModules"
-        Remove-VariableFromEnvironmentVariable PSModulePath "$tfsModule\" -User
     }
 }
 
@@ -160,12 +105,11 @@ PROCESS {
         TestIsAdmin
         Set-EnvironmentVariable "DOTFILES" $dotfiles -User
 
-        # Install the dotfiles for the different components
-        if (Test-Path "$dotfiles\powershell") { AddPowershell }
-        if (Test-Path "$dotfiles\git") { AddGit }
-        if (Test-Path "$dotfiles\networkutils") { AddNetworkUtils }
-        if (Test-Path "$dotfiles\sublimetext3") { AddSublimeText3 }
-        if (Test-Path "$dotfiles\tfs") { AddTfs }
+        Get-ChildItem "$dotfiles\*\PowershellModules" | 
+            where { $_.PSIsContainer } | 
+            foreach { Add-VariableToEnvironmentVariable PSModulePath "$_\" -User }
+
+        $symlinkMappings | foreach { NewSymlinkWithBackup $_[0] $_[1] }
 
         # Script run successfully
         Write-Output "Script Run Successfully. Please restart powershell for changes to take effect"
@@ -176,12 +120,11 @@ PROCESS {
         TestIsAdmin
         Remove-EnvironmentVariable "DOTFILES" -User
 
-        # Remove the dotfiles for the different components
-        if (Test-Path "$dotfiles\powershell\Modules") { RemovePowershell }
-        if (Test-Path "$dotfiles\git") { RemoveGit }
-        if (Test-Path "$dotfiles\networkutils") { RemoveNetworkUtils }
-        if (Test-Path "$dotfiles\sublimetext3") { RemoveSublimeText3 }
-        if (Test-Path "$dotfiles\tfs") { RemoveTfs }
+        Get-ChildItem "$dotfiles\*\PowershellModules" | 
+            where { $_.PSIsContainer } | 
+            foreach { Remove-VariableFromEnvironmentVariable PSModulePath "$_\" -User }
+
+        $symlinkMappings | foreach { RemoveSymlinkWithBackup $_[0] $_[1] }
 
         # Script run successfully
         Write-Output "Script Run Successfully. Please restart powershell for changes to take effect"

@@ -21,21 +21,21 @@ function Resolve-NonExistentPath {
 .SYNOPSIS 
         Creates a symbolic link between a path (which will be created) and the target
         Requires Admin Access
-.PARAMETER Path
-     The path to where the symPath will be created
 .PARAMETER Target
      The path to the where the symPath will point to
+.PARAMETER Path
+     The path to where the symPath will be created
 #>
 Function New-Symlink {
     [CmdletBinding()]
     param(
-        [Parameter(Mandatory=$true, ValueFromPipelineByPropertyName=$true, ValueFromPipeline=$true, Position=0)]
+        [Parameter(Mandatory=$true, ValueFromPipelineByPropertyName=$true, Position=0)]
         [String]
-        $Path,
+        $Target,
 
         [Parameter(Mandatory=$true, ValueFromPipelineByPropertyName=$true, Position=1)]
         [String]
-        $Target
+        $Path
     )
 
     BEGIN { }
