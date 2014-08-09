@@ -7,7 +7,12 @@ then
 fi
 
 # import env variables
-for env_file in ~/*.env;
+for env_file in ~/.*.env;
 do
 	source $env_file
+done
+
+for bash_file in "${dotfiles}/*/*.bash";
+do
+	source $bash_file
 done

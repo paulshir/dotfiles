@@ -1,7 +1,12 @@
 # import env variables
-for env_file in ~/*.env;
+for env_file in ~/.*.env;
 do
 	source $env_file
+done
+
+for zsh_file in "${dotfiles}/*/*.zsh";
+do
+	source $zsh_file
 done
 
 HISTFILE=~/.histfile
