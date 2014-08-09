@@ -4,7 +4,6 @@
 
 # Set Variables
 script=$(readlink -f $0)
-dotfiles=$(dirname $SCRIPT)
 set -e
 
 make_symlink(){
@@ -45,10 +44,22 @@ remove_symlink(){
 
 	if [ ! -e $path];
 	then
-		path_bak="$path}.bak"
+		path_bak="{$path}.bak"
 		if [ -e $path_bak ];
 		then
 			mv "$path_bak" "$path"
 		fi
 	fi
 }
+
+dotfiles=~/.dotfiles
+if [ ! -d $dotfiles ];
+then
+	echo "Dotfiles must be cloned to ~/.dotfiles"
+	echo "Please clone this repro to ~/.dotfiles before continuing."
+	exit 1
+fi
+
+make_symlink "${dotfiles}/bash/bashrc" ~/.bashrc
+make_symlink "${dotfiles}/zsh/zshrc" ~/.zshrc
+make_symlink "${dotfiles}/vim" ~/.vim

@@ -1,0 +1,8 @@
+# Hardcode the dotfiles install location for now
+export dotfiles=~/.dotfiles
+
+HISTFILE=~/.histfile
+HISTSIZE=1000
+SAVEHIST=1000
+unsetopt beep
+bindkey -v
