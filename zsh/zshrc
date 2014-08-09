@@ -1,5 +1,8 @@
-# Hardcode the dotfiles install location for now
-export dotfiles=~/.dotfiles
+# import env variables
+for env_file in ~/*.env;
+do
+	source $env_file
+done
 
 HISTFILE=~/.histfile
 HISTSIZE=1000

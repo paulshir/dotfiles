@@ -2,8 +2,8 @@
 	"ignored_packages":
 	[
 		"Base Encoder",
-		"Markdown",
-		"Vintage"
+		"Vintage",
+		"Markdown"
 	],
 	"theme": "Soda Dark 3.sublime-theme"
 }

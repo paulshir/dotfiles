@@ -23,6 +23,7 @@ execute 'set rtp+=' . s:vundle_dir
 if (s:vundle_installed > 0)
 	call vundle#begin(s:plugin_dir)
 	Plugin 'gmarik/Vundle.vim'
+	Plugin 'tomasr/molokai'
 	call vundle#end()
 endif
 
@@ -30,3 +31,5 @@ unlet s:plugin_dir
 unlet s:vundle_dir
 unlet s:vundle_installed
 filetype plugin indent on
+
+colorscheme molokai

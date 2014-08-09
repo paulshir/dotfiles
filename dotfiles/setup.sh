@@ -4,6 +4,8 @@
 
 # Set Variables
 script=$(readlink -f $0)
+df_setup=$(dirname $script)
+dotfiles=$(dirname $df_setup)
 set -e
 
 make_symlink(){
@@ -63,3 +65,8 @@ fi
 make_symlink "${dotfiles}/bash/bashrc" ~/.bashrc
 make_symlink "${dotfiles}/zsh/zshrc" ~/.zshrc
 make_symlink "${dotfiles}/vim" ~/.vim
+
+echo "export dotfiles=${dotfiles}" > ~/.dotfiles.env
+
+# Hack to force the reload of the rc file for the current shell.
+$SHELL

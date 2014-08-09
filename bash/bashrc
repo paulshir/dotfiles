@@ -6,9 +6,8 @@ then
 	. /etc/bashrc
 fi
 
-# Hardcode the dotfiles repro for now
-if [ -d ~/.dotfiles ];
-then
-	export dotfiles=~/.dotfiles
-fi
-
+# import env variables
+for env_file in ~/*.env;
+do
+	source $env_file
+done
