@@ -3,8 +3,11 @@
 	[
 		"Base Encoder",
 		"Filter Lines",
+		"GitGutter",
 		"GoSublime",
 		"Indent XML",
+		"Markdown Preview",
+		"MarkdownEditing",
 		"PlainTasks",
 		"PowerShell",
 		"SideBarEnhancements",

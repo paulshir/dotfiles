@@ -7,7 +7,7 @@ script=$(readlink -f $0)
 dotfiles=$(dirname $SCRIPT)
 set -e
 
-MakeSymlinkWithBackup(){
+make_symlink(){
 	local target=$1
 	local path=$2
 
@@ -35,7 +35,7 @@ MakeSymlinkWithBackup(){
 	ln -s "$target" "$path"
 }
 
-RemoveSymlinkWithBackup(){
+remove_symlink(){
 	local path $1
 
 	if [ -h $path ];

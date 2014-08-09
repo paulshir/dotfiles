@@ -22,11 +22,13 @@ Display Help details.
 [CmdletBinding(DefaultParameterSetName="Help")]
 Param(
     [Parameter (Mandatory=$true, ParameterSetName="Install")]
-    [Alias("in")]
+    [Alias("i")]
+    [Alias("install")]
     [switch] $Install,
 
     [Parameter (Mandatory=$true, ParameterSetName="Uninstall")]
-    [Alias("un")]
+    [Alias("u")]
+    [Alias("uninstall")]
     [switch] $Uninstall,
 
     [Parameter (Mandatory=$true, ParameterSetName="Chocolatey")]
