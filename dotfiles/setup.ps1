@@ -23,12 +23,10 @@ Display Help details.
 Param(
     [Parameter (Mandatory=$true, ParameterSetName="Install")]
     [Alias("i")]
-    [Alias("install")]
     [switch] $Install,
 
     [Parameter (Mandatory=$true, ParameterSetName="Uninstall")]
     [Alias("u")]
-    [Alias("uninstall")]
     [switch] $Uninstall,
 
     [Parameter (Mandatory=$true, ParameterSetName="Chocolatey")]
@@ -57,7 +55,8 @@ BEGIN {
     # This will enable to install to cleanup old symlinks that no longer exist.
     $symlinkMappings = @(
             @("$dotfiles\powershell\profile.ps1", "$MyDocuments\WindowsPowershell\profile.ps1"),
-            @("$dotfiles\sublimetext3\userpreferences", "$($env:APPDATA)\Sublime Text 3\Packages\User")
+            @("$dotfiles\sublimetext3\userpreferences", "$($env:APPDATA)\Sublime Text 3\Packages\User"),
+            @("$dotfiles\vim", "$($env:HOMEPATH)\vimfiles")
         )
 
     function TestIsAdmin() {
@@ -84,6 +83,7 @@ BEGIN {
         }
 
         $pathDir = Split-Path -Parent $Path
+        Write-Verbose $pathDir
         if (!(Test-Path $pathDir)) {
             mkdir -Force $pathDir | Out-Null
         }
