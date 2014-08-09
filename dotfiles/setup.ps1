@@ -126,7 +126,7 @@ PROCESS {
             where { $_.PSIsContainer } | 
             foreach { Remove-VariableFromEnvironmentVariable PSModulePath "$_\" -User }
 
-        $symlinkMappings | foreach { RemoveSymlinkWithBackup $_[0] $_[1] }
+        $symlinkMappings | foreach { RemoveSymlinkWithBackup $_[1] }
 
         # Script run successfully
         Write-Output "Script Run Successfully. Please restart powershell for changes to take effect"
