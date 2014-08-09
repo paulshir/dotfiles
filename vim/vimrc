@@ -1,0 +1,32 @@
+set nocompatible
+filetype off
+
+" *****************************
+"     Load Plugins - Vundle
+" *****************************
+
+let s:plugin_dir=expand('~/.vim/bundle')
+if exists("$dotfiles")
+	let s:plugin_dir=expand('$dotfiles/external/vim')
+endif
+let s:vundle_dir=expand(s:plugin_dir . '/Vundle.vim')
+
+let s:vundle_installed=1
+let s:vundle_readme=expand(s:vundle_dir . '/README.md')
+if !filereadable(s:vundle_readme)
+	let s:vundle_installed=0
+endif
+unlet s:vundle_readme
+
+execute 'set rtp+=' . s:vundle_dir
+
+if (s:vundle_installed > 0)
+	call vundle#begin(s:plugin_dir)
+	Plugin 'gmarik/Vundle.vim'
+	call vundle#end()
+endif
+
+unlet s:plugin_dir
+unlet s:vundle_dir
+unlet s:vundle_installed
+filetype plugin indent on
