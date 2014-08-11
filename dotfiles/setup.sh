@@ -54,14 +54,6 @@ remove_symlink(){
 	fi
 }
 
-dotfiles=~/.dotfiles
-if [ ! -d $dotfiles ];
-then
-	echo "Dotfiles must be cloned to ~/.dotfiles"
-	echo "Please clone this repro to ~/.dotfiles before continuing."
-	exit 1
-fi
-
 make_symlink "${dotfiles}/bash/bashrc" ~/.bashrc
 make_symlink "${dotfiles}/zsh/zshrc" ~/.zshrc
 make_symlink "${dotfiles}/vim" ~/.vim
