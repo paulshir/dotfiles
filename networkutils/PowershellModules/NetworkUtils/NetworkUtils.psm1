@@ -10,8 +10,6 @@ Function Set-DnsServers {
         [Switch] $automatic
     )   
 
-    Import-Module CommonFunctions
-
     if (!(Test-IsAdmin)) {
         throw "Access Denied"
     }
