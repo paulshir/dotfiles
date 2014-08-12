@@ -56,7 +56,7 @@ BEGIN {
     $symlinkMappings = @(
             @("$dotfiles\powershell\profile.ps1", "$MyDocuments\WindowsPowershell\profile.ps1"),
             @("$dotfiles\sublimetext3\userpreferences", "$($env:APPDATA)\Sublime Text 3\Packages\User"),
-            @("$dotfiles\vim", "$($env:HOMEPATH)\vimfiles")
+            @("$dotfiles\vim", "$($env:HOME)\vimfiles")
         )
 
     function TestIsAdmin() {
@@ -111,6 +111,8 @@ PROCESS {
             where { $_.PSIsContainer } | 
             foreach { Add-VariableToEnvironmentVariable PSModulePath "$_\" -User }
 
+        Add-VariableToEnvironmentVariable PSModulePath "$dotfiles\external\powershell\modules" -User
+
         $symlinkMappings | foreach { NewSymlinkWithBackup $_[0] $_[1] }
 
         # Script run successfully
@@ -126,13 +128,15 @@ PROCESS {
             where { $_.PSIsContainer } | 
             foreach { Remove-VariableFromEnvironmentVariable PSModulePath "$_\" -User }
 
+        Remove-VariableFromEnvironmentVariable PSModulePath "$dotfiles\external\powershell\modules" -User
+
         $symlinkMappings | foreach { RemoveSymlinkWithBackup $_[1] }
 
         # Script run successfully
         Write-Output "Script Run Successfully. Please restart powershell for changes to take effect"
     } elseif ($Chocolatey) {
         Write-Verbose "Installing Chocolatey"
-        iex ((new-object net.webclient).DownloadString("http://bit.ly/psChocInstall"))
+        iex ((new-object net.webclient).DownloadString("https://chocolatey.org/install.ps1"))
     } else {
         Get-Help $MyInvocation.MyCommand.Path
     }
