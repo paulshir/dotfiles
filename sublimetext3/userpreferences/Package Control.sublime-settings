@@ -1,16 +1,21 @@
 {
+	"in_process_packages":
+	[
+	],
 	"installed_packages":
 	[
 		"Base Encoder",
+		"Emmet",
 		"Filter Lines",
-		"GitGutter",
 		"GoSublime",
 		"Indent XML",
 		"Markdown Preview",
 		"MarkdownEditing",
+		"Package Control",
 		"PlainTasks",
 		"PowerShell",
 		"SideBarEnhancements",
+		"Theme - Afterglow",
 		"Theme - Soda",
 		"xml2json"
 	]

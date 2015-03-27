@@ -1,9 +1,14 @@
 {
+	"color_scheme": "Packages/Theme - Afterglow/Afterglow-monokai.tmTheme",
 	"ignored_packages":
 	[
-		"Base Encoder",
 		"Vintage",
 		"Markdown"
 	],
-	"theme": "Soda Dark 3.sublime-theme"
+	"theme": "Afterglow-green.sublime-theme",
+	"tabs_medium": true,
+	"tabs_padding_medium": true,
+	"status_bar_brighter": true,
+	"color_inactive_tabs": true,
+
 }

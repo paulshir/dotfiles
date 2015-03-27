@@ -1,17 +1,17 @@
-Import-Module posh-git
+# Import-Module posh-git
 
-# Set up a simple prompt, adding the git prompt parts inside git repos
-function Write-PromptFunc8Git {
-    $realLASTEXITCODE = $LASTEXITCODE
+# # Set up a simple prompt, adding the git prompt parts inside git repos
+# function Write-PromptFunc8Git {
+#     $realLASTEXITCODE = $LASTEXITCODE
 
-    # Reset color, which can be messed up by Enable-GitColors
-    $Host.UI.RawUI.ForegroundColor = $GitPromptSettings.DefaultForegroundColor
+#     # Reset color, which can be messed up by Enable-GitColors
+#     $Host.UI.RawUI.ForegroundColor = $GitPromptSettings.DefaultForegroundColor
 
-    Write-VcsStatus
+#     Write-VcsStatus
 
-    $global:LASTEXITCODE = $realLASTEXITCODE
-}
+#     $global:LASTEXITCODE = $realLASTEXITCODE
+# }
 
-Enable-GitColors
+# Enable-GitColors
 
-Start-SshAgent -Quiet
+# Start-SshAgent -Quiet
