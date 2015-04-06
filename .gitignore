@@ -1,5 +1,0 @@
-# Local Files not to be checked in #
-*.local
-*.local.*
-.netrwhist
-external
