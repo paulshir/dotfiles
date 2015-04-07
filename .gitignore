@@ -15,3 +15,6 @@ external
 !powershell/PowershellModules/FileManagement
 !dotfiles/*
 dotfiles/setup.sh
+
+!git/gitconfig
+!*/

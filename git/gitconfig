@@ -1,0 +1,5 @@
+[include]
+	path = ~/.dotfiles/git/configs/standard.gitconfig
+	path = ~/.dotfiles/git/configs/user.gitconfig
+	path = ~/.dotfiles/git/configs/aliases.gitconfig
+	path = ~/.gitconfig.local
