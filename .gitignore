@@ -9,7 +9,9 @@ external
 *
 
 # Except these files
-!powershell/*
+!powershell/profile.ps1
+!powershell/PowershellModules/Admin
+!powershell/PowershellModules/Environment
+!powershell/PowershellModules/FileManagement
 !dotfiles/*
 dotfiles/setup.sh
-!*/
