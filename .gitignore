@@ -4,3 +4,12 @@
 .netrwhist
 external
 *.sublime*
+
+# Ignore everything
+*
+
+# Except these files
+!powershell/*
+!dotfiles/*
+dotfiles/setup.sh
+!*/
