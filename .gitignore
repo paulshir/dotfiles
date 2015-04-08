@@ -9,12 +9,15 @@ external
 *
 
 # Except these files
+!dotfiles/*
+
 !powershell/profile.ps1
 !powershell/PowershellModules/Admin
 !powershell/PowershellModules/Environment
 !powershell/PowershellModules/FileManagement
-!dotfiles/*
-dotfiles/setup.sh
+
+!zsh/zshrc
+!bash/bashrc
 
 !git/windows.gitconfig
 !git/unix.gitconfig

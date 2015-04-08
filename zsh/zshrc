@@ -1,0 +1,30 @@
+# import env variables
+for env_file in ~/.*.env;
+do
+	source $env_file
+done
+
+source_files=()
+setopt null_glob
+
+# Find dotfiles source files
+dsh_files=($dotfiles/*/*.dsh)
+for dsh_file in $dsh_files;
+do
+	source_files=("${source_files[@]}" "$dsh_file")
+done
+
+# Find bash source files
+zsh_files=($dotfiles/*/*.zsh)
+for zsh_file in $zsh_files;
+do
+	source_files=("${source_files[@]}" "$zsh_file")
+done
+
+unsetopt null_glob
+
+# Source all files
+for source_file in $source_files;
+do
+	source $source_file
+done
