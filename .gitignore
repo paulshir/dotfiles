@@ -16,5 +16,6 @@ external
 !dotfiles/*
 dotfiles/setup.sh
 
-!git/gitconfig
+!git/windows.gitconfig
+!git/unix.gitconfig
 !*/

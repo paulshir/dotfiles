@@ -58,7 +58,7 @@ BEGIN {
     $symlinkMappings = @(
             @("$dotfiles\powershell\profile.ps1", "$MyDocuments\WindowsPowershell\profile.ps1"),
             @("$dotfiles\sublimetext3\userpreferences", "$($env:APPDATA)\Sublime Text 3\Packages\User"),
-            @("$dotfiles\git\gitconfig", "$HOME\.gitconfig"),
+            @("$dotfiles\git\windows.gitconfig", "$HOME\.gitconfig"),
             @("$dotfiles\vim", "$HOME\vimfiles")
         )
 

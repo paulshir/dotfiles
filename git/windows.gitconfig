@@ -1,5 +1,13 @@
+# Include the following config files from dotfiles
 [include]
 	path = ~/.dotfiles/git/configs/standard.gitconfig
 	path = ~/.dotfiles/git/configs/user.gitconfig
 	path = ~/.dotfiles/git/configs/aliases.gitconfig
+
+# Add overrides for any windows only settings here
+[core]
+	autocrlf = true
+
+# Include file with local computer overrides
+[include]
 	path = ~/.gitconfig.local
