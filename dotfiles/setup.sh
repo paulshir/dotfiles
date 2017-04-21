@@ -1,4 +1,4 @@
-#! /bin/sh
+#! /bin/bash
 #
 # install dotfiles.
 
@@ -20,7 +20,7 @@ apply_symlink() {
 	fi
 }
 
-make_symlink(){
+make_symlink() {
 	local target="$1"
 	local path="$2"
 
@@ -48,7 +48,7 @@ make_symlink(){
 	ln -s "$target" "$path"
 }
 
-remove_symlink(){
+remove_symlink() {
 	local path="$1"
 
 	if [ -h "$path" ];
@@ -88,10 +88,15 @@ fi
 apply_symlink "${dotfiles}/bash/bashrc" ~/.bashrc
 apply_symlink "${dotfiles}/zsh/zshrc" ~/.zshrc
 apply_symlink "${dotfiles}/vim" ~/.vim
+apply_symlink "${dotfiles}/vim/vimrc" ~/.vimrc
+apply_symlink "${dotfiles}/vim" ~/.config/nvim
 apply_symlink "${dotfiles}/git/unix.gitconfig" ~/.gitconfig
+apply_symlink "${dotfiles}/tmux/tmux.conf" ~/.tmux.conf
 
 if [ "$(uname)" == "Darwin" ]; then
 	apply_symlink "${dotfiles}/sublimetext3/userpreferences" ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User
+    apply_symlink "${dotfiles}/hammerspoon" ~/.hammerspoon
+    apply_symlink "${dotfiles}/karabiner/karabiner.json" ~/.config/karabiner/karabiner.json
 elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
 	apply_symlink "${dotfiles}/sublimetext3/userpreferences" ~/.sublimetext3
 fi

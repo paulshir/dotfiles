@@ -1,12 +1,19 @@
 # Include the following config files from dotfiles
 [include]
-	path = ~/.dotfiles/git/standard.gitconfig
 	path = ~/.dotfiles/git/user.gitconfig
+	path = ~/.dotfiles/git/standard.gitconfig
 	path = ~/.dotfiles/git/aliases.gitconfig
+	path = ~/.dotfiles/git/plugins.gitconfig
 
 # Add overrides for any windows only settings here
 [core]
 	autocrlf = true
+
+# Store paths for different windows tools. Will need to add merge and diff tools to a local git config.
+[difftool "bc3"]
+	path = C:\\Program Files\\Beyond Compare 4\\BComp.exe
+[mergetool "bc3"]
+	path = C:\\Program Files\\Beyond Compare 4\\BComp.exe
 
 # Include file with local computer overrides
 [include]

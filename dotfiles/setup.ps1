@@ -59,7 +59,8 @@ BEGIN {
             @("$dotfiles\powershell\profile.ps1", "$MyDocuments\WindowsPowershell\profile.ps1"),
             @("$dotfiles\sublimetext3\userpreferences", "$($env:APPDATA)\Sublime Text 3\Packages\User"),
             @("$dotfiles\git\windows.gitconfig", "$HOME\.gitconfig"),
-            @("$dotfiles\vim", "$HOME\vimfiles")
+            @("$dotfiles\vim", "$HOME\vimfiles"),
+            @("$dotfiles\cmder\cmder.xml", "$($env:SystemDrive)\bin\cmder\config\ConEmu.xml")
         )
 
     function TestIsAdmin() {

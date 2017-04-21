@@ -1,0 +1,8 @@
+// Place your settings in this file to overwrite the default settings
+{
+    "editor.fontSize": 14,
+    "editor.fontFamily": "Hack, Menlo, Monaco, 'Courier New', monospace",
+    "typescript.referencesCodeLens.enabled": true,
+    "typescript.implementationsCodeLens.enabled": true,
+    "workbench.colorTheme": "Nord"
+}

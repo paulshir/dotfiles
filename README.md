@@ -1,7 +1,21 @@
 dotfiles
 ========
 
-This is the repro that contains scripts used to setting up and syncing configuration files. I am using dropbox as my syncing platform although the scripts can be used without dropbox and syncronized using git.
+# Overview #
+
+This is the repro that contains scripts used to setting up and syncing configuration files. It is currently a bit of a mess but I hope to tidy that up soon.
+
+# Modules #
+## Current Modules ##
+
+| Module | Operating Systems | Extendable |
+|--------|-------------------|------------|
+|Powershell|Windows|Extension **.ps1** in dotfiles sub-dirs will be sourced. **PowershellModules** folders in dotfiles sub-dirs will be added to *PSModulePath* on install and update.|
+|zsh|OSX, Linux|Extensions **.dsh** & **.zsh** in dotfiles sub-dirs will be sourced.|
+|bash|OSX, Linux|Extensions **.dsh** & **.bash** in dotfiles sub-dirs will be sourced.|
+|git|All|Files **git/windows.gitconfig** for windows and **git/unix.gitconfig** for unix are loaded with platform specific settings. The following config files are also loaded: *git/user.gitconfig* *git/standard.gitconfig*, *git/aliases.gitconfig*, *git/plugins.gitconfig*, *~/.gitconfig.local*.|
+|Sublime Text 3|All|User preferences will be synced and packages if using [Package Conrol](https://packagecontrol.io/).|
+|vim|All|Plan to extend to automatically install vim-plug|
 
 # Usage #
 Currently symlinks are created for source folders. These are hardcoded into the setup scripts. As the script doesn't make the link if the source folder doesn't exist this isn't an issue if only a subset of the source programs are being used.
@@ -17,46 +31,11 @@ In the master branch the following files are available and include dynamic loadi
 In addition to this a .gitconfig is also included which will dynamically load a few files in the dotfiles/git/configs directory. It will also load ~/.gitconfig.local where you can put settings specific to your current computer.
 
 # Setup and Installation #
-## Dropbox Setup ##
-### First time creating folder ###
-1. Create a folder in dropbox for the dotfiles
-2. In this dotfiles folder create a folder called `external` and a folder called `.git`
-3. Open dropbox settings and go to selective sync settings
-4. Navigate to the dotfiles folder and ensure the `external` folder and `.git` folder are unchecked so they will not sync
-5. You can now clone the repo here by running `git clone https://github.com/paulshir/dotfiles`
+TODO
 
-### Syncing folder on a different computer ###
-1. Open dropbox settings on new computer and go to selective sync settings.
-2. Navigate to the dotfiles folder and ensure the `external` folder and `.git` folder are unchecked so they will not sync
-
-## Install ##
-### Windows ###
-1. Open a powershell window as an administrator
-2. Run `Set-ExecutionPolicy Unrestricted`
-3. Navigate to the dotfiles folder in dropbox. e.g. `cd $HOME\Dropbox\dotfiles`
-4. Run `.\dotfiles\setup.ps1 -Install`
-
-### Linux and OSX ###
-Coming Soon
-
-## Update ##
-### Windows ###
-1. Open a powershell windows and run `Update-Dotfiles`
-
-## Uninstall ##
-### Windows ###
-1. Open a powershell window as an administrator and run the following@:
-
-```powershell
-cd $dotfiles
-./dotfiles/setup.sh -Uninstall
+# The Goal #
 ```
-
-## Add changes to git from new computer ##
-```shell
-git init
-git remote add origin git@github.com:paulshir/dotfiles.git
-git fetch
-git reset --soft origin/master
-git status --porcelain | grep "D " | sed s/D\ /git \add/ | xargs -0 bash -c
+./dotfiles/dotfiles/setup.sh -uninstall
+git clean -fdx
+./dotfiles/dotfiles/setup.sh -install
 ```

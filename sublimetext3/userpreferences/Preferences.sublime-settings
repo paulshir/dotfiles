@@ -1,0 +1,15 @@
+{
+	"color_inactive_tabs": true,
+	"color_scheme": "Packages/Theme - Afterglow/Afterglow.tmTheme",
+	"font_size": 12,
+	"ignored_packages":
+	[
+		"GoSublime",
+		"Markdown"
+	],
+	"status_bar_brighter": true,
+	"tabs_medium": true,
+	"tabs_padding_medium": true,
+	"theme": "Afterglow-green.sublime-theme",
+	"typescript_plugin_tsc_version": "1.7.3"
+}

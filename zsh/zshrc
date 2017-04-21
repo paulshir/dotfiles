@@ -1,30 +1,87 @@
+#! /bin/zsh
 # import env variables
-for env_file in ~/.*.env;
-do
-	source $env_file
-done
 
-source_files=()
-setopt null_glob
+source ~/.dotfiles.env
+ZSHRC_CACHE=~/.zshrc.cache
 
-# Find dotfiles source files
-dsh_files=($dotfiles/*/*.dsh)
-for dsh_file in $dsh_files;
-do
-	source_files=("${source_files[@]}" "$dsh_file")
-done
+zshrc-generate() {
+	echo "Generating cached zshrc script"
+	ZSHRC_GENERATING=1
+        sourcesOrder() {
+                local before
+                local after
+                local folder
+                local file
+                local result
+                before=(checks init colours)
+                after=(completions final)
+                folder=${1:h:t}
+                file=${1:t:r}
 
-# Find bash source files
-zsh_files=($dotfiles/*/*.zsh)
-for zsh_file in $zsh_files;
-do
-	source_files=("${source_files[@]}" "$zsh_file")
-done
+                if [[ $file == *.* ]]; then
+                        file=${file:e}
+                fi
 
-unsetopt null_glob
+                if [[ ${after[(i)$file]} -le ${#after} ]]; then
+                        result=$((${after[(i)$file]} + ${#before} + 1))
+                else
+                        result=${before[(i)$file]}
+                fi
 
-# Source all files
-for source_file in $source_files;
-do
-	source $source_file
-done
+                result=$(($result*2))
+                if [[ $folder != zsh ]]; then
+                        result=$(($result + 1));
+                fi
+                echo ${(l:2::0:)result}
+        }
+
+	local source_files()
+        setopt null_glob
+	setopt extended_glob
+
+        for env_file in ~/.*.env; do
+		if [[ $env_file != *.dotfiles.env ]]; then
+	                source_files=("${source_files[@]}" "$env_file")
+		fi
+        done
+        unset env_file
+	
+	dsh_files=(${dotfiles}/*/*.dsh)
+	for dsh_file in $dsh_files; do
+                source_files=("${source_files[@]}" "$dsh_file")
+        done
+	unset dsh_files
+        unset dsh_file
+	
+        zsh_files=(${dotfiles}/*/*.zsh(oe:'REPLY=$(sourcesOrder $REPLY)':))
+        for zsh_file in $zsh_files; do
+                source_files=("${source_files[@]}" "$zsh_file")
+        done
+        unset zsh_files
+        unset zsh_file
+	
+	unsetopt null_glob
+	unsetopt extended_glob
+	
+	echo "## Auto Generated Init File" >! $ZSHRC_CACHE
+	for source_file in $source_files; do
+		echo source $source_file >> $ZSHRC_CACHE
+	done
+	unset source_files
+	unset source_file
+		
+	unfunction sourcesOrder
+	echo "Generation Complete, Sourcing File"
+
+
+        # cat $ZSHRC_CACHE
+	source $ZSHRC_CACHE
+	unset ZSHRC_GENERATING
+}
+
+if [[ ! -f $ZSHRC_CACHE ]]; then
+	zshrc-generate $ZSHRC_CACHE
+else
+	source $ZSHRC_CACHE
+fi
+
