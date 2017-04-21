@@ -4,5 +4,6 @@
     "editor.fontFamily": "Hack, Menlo, Monaco, 'Courier New', monospace",
     "typescript.referencesCodeLens.enabled": true,
     "typescript.implementationsCodeLens.enabled": true,
-    "workbench.colorTheme": "Nord"
+    "workbench.colorTheme": "Nord",
+    "rust.formatOnSave": true
 }
