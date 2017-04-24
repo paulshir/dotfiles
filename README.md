@@ -1,41 +1,85 @@
 dotfiles
 ========
 
-# Overview #
+## overview ##
+This is a repo for my shared configuration. It works across macos, linux and windows. It also contains scripts required to manage itself.
 
-This is the repro that contains scripts used to setting up and syncing configuration files. It is currently a bit of a mess but I hope to tidy that up soon.
-
-# Modules #
-## Current Modules ##
-
-| Module | Operating Systems | Extendable |
-|--------|-------------------|------------|
-|Powershell|Windows|Extension **.ps1** in dotfiles sub-dirs will be sourced. **PowershellModules** folders in dotfiles sub-dirs will be added to *PSModulePath* on install and update.|
-|zsh|OSX, Linux|Extensions **.dsh** & **.zsh** in dotfiles sub-dirs will be sourced.|
-|bash|OSX, Linux|Extensions **.dsh** & **.bash** in dotfiles sub-dirs will be sourced.|
-|git|All|Files **git/windows.gitconfig** for windows and **git/unix.gitconfig** for unix are loaded with platform specific settings. The following config files are also loaded: *git/user.gitconfig* *git/standard.gitconfig*, *git/aliases.gitconfig*, *git/plugins.gitconfig*, *~/.gitconfig.local*.|
-|Sublime Text 3|All|User preferences will be synced and packages if using [Package Conrol](https://packagecontrol.io/).|
-|vim|All|Plan to extend to automatically install vim-plug|
-
-# Usage #
-Currently symlinks are created for source folders. These are hardcoded into the setup scripts. As the script doesn't make the link if the source folder doesn't exist this isn't an issue if only a subset of the source programs are being used.
-
-In the master branch the following files are available and include dynamic loading of all files in the dotfiles subdirectory ending with a given extension.
-
-|Program   |Extensions |
-|----------|-----------|
-|Powershell|.ps1       |
-|Zsh       |.dsh, .zsh |
-|Bash      |.shd, .bash|
-
-In addition to this a .gitconfig is also included which will dynamically load a few files in the dotfiles/git/configs directory. It will also load ~/.gitconfig.local where you can put settings specific to your current computer.
-
-# Setup and Installation #
-TODO
-
-# The Goal #
-```
+## todo ##
+* Move functions etc out to seperate repo, keep this mainly for config. Powershell modules not required by dotfiles should be moved out.
+* Keep rc configs to single files to allow easy downloading on servers without downloading all dotfiles
+* rc files should run without added dependencies, they should enable additional features on demand. e.g. use vim plugins if vim-plug is installed.
+* rc configs should call a local override file also, for exta settings.
+* dotfiles scripts should provide 2 basic purposes
+  + create correct symlinks for all platforms
+  + basic file downloader for dependencies
+* zshrc should have the settings and optionally call the cache rather than vice versa.
+* get the following working
+```bash
 ./dotfiles/dotfiles/setup.sh -uninstall
 git clean -fdx
 ./dotfiles/dotfiles/setup.sh -install
+```
+
+## contents ##
+| app          | os           | notes |
+|--------------|--------------|-------|
+| autohotkey   | windows      | |
+| bash         | all          | |
+| cmder        | windows      | |
+| dotfiles     | all          | |
+| external     | none         | used for storing external downloads |
+| git          | all          | |
+| hammerspoon  | macos        | |
+| iterm        | macos        | |
+| karabiners   | macos        | |
+| networkutils | windows      | to be moved |
+| powershell   | windows      | modules to be moved |
+| sublimetext3 | all          | |
+| tmux         | macos, linux | |
+| typescript   | all          | to be moved |
+| vim          | all          | |
+| vscode       | all          | settings might need to be made platform agnostic |
+| zsh          | all          | |
+
+## installation ##
+#### macos and linux ####
+```zsh
+git clone https://github.com/paulshir/dotfiles
+cd dotfiles
+./dotfiles/setup.sh -install
+```
+
+#### windows ####
+Open powershell as an admin (required to create symlinks on windows)
+```cmd
+Set-ExecutionPolicy Unrestricted
+git clone https://github.com/paulshir/dotfiles
+cd dotfiles
+./dotfiles/setup.ps1 -Install
+```
+
+## update ##
+To update the installation scripts can be run again. There are also aliases available for different shells, that are installed with these dotfiles.
+
+#### zsh ####
+```zsh
+update-dotfiles
+```
+
+#### powershell ####
+```cmd
+Update-Dotfiles
+```
+
+## uninstall ##
+#### macos and linux ####
+```zsh
+cd $dotfiles
+./dotfiles/setup.sh -uninstall
+```
+
+#### windows ####
+```cmd
+cd $dotfiles
+./dotfiles/setup.ps1 -Uninstall
 ```
