@@ -7,13 +7,15 @@ local alert_style = {
 }
 
 local application_mode_shortcuts = {
-	{shortcut = "c", app = "Google Chrome"},
+	{shortcut = "c", app = "Google Chrome", alias = "Chrome"},
 	{shortcut = "f", app = "Firefox"},
-	{shortcut = "i", app = "Intellij IDEA CE"},
+	{shortcut = "i", app = "Intellij IDEA CE", alias = "Intellij"},
 	{shortcut = "m", app = "Spotify"},
 	{shortcut = "s", app = "Sublime Text"},
 	{shortcut = "t", app = "iTerm"},
+	{shortcut = "v", app = "Visual Studio Code", alias = "VS Code"},
 	{shortcut = "w", app = "WhatsApp"},
+	{shortcut = "return", app = "Finder"},
 }
 
 -- Constants --
@@ -63,7 +65,9 @@ cmd_q_bind = hs.hotkey.bind({"cmd"}, 'q', cmd_q_on_key_down, cmd_q_on_key_up, cm
 -- Application Mode --
 local a_bind = hs.hotkey.modal.new(hyper, 'a', "Application Mode")
 for i, v in ipairs(application_mode_shortcuts) do
-	a_bind:bind({}, v.shortcut, v.app, function()
+	local title;
+	if v.alias then title = v.alias else title = v.app end
+	a_bind:bind({}, v.shortcut, title, function()
 		hs.application.launchOrFocus(v.app)
 		a_bind:exit()	
 	end)
