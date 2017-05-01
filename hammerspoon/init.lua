@@ -73,6 +73,27 @@ if hs.host.operatingSystemVersion().major == 10 and hs.host.operatingSystemVersi
 	end
 end
 
+-- FN Workaround, will move this functionality to karabiner elements once complex modifications has landed. --
+if hs.host.operatingSystemVersion().major == 10 and hs.host.operatingSystemVersion().minor == 12 then
+	replace_fn_key = function(event, from, to)
+		if event:getFlags()["fn"] and event:getKeyCode() == hs.keycodes.map[from] then
+			event:setKeyCode(hs.keycodes.map[to])
+		end
+	end
+
+	local fn_grab = hs.eventtap.new({hs.eventtap.event.types.keyDown}, function(event)
+		hs.inspect.inspect(hs.keycodes.map[event:getKeyCode()])
+		-- print(hs.keycodes.map[event:getKeyCode()])
+		-- print(hs.inspect(event:getFlags()))
+	    replace_fn_key(event, "h", "left")
+	    replace_fn_key(event, "j", "down")
+	    replace_fn_key(event, "k", "up")
+	    replace_fn_key(event, "l", "right")
+		return false
+	end)
+	fn_grab:start()
+end
+
 -- CMD+Q Safety --
 local cmd_q_bind
 local cmd_q_trigger
