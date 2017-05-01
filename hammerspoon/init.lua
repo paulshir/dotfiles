@@ -31,6 +31,48 @@ hs.hotkey.bind(hyper, 'r', function()
 	hs.reload()
 end)
 
+-- Hyper Workaround, will move this functionality to karabiner elements once complex modifications land --
+if hs.host.operatingSystemVersion().major == 10 and hs.host.operatingSystemVersion().minor == 12 then
+	local hyper_combos = "abcdefghijklmnopqrstuvwxyz0123456789"
+	local hyper_combos_extra = {"left", "up", "down", "right", "return", "space", "tab", "delete"}
+	local hyper_used = false;
+
+	local f18_bind = hs.hotkey.modal.new({}, "f18")
+	hyper_send = function(key)
+		f18_bind:bind({}, key, function()
+			hyper_used = true
+			hs.eventtap.keyStroke(hyper, key)
+		end)
+	end
+
+	hs.hotkey.bind({}, "f19", function()
+		hyper_used = false
+		f18_bind:enter()
+	end, function()
+		f18_bind:exit()
+	end)
+
+	backslash_bind = hs.hotkey.bind({}, "`", function()
+		hyper_used = false
+		f18_bind:enter()
+	end, function()
+		if not hyper_used then
+			backslash_bind:disable()
+			hs.eventtap.keyStroke({}, "`")
+			backslash_bind:enable()
+		end
+		f18_bind:exit()
+	end)
+
+	for key in hyper_combos:gmatch"." do
+		hyper_send(key)
+	end
+
+	for _, key in ipairs(hyper_combos_extra) do
+		hyper_send(key)
+	end
+end
+
 -- CMD+Q Safety --
 local cmd_q_bind
 local cmd_q_trigger

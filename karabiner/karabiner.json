@@ -35,7 +35,8 @@
             "name": "Caps/Esc",
             "selected": true,
             "simple_modifications": {
-                "caps_lock": "left_control"
+                "caps_lock": "left_control",
+                "left_control": "f19"
             },
             "virtual_hid_keyboard": {
                 "caps_lock_delay_milliseconds": 0,
