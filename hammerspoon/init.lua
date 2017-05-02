@@ -20,6 +20,7 @@ local application_mode_shortcuts = {
 
 -- Constants --
 hyper = {"ctrl", "alt", "shift", "cmd"}
+isSierra = hs.host.operatingSystemVersion().major == 10 and hs.host.operatingSystemVersion().minor == 12
 
 -- Alert Style --
 for k,v in pairs(alert_style) do
@@ -31,8 +32,9 @@ hs.hotkey.bind(hyper, 'r', function()
 	hs.reload()
 end)
 
--- Hyper Workaround, will move this functionality to karabiner elements once complex modifications land --
-if hs.host.operatingSystemVersion().major == 10 and hs.host.operatingSystemVersion().minor == 12 then
+-- karabiner workarounds, will move this functionality to karabiner once complex modifications has landed --
+-- karabiner hyper workaround --
+if isSierra then
 	local hyper_combos = "abcdefghijklmnopqrstuvwxyz0123456789"
 	local hyper_combos_extra = {"left", "up", "down", "right", "return", "space", "tab", "delete"}
 	local hyper_used = false;
@@ -73,8 +75,8 @@ if hs.host.operatingSystemVersion().major == 10 and hs.host.operatingSystemVersi
 	end
 end
 
--- FN Workaround, will move this functionality to karabiner elements once complex modifications has landed. --
-if hs.host.operatingSystemVersion().major == 10 and hs.host.operatingSystemVersion().minor == 12 then
+-- karabiner fn workaround --
+if isSierra then
 	replace_fn_key = function(event, from, to)
 		if event:getFlags()["fn"] and event:getKeyCode() == hs.keycodes.map[from] then
 			event:setKeyCode(hs.keycodes.map[to])
@@ -82,16 +84,50 @@ if hs.host.operatingSystemVersion().major == 10 and hs.host.operatingSystemVersi
 	end
 
 	local fn_grab = hs.eventtap.new({hs.eventtap.event.types.keyDown}, function(event)
-		hs.inspect.inspect(hs.keycodes.map[event:getKeyCode()])
 		-- print(hs.keycodes.map[event:getKeyCode()])
 		-- print(hs.inspect(event:getFlags()))
 	    replace_fn_key(event, "h", "left")
 	    replace_fn_key(event, "j", "down")
 	    replace_fn_key(event, "k", "up")
 	    replace_fn_key(event, "l", "right")
+        
+		-- These don't really work that well but leaving here anyway --'
+		replace_fn_key(event, "1", "f1")
+		replace_fn_key(event, "2", "f2")
+		replace_fn_key(event, "3", "f3")
+		replace_fn_key(event, "4", "f4")
+		replace_fn_key(event, "5", "f5")
+		replace_fn_key(event, "6", "f6")
+		replace_fn_key(event, "7", "f7")
+		replace_fn_key(event, "8", "f8")
+		replace_fn_key(event, "9", "f9")
+		replace_fn_key(event, "0", "f10")
+		replace_fn_key(event, "-", "f11")
+		replace_fn_key(event, "=", "f12")
 		return false
-	end)
-	fn_grab:start()
+	end):start()
+end
+
+-- karabienr ctrl standalone escape workaround --
+if isSierra then
+	local ctrl_modifier_state = 0 -- 0: clear, 1: ctrl, 2: any other key
+	local ctrl_key_up = hs.eventtap.new({hs.eventtap.event.types.keyUp}, function(event) 
+		if not event:getFlags():containExactly({}) then
+			ctrl_modifier_state = 2
+		end
+	end):start()
+
+	local ctrl_flags_changed = hs.eventtap.new({hs.eventtap.event.types.flagsChanged}, function(event)
+		if ctrl_modifier_state == 0 and event:getFlags():containExactly({"ctrl"}) then
+			ctrl_modifier_state = 1
+		elseif ctrl_modifier_state == 1 and event:getFlags():containExactly({}) then
+			hs.eventtap.keyStroke({}, "escape")
+		elseif event:getFlags():containExactly({}) then
+			ctrl_modifier_state = 0
+		else
+			ctrl_modifier_state = 2
+		end
+	end):start()
 end
 
 -- CMD+Q Safety --
