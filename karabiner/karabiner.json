@@ -7,11 +7,50 @@
     "profiles": [
         {
             "complex_modifications": {
+                "parameters": {
+                    "basic.to_if_alone_timeout_milliseconds": 1000
+                },
                 "rules": [
                     {
+                        "description": "Change escape to hyper/esc",
                         "manipulators": [
                             {
-                                "description": "hyper",
+                                "from": {
+                                    "key_code": "escape",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "left_control",
+                                        "modifiers": [
+                                            "left_shift",
+                                            "left_command",
+                                            "left_option"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Change left_control on Apple Keyboards to hyper",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "identifiers": [
+                                            {
+                                                "vendor_id": 1452
+                                            }
+                                        ],
+                                        "type": "device_if"
+                                    }
+                                ],
                                 "from": {
                                     "key_code": "left_control",
                                     "modifiers": {
@@ -31,11 +70,31 @@
                                     }
                                 ],
                                 "type": "basic"
-                            },
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Change grave_accent_and_tilde on some Apple Keyboards to hyper/grave_accent_and_tilde",
+                        "manipulators": [
                             {
-                                "description": "hyper 2",
+                                "conditions": [
+                                    {
+                                        "identifiers": [
+                                            {
+                                                "product_id": 632,
+                                                "vendor_id": 1452
+                                            }
+                                        ],
+                                        "type": "device_if"
+                                    }
+                                ],
                                 "from": {
-                                    "key_code": "grave_accent_and_tilde"
+                                    "key_code": "grave_accent_and_tilde",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
                                 },
                                 "to": [
                                     {
@@ -53,9 +112,24 @@
                                     }
                                 ],
                                 "type": "basic"
-                            },
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Change caps_lock to left_control/escape",
+                        "manipulators": [
                             {
-                                "description": "caps_lock/control + escape",
+                                "conditions": [
+                                    {
+                                        "identifiers": [
+                                            {
+                                                "product_id": 321,
+                                                "vendor_id": 1241
+                                            }
+                                        ],
+                                        "type": "device_unless"
+                                    }
+                                ],
                                 "from": {
                                     "key_code": "caps_lock",
                                     "modifiers": {
@@ -77,7 +151,43 @@
                                 "type": "basic"
                             },
                             {
-                                "description": "fn+h",
+                                "conditions": [
+                                    {
+                                        "identifiers": [
+                                            {
+                                                "product_id": 321,
+                                                "vendor_id": 1241
+                                            }
+                                        ],
+                                        "type": "device_if"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "left_control",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "left_control"
+                                    }
+                                ],
+                                "to_if_alone": [
+                                    {
+                                        "key_code": "escape"
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "fn+h/j/k/l to",
+                        "manipulators": [
+                            {
                                 "from": {
                                     "key_code": "h",
                                     "modifiers": {
@@ -97,7 +207,6 @@
                                 "type": "basic"
                             },
                             {
-                                "description": "fn+j",
                                 "from": {
                                     "key_code": "j",
                                     "modifiers": {
@@ -117,7 +226,6 @@
                                 "type": "basic"
                             },
                             {
-                                "description": "fn+k",
                                 "from": {
                                     "key_code": "k",
                                     "modifiers": {
@@ -137,7 +245,6 @@
                                 "type": "basic"
                             },
                             {
-                                "description": "fn+l",
                                 "from": {
                                     "key_code": "l",
                                     "modifiers": {
@@ -155,9 +262,13 @@
                                     }
                                 ],
                                 "type": "basic"
-                            },
+                            }
+                        ]
+                    },
+                    {
+                        "description": "fn+numbers to F1-12",
+                        "manipulators": [
                             {
-                                "description": "fn+1",
                                 "from": {
                                     "key_code": "1",
                                     "modifiers": {
@@ -177,7 +288,6 @@
                                 "type": "basic"
                             },
                             {
-                                "description": "fn+2",
                                 "from": {
                                     "key_code": "2",
                                     "modifiers": {
@@ -197,7 +307,6 @@
                                 "type": "basic"
                             },
                             {
-                                "description": "fn+3",
                                 "from": {
                                     "key_code": "3",
                                     "modifiers": {
@@ -217,7 +326,6 @@
                                 "type": "basic"
                             },
                             {
-                                "description": "fn+4",
                                 "from": {
                                     "key_code": "4",
                                     "modifiers": {
@@ -237,7 +345,6 @@
                                 "type": "basic"
                             },
                             {
-                                "description": "fn+5",
                                 "from": {
                                     "key_code": "5",
                                     "modifiers": {
@@ -257,7 +364,6 @@
                                 "type": "basic"
                             },
                             {
-                                "description": "fn+6",
                                 "from": {
                                     "key_code": "6",
                                     "modifiers": {
@@ -277,7 +383,6 @@
                                 "type": "basic"
                             },
                             {
-                                "description": "fn+7",
                                 "from": {
                                     "key_code": "7",
                                     "modifiers": {
@@ -297,7 +402,6 @@
                                 "type": "basic"
                             },
                             {
-                                "description": "fn+8",
                                 "from": {
                                     "key_code": "8",
                                     "modifiers": {
@@ -317,7 +421,6 @@
                                 "type": "basic"
                             },
                             {
-                                "description": "fn+9",
                                 "from": {
                                     "key_code": "9",
                                     "modifiers": {
@@ -337,9 +440,8 @@
                                 "type": "basic"
                             },
                             {
-                                "description": "fn+10",
                                 "from": {
-                                    "key_code": "10",
+                                    "key_code": "0",
                                     "modifiers": {
                                         "mandatory": [
                                             "fn"
@@ -357,7 +459,6 @@
                                 "type": "basic"
                             },
                             {
-                                "description": "fn+hyphen",
                                 "from": {
                                     "key_code": "hyphen",
                                     "modifiers": {
@@ -377,9 +478,8 @@
                                 "type": "basic"
                             },
                             {
-                                "description": "fn+equals_sign",
                                 "from": {
-                                    "key_code": "equals_sign",
+                                    "key_code": "equal_sign",
                                     "modifiers": {
                                         "mandatory": [
                                             "fn"
@@ -392,6 +492,184 @@
                                 "to": [
                                     {
                                         "key_code": "f12"
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "fn+z to sleep",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "z",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "fn"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "power",
+                                        "modifiers": [
+                                            "left_control",
+                                            "left_shift"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "application"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "power",
+                                        "modifiers": [
+                                            "left_control",
+                                            "left_shift"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "fn+q/w/e/a/s/d/f to media keys",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "q",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "fn"
+                                        ],
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "rewind"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "w",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "fn"
+                                        ],
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "play_or_pause"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "e",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "fn"
+                                        ],
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "fastforward"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "a",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "fn"
+                                        ],
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "mute"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "s",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "fn"
+                                        ],
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "volume_decrement"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "d",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "fn"
+                                        ],
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "volume_increment"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "f",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "fn"
+                                        ],
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "mute"
                                     }
                                 ],
                                 "type": "basic"
@@ -413,20 +691,20 @@
                 }
             ],
             "fn_function_keys": {
-                "f1": "vk_consumer_brightness_down",
+                "f1": "display_brightness_decrement",
                 "f10": "mute",
-                "f11": "volume_down",
-                "f12": "volume_up",
-                "f2": "vk_consumer_brightness_up",
-                "f3": "vk_mission_control",
-                "f4": "vk_launchpad",
-                "f5": "vk_consumer_illumination_down",
-                "f6": "vk_consumer_illumination_up",
-                "f7": "vk_consumer_previous",
-                "f8": "vk_consumer_play",
-                "f9": "vk_consumer_next"
+                "f11": "volume_decrement",
+                "f12": "volume_increment",
+                "f2": "display_brightness_increment",
+                "f3": "mission_control",
+                "f4": "launchpad",
+                "f5": "illumination_decrement",
+                "f6": "illumination_increment",
+                "f7": "rewind",
+                "f8": "play_or_pause",
+                "f9": "fastforward"
             },
-            "name": "Caps/Esc",
+            "name": "caps/escape, hyper, fn",
             "selected": true,
             "simple_modifications": {},
             "virtual_hid_keyboard": {
@@ -435,6 +713,12 @@
             }
         },
         {
+            "complex_modifications": {
+                "parameters": {
+                    "basic.to_if_alone_timeout_milliseconds": 1000
+                },
+                "rules": []
+            },
             "devices": [],
             "fn_function_keys": {
                 "f1": "display_brightness_decrement",
@@ -450,7 +734,7 @@
                 "f8": "play_or_pause",
                 "f9": "fastforward"
             },
-            "name": "Off",
+            "name": "off",
             "selected": false,
             "simple_modifications": {},
             "virtual_hid_keyboard": {
