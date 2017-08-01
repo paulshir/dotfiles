@@ -33,6 +33,11 @@
                                         ]
                                     }
                                 ],
+                                "to_if_alone": [
+                                    {
+                                        "key_code": "escape"
+                                    }
+                                ],
                                 "type": "basic"
                             }
                         ]
@@ -74,7 +79,49 @@
                         ]
                     },
                     {
-                        "description": "Change grave_accent_and_tilde on some Apple Keyboards to hyper/grave_accent_and_tilde",
+                        "description": "Change grave_accent_and_tilde on US Apple Keyboards to hyper/grave_accent_and_tilde",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "identifiers": [
+                                            {
+                                                "product_id": 627,
+                                                "vendor_id": 1452
+                                            }
+                                        ],
+                                        "type": "device_if"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "non_us_backslash",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "left_control",
+                                        "modifiers": [
+                                            "left_shift",
+                                            "left_command",
+                                            "left_option"
+                                        ]
+                                    }
+                                ],
+                                "to_if_alone": [
+                                    {
+                                        "key_code": "non_us_backslash"
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Change non_us_backslash on Non US Apple Keyboards to hyper/non_us_backslash",
                         "manipulators": [
                             {
                                 "conditions": [
