@@ -1,3 +1,0 @@
-update-dotfiles() {
-	$dotfiles/dotfiles/setup.sh -install
-}

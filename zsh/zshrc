@@ -64,6 +64,7 @@ export FZF_CTRL_T_COMMAND=${FZF_DEFAULT_COMMAND}
 source ~/.fzf.zsh
 
 # ALIASES {{{1
+alias dotfiles-update='${dotfiles}/dotfiles/setup.sh --install'
 alias g='git'
 alias gA='git add .'
 alias ga='git add'
@@ -89,10 +90,10 @@ alias tk='tmux kill-session -t'
 alias vf='nvim $(fzf)'
 alias vi='nvim'
 alias vim='nvim'
-alias zshrc_time='time  zsh -i -c exit'
-alias zshrc_time_bp='ZSHRC_CACHE_BYPASS=1;time  zsh -i -c exit'
-alias zshrc_time_f='rm -rf ${ZSHRC_CACHE}; time  zsh -i -c exit'
-alias zshrc_time_ff='rm -rf ${ZSHRC_CACHE}; zplug clear; time  zsh -i -c exit'
+alias zshrc-time='time  zsh -i -c exit'
+alias zshrc-time-bp='ZSHRC_CACHE_BYPASS=1;time  zsh -i -c exit'
+alias zshrc-time-f='rm -rf ${ZSHRC_CACHE}; time  zsh -i -c exit'
+alias zshrc-time-ff='rm -rf ${ZSHRC_CACHE}; zplug clear; time  zsh -i -c exit'
 
 # FUNCTIONS {{{1
 

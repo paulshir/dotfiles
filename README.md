@@ -12,13 +12,6 @@ This is a repo for my shared configuration. It works across macos, linux and win
 * dotfiles scripts should provide 2 basic purposes
   + create correct symlinks for all platforms
   + basic file downloader for dependencies
-* zshrc should have the settings and optionally call the cache rather than vice versa.
-* get the following working
-```bash
-./dotfiles/dotfiles/setup.sh -uninstall
-git clean -fdx
-./dotfiles/dotfiles/setup.sh -install
-```
 
 ## contents ##
 | app          | os           | notes |
@@ -46,7 +39,7 @@ git clean -fdx
 ```zsh
 git clone https://github.com/paulshir/dotfiles
 cd dotfiles
-./dotfiles/setup.sh -install
+./dotfiles/setup.sh --install
 ```
 
 #### windows ####
@@ -63,7 +56,7 @@ To update the installation scripts can be run again. There are also aliases avai
 
 #### zsh ####
 ```zsh
-update-dotfiles
+dotfiles-update
 ```
 
 #### powershell ####
@@ -75,7 +68,7 @@ Update-Dotfiles
 #### macos and linux ####
 ```zsh
 cd $dotfiles
-./dotfiles/setup.sh -uninstall
+./dotfiles/setup.sh --uninstall
 ```
 
 #### windows ####

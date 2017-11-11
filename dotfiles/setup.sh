@@ -66,17 +66,17 @@ remove_symlink() {
 	fi
 }
 
-if [ "$1" == "-install" ]; then
+if [ "$1" == "--install" ]; then
 	install=true
-elif [ "$1" == "-uninstall" ]; then
+elif [ "$1" == "--uninstall" ]; then
 	install=false
-elif [ "$1" == "-test" ]; then
+elif [ "$1" == "--test" ]; then
 	echo "Dotfiles Location: $dotfiles"
 	exit
 else
 	echo "Usage:"
-	echo "	./setup.sh -install"
-	echo "	./setup.sh -uninstall"
+	echo "	./setup.sh --install"
+	echo "	./setup.sh --uninstall"
 	exit 0
 fi
 

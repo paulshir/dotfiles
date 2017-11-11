@@ -1,4 +1,4 @@
-# .bashrc
+#!/bin/bash
 
 # Source global definitions
 if [ -f /etc/bashrc ];
@@ -10,24 +10,4 @@ fi
 for env_file in ~/.*.env;
 do
 	source $env_file
-done
-
-source_files=()
-
-# Find dotfiles source files
-for dsh_file in ${dotfiles}/*/*.dsh;
-do
-	source_files=("${source_files[@]}" "$dsh_file")
-done
-
-# Find bash source files
-for bash_file in ${dotfiles}/*/*.bash;
-do
-	source_files=("${source_files[@]}" "$bash_file")
-done
-
-# Source all files
-for source_file in $source_files;
-do
-	source $source_file
 done
