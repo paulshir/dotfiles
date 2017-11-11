@@ -1,26 +1,25 @@
-# Include the following config files from dotfiles
-[include]
-	path = ~/.dotfiles/git/user.gitconfig
-	path = ~/.dotfiles/git/standard.gitconfig
-	path = ~/.dotfiles/git/aliases.gitconfig
-	path = ~/.dotfiles/git/plugins.gitconfig
-
-# Add overrides for any unix only settings here
 [core]
 	autocrlf = false
+	editor = vim
 	pager = less -FMRiX
 	excludesfile = ~/.config/git/gitignore
-
-# Include file with local computer overrides
-[color]
-	ui = auto
-[push]
-	default = simple
-[diff]
-    tool = vimdiff
-[merge]
-	tool = vimdiff
+    
 [alias]
 	dag = log --graph --format='format:%C(yellow)%h%C(reset) %C(blue)\"%an\" <%ae>%C(reset) %C(magenta)%cr%C(reset)%C(auto)%d%C(reset)%n%s' --date-order
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+    cfdx = clean -fdx -e *.iml
+
+[color]
+	ui = auto
+
+[diff]
+    tool = vimdiff
+
+[merge]
+	tool = vimdiff
+    
+[push]
+	default = simple
+
 [include]
-	path = ~/.gitconfig.local
+	path = ~/.config/git/gitconfig.local
