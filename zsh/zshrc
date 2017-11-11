@@ -59,8 +59,8 @@ HISTFILE=~/.histfile
 HISTSIZE=100000
 SAVEHIST=100000
 
-export FZF_DEFAULT_COMMAND='rg --files --follow --smart-case --glob "!.git/*"'
-# export FZF_CTRL_T_COMMAND=${FZF_DEFAULT_COMMAND}
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,node_modules}/*" 2> /dev/null'
+export FZF_CTRL_T_COMMAND=${FZF_DEFAULT_COMMAND}
 source ~/.fzf.zsh
 
 # ALIASES {{{1
@@ -84,6 +84,7 @@ alias reload='. ~/.zshrc'
 alias reloadf='rm -rf ${ZSHRC_CACHE} && . ~/.zshrc'
 alias reloadff='rm -rf ${ZSHRC_CACHE} && zplug clear && . ~/.zshrc'
 alias ta='tmux new-session -A -s'
+alias tl='tmux list-sessions'
 alias tk='tmux kill-session -t'
 alias vf='nvim $(fzf)'
 alias vi='nvim'
