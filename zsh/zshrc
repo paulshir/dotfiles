@@ -1,87 +1,168 @@
-#! /bin/zsh
-# import env variables
+#!/bin/zsh
 
-source ~/.dotfiles.env
-ZSHRC_CACHE=~/.zshrc.cache
-
-zshrc-generate() {
-	echo "Generating cached zshrc script"
-	ZSHRC_GENERATING=1
-        sourcesOrder() {
-                local before
-                local after
-                local folder
-                local file
-                local result
-                before=(checks init colours)
-                after=(completions final)
-                folder=${1:h:t}
-                file=${1:t:r}
-
-                if [[ $file == *.* ]]; then
-                        file=${file:e}
-                fi
-
-                if [[ ${after[(i)$file]} -le ${#after} ]]; then
-                        result=$((${after[(i)$file]} + ${#before} + 1))
-                else
-                        result=${before[(i)$file]}
-                fi
-
-                result=$(($result*2))
-                if [[ $folder != zsh ]]; then
-                        result=$(($result + 1));
-                fi
-                echo ${(l:2::0:)result}
-        }
-
-	local source_files()
-        setopt null_glob
-	setopt extended_glob
-
-        for env_file in ~/.*.env; do
-		if [[ $env_file != *.dotfiles.env ]]; then
-	                source_files=("${source_files[@]}" "$env_file")
-		fi
-        done
-        unset env_file
-	
-	dsh_files=(${dotfiles}/*/*.dsh)
-	for dsh_file in $dsh_files; do
-                source_files=("${source_files[@]}" "$dsh_file")
-        done
-	unset dsh_files
-        unset dsh_file
-	
-        zsh_files=(${dotfiles}/*/*.zsh(oe:'REPLY=$(sourcesOrder $REPLY)':))
-        for zsh_file in $zsh_files; do
-                source_files=("${source_files[@]}" "$zsh_file")
-        done
-        unset zsh_files
-        unset zsh_file
-	
-	unsetopt null_glob
-	unsetopt extended_glob
-	
-	echo "## Auto Generated Init File" >! $ZSHRC_CACHE
-	for source_file in $source_files; do
-		echo source $source_file >> $ZSHRC_CACHE
-	done
-	unset source_files
-	unset source_file
-		
-	unfunction sourcesOrder
-	echo "Generation Complete, Sourcing File"
-
-
-        # cat $ZSHRC_CACHE
-	source $ZSHRC_CACHE
-	unset ZSHRC_GENERATING
+# INTERNAL UTILITY FUNCTIONS {{{1
+_error() {
+	echo
+	echo "[31;1m$*[0m"
+	echo
 }
 
-if [[ ! -f $ZSHRC_CACHE ]]; then
-	zshrc-generate $ZSHRC_CACHE
+# INTERNAL CACHE SETUP {{{1
+ZSHRC_CACHE=~/.zshrc.cache
+ZSHRC_CACHE_BYPASS=NOTINUSEYET
+unset ZSHRC_CACHE_CHECK
+local __cache_guard="E7WUH"
+
+__cache() {
+	if [[ $1 != ${__cache_guard} ]]; then
+		echo "Cannot call __cache directly"
+		return
+	fi
+	shift
+	echo $* >> ${ZSHRC_CACHE}
+	$*
+}
+
+__cache_no_op() {}
+
+_cache_gen_check() {
+	return !${+ZSHRC_CACHE_CHECK}
+}
+
+if [[ -n ${ZSHRC_CACHE_BYPASS} ]]; then
+	ZSHRC_CACHE_CHECK=BYPASS
+	alias _cache=''
+elif [[ ! -e ${ZSHRC_CACHE} ]]; then
+	ZSHRC_CACHE_CHECK=GEN
+	alias _cache='noglob __cache ${__cache_guard}'
 else
+	alias _cache='__cache_no_op'
+fi
+
+# ENVIRONMENT {{{1
+source ~/.dotfiles.env
+export ZSHRC_LOCAL=~/.zshrc.local
+
+if [[ ! -d ${dotfiles} ]]; then
+	_error "currently dotfiles must be installed for this to work; exiting"
+	return 1
+fi
+
+export ZPLUG_HOME=${dotfiles}/external/zsh/zplug
+
+if [[ ! -f ${ZPLUG_HOME}/init.zsh ]]; then
+	_error "currently zplug must be installed for this to work; exiting"
+	return 1
+fi
+
+HISTFILE=~/.histfile
+HISTSIZE=100000
+SAVEHIST=100000
+
+export FZF_DEFAULT_COMMAND='rg --files --follow --smart-case --glob "!.git/*"'
+# export FZF_CTRL_T_COMMAND=${FZF_DEFAULT_COMMAND}
+source ~/.fzf.zsh
+
+# ALIASES {{{1
+alias g='git'
+alias gA='git add .'
+alias ga='git add'
+alias gd='git diff'
+alias gc='git commit'
+alias gca='git commit --amend'
+alias gct='git commit -m "TMP"'
+alias gcm='git commit -m'
+alias gdc='git diff --cached'
+alias gdd='git difftool'
+alias gddc='git difftool --cached'
+alias gf='git fetch'
+alias gr='git rebase -i'
+alias gs='git status'
+alias pd='popd'
+alias ita='tmux -CC new-session -A -s'
+alias reload='. ~/.zshrc'
+alias reloadf='rm -rf ${ZSHRC_CACHE} && . ~/.zshrc'
+alias reloadff='rm -rf ${ZSHRC_CACHE} && zplug clear && . ~/.zshrc'
+alias ta='tmux new-session -A -s'
+alias tk='tmux kill-session -t'
+alias vf='nvim $(fzf)'
+alias vi='nvim'
+alias vim='nvim'
+alias zshrc_time='time  zsh -i -c exit'
+alias zshrc_time_bp='ZSHRC_CACHE_BYPASS=1;time  zsh -i -c exit'
+alias zshrc_time_f='rm -rf ${ZSHRC_CACHE}; time  zsh -i -c exit'
+alias zshrc_time_ff='rm -rf ${ZSHRC_CACHE}; zplug clear; time  zsh -i -c exit'
+
+# FUNCTIONS {{{1
+
+zshrc-getzplug() {
+	if [[ -d ${ZPLUG_HOME} ]]; then
+		rm -rf ${ZPLUG_HOME}
+	fi
+
+	git clone https://github.com/zplug/zplug ${ZPLUG_HOME}
+}
+
+# PLUGINS {{{1
+
+source ${ZPLUG_HOME}/init.zsh
+zplug "zsh-users/zsh-completions"
+zplug "zsh-users/zsh-history-substring-search"
+zplug "zsh-users/zsh-syntax-highlighting"
+zplug "oskarkrawczyk/honukai-iterm-zsh", as:theme
+if ! zplug check; then
+	zplug install
+fi
+
+# ZSH OPTIONS {{{1
+
+# cd
+setopt auto_cd
+setopt auto_pushd
+setopt pushd_ignore_dups
+setopt pushd_silent
+
+# completion
+setopt always_to_end
+setopt auto_menu
+setopt complete_in_word
+
+# history
+setopt append_history
+setopt extended_history
+setopt hist_expire_dups_first
+setopt hist_ignore_dups
+setopt hist_reduce_blanks
+setopt hist_verify
+
+# other
+setopt extended_glob
+setopt no_beep
+
+# SOURCE OTHER FILES AND LOAD PLUGINS {{{1
+for env_file in ~/.*.env(N); do
+		if [[ $env_file != *.dotfiles.env ]]; then
+			_cache . $env_file
+		fi
+    done
+unset env_file
+
+if [[ -e ${ZSHRC_LOCAL} ]]; then
+	. ${ZSHRC_LOCAL}
+fi
+
+if ! _cache_gen_check; then
 	source $ZSHRC_CACHE
 fi
 
+zplug load
+
+# CLEANUP {{{1
+unalias _cache
+unhash -f __cache
+unhash -f __cache_no_op
+unhash -f _cache_gen_check
+unset ZSHRC_CACHE
+unset ZSHRC_CACHE_CHECK
+
+# vim:ft=zsh:foldmethod=marker
