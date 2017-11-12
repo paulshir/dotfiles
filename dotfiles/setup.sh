@@ -88,18 +88,17 @@ fi
 apply_symlink "${dotfiles}/bash/bashrc" ~/.bashrc
 apply_symlink "${dotfiles}/zsh/zshrc" ~/.zshrc
 apply_symlink "${dotfiles}/vim" ~/.vim
-apply_symlink "${dotfiles}/vim/vimrc" ~/.vimrc
 apply_symlink "${dotfiles}/vim" ~/.config/nvim
 apply_symlink "${dotfiles}/git/unix.gitconfig" ~/.gitconfig
 apply_symlink "${dotfiles}/tmux/tmux.conf" ~/.tmux.conf
 
 if [ "$(uname)" == "Darwin" ]; then
-	apply_symlink "${dotfiles}/sublimetext3/userpreferences" ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User
+    apply_symlink "${dotfiles}/sublimetext3/userpreferences" ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User
     apply_symlink "${dotfiles}/hammerspoon" ~/.hammerspoon
     apply_symlink "${dotfiles}/karabiner/karabiner.json" ~/.config/karabiner/karabiner.json
-	apply_symlink "${dotfiles}/vscode/user" ~/Library/Application\ Support/Code/User
+    apply_symlink "${dotfiles}/vscode/user" ~/Library/Application\ Support/Code/User
 elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
-	apply_symlink "${dotfiles}/sublimetext3/userpreferences" ~/.sublimetext3
+    apply_symlink "${dotfiles}/sublimetext3/userpreferences" ~/.sublimetext3
 fi
 
 if [ $install == true ]; then

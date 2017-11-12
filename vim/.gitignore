@@ -1,2 +1,5 @@
 autoload
 .netrwhist
+
+vimrc.local
+vimrc.plugins.local

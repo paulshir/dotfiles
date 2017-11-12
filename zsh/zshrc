@@ -9,9 +9,9 @@ _error() {
 
 # INTERNAL CACHE SETUP {{{1
 ZSHRC_CACHE=~/.zshrc.cache
-ZSHRC_CACHE_BYPASS=NOTINUSEYET
+ZSHRC_CACHE_BYPASS_FILE=~/.zshrc.cache.bypass
 unset ZSHRC_CACHE_CHECK
-local __cache_guard="E7WUH"
+__cache_guard="E7WUH"
 
 __cache() {
 	if [[ $1 != ${__cache_guard} ]]; then
@@ -29,7 +29,7 @@ _cache_gen_check() {
 	return !${+ZSHRC_CACHE_CHECK}
 }
 
-if [[ -n ${ZSHRC_CACHE_BYPASS} ]]; then
+if [[ -n ${ZSHRC_CACHE_BYPASS} || -e  ${ZSHRC_CACHE_BYPASS_FILE} ]]; then
 	ZSHRC_CACHE_CHECK=BYPASS
 	alias _cache=''
 elif [[ ! -e ${ZSHRC_CACHE} ]]; then
@@ -142,12 +142,14 @@ setopt extended_glob
 setopt no_beep
 
 # SOURCE OTHER FILES AND LOAD PLUGINS {{{1
-for env_file in ~/.*.env(N); do
-		if [[ $env_file != *.dotfiles.env ]]; then
-			_cache . $env_file
-		fi
+if _cache_gen_check; then
+    for env_file in ~/.*.env(N); do
+	if [[ $env_file != *.dotfiles.env ]]; then
+	    _cache . $env_file
+	fi
     done
-unset env_file
+    unset env_file
+fi
 
 if [[ -e ${ZSHRC_LOCAL} ]]; then
 	. ${ZSHRC_LOCAL}
@@ -165,6 +167,8 @@ unhash -f __cache
 unhash -f __cache_no_op
 unhash -f _cache_gen_check
 unset ZSHRC_CACHE
+unset ZSHRC_CACHE_BYPASS_FILE
 unset ZSHRC_CACHE_CHECK
+unset __cache_guard
 
 # vim:ft=zsh:foldmethod=marker
