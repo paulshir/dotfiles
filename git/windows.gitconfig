@@ -4,7 +4,3 @@
 # Add overrides for any windows only settings here
 [core]
 	autocrlf = true
-
-# Include file with local computer overrides
-[include]
-	path = ~/.gitconfig.local

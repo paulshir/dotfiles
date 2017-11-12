@@ -6,11 +6,11 @@ This is a repo for my shared configuration. It works across macos, linux and win
 
 ## todo ##
 * Move functions etc out to seperate repo, keep this mainly for config. Powershell modules not required by dotfiles should be moved out.
-* Keep rc configs to single files to allow easy downloading on servers without downloading all dotfiles
-* rc files should run without added dependencies, they should enable additional features on demand. e.g. use vim plugins if vim-plug is installed.
-* rc configs should call a local override file also, for exta settings.
+* ---Keep rc configs to single files to allow easy downloading on servers without downloading all dotfiles---
+* rc files should run without added dependencies, they should enable additional features on demand. e.g. use vim plugins if vim-plug is installed. (vim completed, zshrc still needs to be fixed)
+* ---rc configs should call a local override file also, for exta settings.--- .config/local/<app>/
 * dotfiles scripts should provide 2 basic purposes
-  + create correct symlinks for all platforms
+  + ---create correct symlinks for all platforms---
   + basic file downloader for dependencies
 
 ## contents ##

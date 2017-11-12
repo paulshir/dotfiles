@@ -41,7 +41,7 @@ fi
 
 # ENVIRONMENT {{{1
 source ~/.dotfiles.env
-export ZSHRC_LOCAL=~/.zshrc.local
+export ZSHRC_LOCAL=~/.config/local/zsh/zshrc
 
 if [[ ! -d ${dotfiles} ]]; then
 	_error "currently dotfiles must be installed for this to work; exiting"
