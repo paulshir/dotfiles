@@ -42,6 +42,7 @@ fi
 # ENVIRONMENT {{{1
 source ~/.dotfiles.env
 export ZSHRC_LOCAL=~/.config/local/zsh/zshrc
+export ZSHRC_LOCAL_BEFORE=~/.config/local/zsh/zshrc.before.zsh
 
 if [[ ! -d ${dotfiles} ]]; then
 	_error "currently dotfiles must be installed for this to work; exiting"
@@ -55,6 +56,10 @@ if [[ ! -f ${ZPLUG_HOME}/init.zsh ]]; then
 	return 1
 fi
 
+if [[ -e ${ZSHRC_LOCAL_BEFORE} ]]; then
+    . ${ZSHRC_LOCAL_BEFORE}
+fi
+
 HISTFILE=~/.histfile
 HISTSIZE=100000
 SAVEHIST=100000
@@ -62,6 +67,10 @@ SAVEHIST=100000
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,node_modules}/*" 2> /dev/null'
 export FZF_CTRL_T_COMMAND=${FZF_DEFAULT_COMMAND}
 source ~/.fzf.zsh
+
+export LS_COLORS='di=34:ln=35:so=36:pi=33:ex=32:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43'
+export LSCOLORS='exfxgxdxcxegedabagacad'
+export CLICOLOR=1
 
 # ALIASES {{{1
 alias dotfiles-update='${dotfiles}/dotfiles/setup.sh --install'
@@ -80,11 +89,13 @@ alias gf='git fetch'
 alias gr='git rebase -i'
 alias gs='git status'
 alias pd='popd'
+alias isodate='date +"%FT%TZ"'
 alias ita='tmux -CC new-session -A -s'
 alias reload='. ~/.zshrc'
 alias reloadf='rm -rf ${ZSHRC_CACHE} && . ~/.zshrc'
 alias reloadff='rm -rf ${ZSHRC_CACHE} && zplug clear && . ~/.zshrc'
 alias ta='tmux new-session -A -s'
+alias td='tmux detach -s'
 alias tl='tmux list-sessions'
 alias tk='tmux kill-session -t'
 alias vf='nvim $(fzf)'
