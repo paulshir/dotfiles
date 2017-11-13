@@ -10,6 +10,7 @@ nmap <space> za
 nmap <Leader>b :Buffers<CR>
 nmap <Leader>t :Files<CR>
 nmap <Leader>r :Tags<CR>
+nmap <Leader>nn :NERDTreeToggle<CR>
 
 nnoremap <C-n> :call NumberToggle()<cr>
 
