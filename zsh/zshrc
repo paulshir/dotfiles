@@ -111,9 +111,12 @@ source ${ZPLUG_HOME}/init.zsh
 zplug "zsh-users/zsh-completions"
 zplug "zsh-users/zsh-history-substring-search"
 zplug "zsh-users/zsh-syntax-highlighting"
-zplug "oskarkrawczyk/honukai-iterm-zsh", as:theme
+# zplug "oskarkrawczyk/honukai-iterm-zsh", as:theme
+zplug mafredri/zsh-async, from:github
+zplug sindresorhus/pure, use:pure.zsh, from:github, as:theme
+
 if ! zplug check; then
-	zplug install
+    zplug install
 fi
 
 # ZSH OPTIONS {{{1
