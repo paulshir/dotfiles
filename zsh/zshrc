@@ -119,9 +119,10 @@ zshrc-getzplug() {
 # PLUGINS {{{1
 
 source ${ZPLUG_HOME}/init.zsh
+zplug "zsh-users/zsh-autosuggestions"
 zplug "zsh-users/zsh-completions"
-zplug "zsh-users/zsh-history-substring-search"
 zplug "zsh-users/zsh-syntax-highlighting"
+zplug "zsh-users/zsh-history-substring-search"
 # zplug "oskarkrawczyk/honukai-iterm-zsh", as:theme
 zplug mafredri/zsh-async, from:github
 zplug sindresorhus/pure, use:pure.zsh, from:github, as:theme
@@ -130,6 +131,9 @@ if ! zplug check; then
     zplug install
 fi
 
+# PLUGIN OPTIONS {{{1
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
 # ZSH OPTIONS {{{1
 
 # cd

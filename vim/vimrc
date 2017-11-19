@@ -33,10 +33,12 @@ set mouse=a                                 " Enable mouse in all modes
 set noshowmode                              " We don't need to show the mode when using lightline
 set number                                  " Show the line number
 set ruler                                   " Show row,col&percentage
+set scrolloff=1                             " Always show 1 line before/after cursor
+set sidescrolloff=5                         " Always show 5 chars before/after cursor
 set shiftwidth=4                            " Use 4 spaces for tab
 set softtabstop=4                           " Use 4 spaces for tab
 set nostartofline                           " Keep the cursor relative to the last position when jumping lines
-set textwidth=100                           " Set the textwidth
+set textwidth=0                             " Set the textwidth to 0 to disable line breaking
 set tabstop=4                               " Use 4 spaces for tab
 set wildmenu                                " Show possible completions on command line
 set wildmode=list:longest,full              " List all options and complete
