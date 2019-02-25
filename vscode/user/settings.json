@@ -4,6 +4,10 @@
     "editor.fontFamily": "Hack, Menlo, Monaco, 'Courier New', monospace",
     "typescript.referencesCodeLens.enabled": true,
     "typescript.implementationsCodeLens.enabled": true,
+    "editor.formatOnSave": false,
+    "files.associations": {
+        "*.jinja": "yaml"
+    },
+    "window.zoomLevel": 0,
     "workbench.colorTheme": "Nord",
-    "rust.formatOnSave": true
 }

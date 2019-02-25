@@ -11,3 +11,4 @@ for env_file in ~/.*.env;
 do
 	source $env_file
 done
+export PATH=$HOME/.toolbox/bin:$PATH

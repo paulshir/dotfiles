@@ -1,0 +1,654 @@
+{
+    "title": "function key enchancements",
+    "rules": [
+            {
+                "description": "f1-f12 to consumer keys if held",
+                "manipulators": [
+                    {
+                        "from": {
+                            "key_code": "f1"
+                        },
+                        "to_if_alone": [
+                            {
+                                "key_code": "f1"
+                            }
+                        ],
+                        "to_if_held_down": [
+                            {
+                                "consumer_key_code": "display_brightness_decrement"
+                            }
+                        ],
+                        "type": "basic"
+                    },
+                    {
+                        "from": {
+                            "key_code": "f2"
+                        },
+                        "to_if_alone": [
+                            {
+                                "key_code": "f2"
+                            }
+                        ],
+                        "to_if_held_down": [
+                            {
+                                "consumer_key_code": "display_brightness_increment"
+                            }
+                        ],
+                        "type": "basic"
+                    },
+                    {
+                        "from": {
+                            "key_code": "f3"
+                        },
+                        "to_if_alone": [
+                            {
+                                "key_code": "f3"
+                            }
+                        ],
+                        "to_if_held_down": [
+                            {
+                                "key_code": "mission_control"
+                            }
+                        ],
+                        "type": "basic"
+                    },
+                    {
+                        "from": {
+                            "key_code": "f4"
+                        },
+                        "to_if_alone": [
+                            {
+                                "key_code": "f4"
+                            }
+                        ],
+                        "to_if_held_down": [
+                            {
+                                "key_code": "launchpad"
+                            }
+                        ],
+                        "type": "basic"
+                    },
+                    {
+                        "from": {
+                            "key_code": "f5"
+                        },
+                        "to_if_alone": [
+                            {
+                                "key_code": "f5"
+                            }
+                        ],
+                        "to_if_held_down": [
+                            {
+                                "key_code": "illumination_decrement"
+                            }
+                        ],
+                        "type": "basic"
+                    },
+                    {
+                        "from": {
+                            "key_code": "f6"
+                        },
+                        "to_if_alone": [
+                            {
+                                "key_code": "f6"
+                            }
+                        ],
+                        "to_if_held_down": [
+                            {
+                                "key_code": "illumination_increment"
+                            }
+                        ],
+                        "type": "basic"
+                    },
+                    {
+                        "from": {
+                            "key_code": "f7"
+                        },
+                        "to_if_alone": [
+                            {
+                                "key_code": "f7"
+                            }
+                        ],
+                        "to_if_held_down": [
+                            {
+                                "consumer_key_code": "rewind"
+                            }
+                        ],
+                        "type": "basic"
+                    },
+                    {
+                        "from": {
+                            "key_code": "f8"
+                        },
+                        "to_if_alone": [
+                            {
+                                "key_code": "f8"
+                            }
+                        ],
+                        "to_if_held_down": [
+                            {
+                                "consumer_key_code": "play_or_pause"
+                            }
+                        ],
+                        "type": "basic"
+                    },
+                    {
+                        "from": {
+                            "key_code": "f9"
+                        },
+                        "to_if_alone": [
+                            {
+                                "key_code": "f9"
+                            }
+                        ],
+                        "to_if_held_down": [
+                            {
+                                "consumer_key_code": "fastforward"
+                            }
+                        ],
+                        "type": "basic"
+                    },
+                    {
+                        "from": {
+                            "key_code": "f10"
+                        },
+                        "to_if_alone": [
+                            {
+                                "key_code": "f10"
+                            }
+                        ],
+                        "to_if_held_down": [
+                            {
+                                "consumer_key_code": "mute"
+                            }
+                        ],
+                        "type": "basic"
+                    },
+                    {
+                        "from": {
+                            "key_code": "f11"
+                        },
+                        "to_if_alone": [
+                            {
+                                "key_code": "f11"
+                            }
+                        ],
+                        "to_if_held_down": [
+                            {
+                                "consumer_key_code": "volume_decrement"
+                            }
+                        ],
+                        "type": "basic"
+                    },
+                    {
+                        "from": {
+                            "key_code": "f12"
+                        },
+                        "to_if_alone": [
+                            {
+                                "key_code": "f12"
+                            }
+                        ],
+                        "to_if_held_down": [
+                            {
+                                "consumer_key_code": "volume_increment"
+                            }
+                        ],
+                        "type": "basic"
+                    }
+                ]
+            },
+            {
+                "description": "fn+numbers to f1-f2",
+                "manipulators": [
+                    {
+                        "from": {
+                            "key_code": "1",
+                            "modifiers": {
+                                "mandatory": [
+                                    "fn"
+                                ],
+                                "optional": [
+                                    "any"
+                                ]
+                            }
+                        },
+                        "to": [
+                            {
+                                "key_code": "f1"
+                            }
+                        ],
+                        "type": "basic"
+                    },
+                    {
+                        "from": {
+                            "key_code": "2",
+                            "modifiers": {
+                                "mandatory": [
+                                    "fn"
+                                ],
+                                "optional": [
+                                    "any"
+                                ]
+                            }
+                        },
+                        "to": [
+                            {
+                                "key_code": "f2"
+                            }
+                        ],
+                        "type": "basic"
+                    },
+                    {
+                        "from": {
+                            "key_code": "3",
+                            "modifiers": {
+                                "mandatory": [
+                                    "fn"
+                                ],
+                                "optional": [
+                                    "any"
+                                ]
+                            }
+                        },
+                        "to": [
+                            {
+                                "key_code": "f3"
+                            }
+                        ],
+                        "type": "basic"
+                    },
+                    {
+                        "from": {
+                            "key_code": "4",
+                            "modifiers": {
+                                "mandatory": [
+                                    "fn"
+                                ],
+                                "optional": [
+                                    "any"
+                                ]
+                            }
+                        },
+                        "to": [
+                            {
+                                "key_code": "f4"
+                            }
+                        ],
+                        "type": "basic"
+                    },
+                    {
+                        "from": {
+                            "key_code": "5",
+                            "modifiers": {
+                                "mandatory": [
+                                    "fn"
+                                ],
+                                "optional": [
+                                    "any"
+                                ]
+                            }
+                        },
+                        "to": [
+                            {
+                                "key_code": "f5"
+                            }
+                        ],
+                        "type": "basic"
+                    },
+                    {
+                        "from": {
+                            "key_code": "6",
+                            "modifiers": {
+                                "mandatory": [
+                                    "fn"
+                                ],
+                                "optional": [
+                                    "any"
+                                ]
+                            }
+                        },
+                        "to": [
+                            {
+                                "key_code": "f6"
+                            }
+                        ],
+                        "type": "basic"
+                    },
+                    {
+                        "from": {
+                            "key_code": "7",
+                            "modifiers": {
+                                "mandatory": [
+                                    "fn"
+                                ],
+                                "optional": [
+                                    "any"
+                                ]
+                            }
+                        },
+                        "to": [
+                            {
+                                "key_code": "f7"
+                            }
+                        ],
+                        "type": "basic"
+                    },
+                    {
+                        "from": {
+                            "key_code": "8",
+                            "modifiers": {
+                                "mandatory": [
+                                    "fn"
+                                ],
+                                "optional": [
+                                    "any"
+                                ]
+                            }
+                        },
+                        "to": [
+                            {
+                                "key_code": "f8"
+                            }
+                        ],
+                        "type": "basic"
+                    },
+                    {
+                        "from": {
+                            "key_code": "9",
+                            "modifiers": {
+                                "mandatory": [
+                                    "fn"
+                                ],
+                                "optional": [
+                                    "any"
+                                ]
+                            }
+                        },
+                        "to": [
+                            {
+                                "key_code": "f9"
+                            }
+                        ],
+                        "type": "basic"
+                    },
+                    {
+                        "from": {
+                            "key_code": "0",
+                            "modifiers": {
+                                "mandatory": [
+                                    "fn"
+                                ],
+                                "optional": [
+                                    "any"
+                                ]
+                            }
+                        },
+                        "to": [
+                            {
+                                "key_code": "f10"
+                            }
+                        ],
+                        "type": "basic"
+                    },
+                    {
+                        "from": {
+                            "key_code": "hyphen",
+                            "modifiers": {
+                                "mandatory": [
+                                    "fn"
+                                ],
+                                "optional": [
+                                    "any"
+                                ]
+                            }
+                        },
+                        "to": [
+                            {
+                                "key_code": "f11"
+                            }
+                        ],
+                        "type": "basic"
+                    },
+                    {
+                        "from": {
+                            "key_code": "equal_sign",
+                            "modifiers": {
+                                "mandatory": [
+                                    "fn"
+                                ],
+                                "optional": [
+                                    "any"
+                                ]
+                            }
+                        },
+                        "to": [
+                            {
+                                "key_code": "f12"
+                            }
+                        ],
+                        "type": "basic"
+                    }
+                ]
+            },
+            {
+                "description": "fn+h/j/k/l to arrows",
+                "manipulators": [
+                    {
+                        "from": {
+                            "key_code": "h",
+                            "modifiers": {
+                                "mandatory": [
+                                    "fn"
+                                ],
+                                "optional": [
+                                    "any"
+                                ]
+                            }
+                        },
+                        "to": [
+                            {
+                                "key_code": "left_arrow"
+                            }
+                        ],
+                        "type": "basic"
+                    },
+                    {
+                        "from": {
+                            "key_code": "j",
+                            "modifiers": {
+                                "mandatory": [
+                                    "fn"
+                                ],
+                                "optional": [
+                                    "any"
+                                ]
+                            }
+                        },
+                        "to": [
+                            {
+                                "key_code": "down_arrow"
+                            }
+                        ],
+                        "type": "basic"
+                    },
+                    {
+                        "from": {
+                            "key_code": "k",
+                            "modifiers": {
+                                "mandatory": [
+                                    "fn"
+                                ],
+                                "optional": [
+                                    "any"
+                                ]
+                            }
+                        },
+                        "to": [
+                            {
+                                "key_code": "up_arrow"
+                            }
+                        ],
+                        "type": "basic"
+                    },
+                    {
+                        "from": {
+                            "key_code": "l",
+                            "modifiers": {
+                                "mandatory": [
+                                    "fn"
+                                ],
+                                "optional": [
+                                    "any"
+                                ]
+                            }
+                        },
+                        "to": [
+                            {
+                                "key_code": "right_arrow"
+                            }
+                        ],
+                        "type": "basic"
+                    }
+                ]
+            },
+            {
+                "description": "fn+q/w/e/a/s/d/f to media keys",
+                "manipulators": [
+                    {
+                        "from": {
+                            "key_code": "q",
+                            "modifiers": {
+                                "mandatory": [
+                                    "fn"
+                                ],
+                                "optional": [
+                                    "any"
+                                ]
+                            }
+                        },
+                        "to": [
+                            {
+                                "key_code": "rewind"
+                            }
+                        ],
+                        "type": "basic"
+                    },
+                    {
+                        "from": {
+                            "key_code": "w",
+                            "modifiers": {
+                                "mandatory": [
+                                    "fn"
+                                ],
+                                "optional": [
+                                    "any"
+                                ]
+                            }
+                        },
+                        "to": [
+                            {
+                                "key_code": "play_or_pause"
+                            }
+                        ],
+                        "type": "basic"
+                    },
+                    {
+                        "from": {
+                            "key_code": "e",
+                            "modifiers": {
+                                "mandatory": [
+                                    "fn"
+                                ],
+                                "optional": [
+                                    "any"
+                                ]
+                            }
+                        },
+                        "to": [
+                            {
+                                "key_code": "fastforward"
+                            }
+                        ],
+                        "type": "basic"
+                    },
+                    {
+                        "from": {
+                            "key_code": "a",
+                            "modifiers": {
+                                "mandatory": [
+                                    "fn"
+                                ],
+                                "optional": [
+                                    "any"
+                                ]
+                            }
+                        },
+                        "to": [
+                            {
+                                "key_code": "mute"
+                            }
+                        ],
+                        "type": "basic"
+                    },
+                    {
+                        "from": {
+                            "key_code": "s",
+                            "modifiers": {
+                                "mandatory": [
+                                    "fn"
+                                ],
+                                "optional": [
+                                    "any"
+                                ]
+                            }
+                        },
+                        "to": [
+                            {
+                                "key_code": "volume_decrement"
+                            }
+                        ],
+                        "type": "basic"
+                    },
+                    {
+                        "from": {
+                            "key_code": "d",
+                            "modifiers": {
+                                "mandatory": [
+                                    "fn"
+                                ],
+                                "optional": [
+                                    "any"
+                                ]
+                            }
+                        },
+                        "to": [
+                            {
+                                "key_code": "volume_increment"
+                            }
+                        ],
+                        "type": "basic"
+                    },
+                    {
+                        "from": {
+                            "key_code": "f",
+                            "modifiers": {
+                                "mandatory": [
+                                    "fn"
+                                ],
+                                "optional": [
+                                    "any"
+                                ]
+                            }
+                        },
+                        "to": [
+                            {
+                                "key_code": "mute"
+                            }
+                        ],
+                        "type": "basic"
+                    }
+                ]
+            }
+    ]
+}

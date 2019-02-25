@@ -1,3 +1,20 @@
+" ENVIRONMENT {{{1
+let s:bin_name = fnamemodify($_, ":t")
+
+let $XDG_DATA_HOME=expand("$HOME/.local/share")
+let $XDG_CONFIG_HOME=expand("$HOME/.config")
+
+if exists("$XDG_DATA_HOME")
+    let s:data_dir = expand("$XDG_DATA_HOME/" . "vim")
+    exe 'set rtp+=' . s:data_dir
+    let s:vplug_dir = s:data_dir . "/plugged"
+endif
+
+if exists("$XDG_CONFIG_HOME")
+    let s:config_local_plugins = expand("$XDG_CONFIG_HOME/" . s:bin_name . "/plugins.vim")
+    let s:config_local_vimrc = expand("$XDG_CONFIG_HOME/" . s:bin_name . "/vimrc.local")
+endif
+
 " KEYBINDINGS {{{1
 " Map Leader
 let mapleader = ','
@@ -18,7 +35,6 @@ nnoremap <C-n> :call NumberToggle()<cr>
 set autoindent                              " Use indention from the previous line
 set autoread                                " Detect when a file is changed
 set backspace=indent,eol,start              " Fix backspace
-set nobackup                                " Don't store additional backup files
 set clipboard=unnamed                       " Use the system clipboard for yank
 set cmdheight=2                             " Display 2 lines under lightline
 set encoding=utf8                           " Always use uft8
@@ -30,6 +46,7 @@ set hlsearch                                " Highlight search results
 set laststatus=2                            " Always show the status bar
 set modelines=2                             " Read vim settings from first or last 2 lines of file
 set mouse=a                                 " Enable mouse in all modes
+set nobackup                                " Don't store additional backup files
 set noshowmode                              " We don't need to show the mode when using lightline
 set number                                  " Show the line number
 set ruler                                   " Show row,col&percentage
@@ -37,6 +54,8 @@ set scrolloff=1                             " Always show 1 line before/after cu
 set sidescrolloff=5                         " Always show 5 chars before/after cursor
 set shiftwidth=4                            " Use 4 spaces for tab
 set softtabstop=4                           " Use 4 spaces for tab
+set splitbelow                              " New horizontal splits to spawn below of the current window
+set splitright                              " New vertical splits to spawn to the right of the current window
 set nostartofline                           " Keep the cursor relative to the last position when jumping lines
 set textwidth=0                             " Set the textwidth to 0 to disable line breaking
 set tabstop=4                               " Use 4 spaces for tab
@@ -83,17 +102,7 @@ endfunction
 
 command! VimStatus call VimStatus()
 
-" PLUGINS {{{1
-if exists ("$dotfiles")
-    let s:vplug_dir = '$dotfiles/external/vim/plugged'
-    exe 'set rtp+=' . expand('$dotfiles/external/vim')
-endif
-
-if exists ("$VPLUG_DIR")
-    let s:vplug_dir = '$VPLUG_DIR'
-endif
-
-
+ " PLUGINS {{{1
 if exists ("s:vplug_dir")
     silent! call plug#begin(s:vplug_dir)
 endif
@@ -111,6 +120,7 @@ if exists ("g:loaded_plug")
     Plug 'mbbill/undotree'
     Plug 'mileszs/ack.vim'
     Plug 'tpope/vim-commentary'
+    Plug 'tpope/vim-eunuch'
     Plug 'tpope/vim-fugitive'
     Plug 'tpope/vim-repeat'
     Plug 'tpope/vim-sleuth'
@@ -119,11 +129,11 @@ if exists ("g:loaded_plug")
     Plug 'itchyny/lightline.vim'
     Plug 'sheerun/vim-polyglot'
     Plug 'scrooloose/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFind'] }
-    Plug 'w0rp/ale'
+"    Plug 'w0rp/ale'
 
     " Load any local plugins
-    if filereadable(expand("~/.config/local/vim/plugins.vim"))
-        source ~/.config/local/vim/plugins.vim
+    if exists("s:config_local_plugins") && filereadable(s:config_local_plugins)
+        exec 'source ' . s:config_local_plugins
     endif
 
     call plug#end()
@@ -161,8 +171,8 @@ let &t_SI = "\<Esc>]50;CursorShape=1\x7" " Vertical bar in insert mode
 let &t_EI = "\<Esc>]50;CursorShape=0\x7" " Block in normal mode
 
 " LOCAL OVERRIDES {{{1
-if filereadable(expand("~/.config/local/vim/vimrc"))
-  source ~/.config/local/vim/vimrc
+if exists("s:config_local_plugins") && filereadable(s:config_local_vimrc)
+    exec 'source ' . s:config_local_vimrc
 endif
 
 " vim:foldmethod=marker

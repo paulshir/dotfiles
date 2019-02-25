@@ -41,8 +41,8 @@ fi
 
 # ENVIRONMENT {{{1
 source ~/.dotfiles.env
-export ZSHRC_LOCAL=~/.config/local/zsh/zshrc
-export ZSHRC_LOCAL_BEFORE=~/.config/local/zsh/zshrc.before.zsh
+export ZSHRC_LOCAL_BEFORE=~/.config/zsh/zshrc.before.zsh
+export ZSHRC_LOCAL_AFTER=~/.config/zsh/zshrc.after.zsh
 
 if [[ ! -d ${dotfiles} ]]; then
 	_error "currently dotfiles must be installed for this to work; exiting"
@@ -98,9 +98,9 @@ alias ta='tmux new-session -A -s'
 alias td='tmux detach -s'
 alias tl='tmux list-sessions'
 alias tk='tmux kill-session -t'
-alias vf='nvim $(fzf)'
-alias vi='nvim'
-alias vim='nvim'
+alias vf='vim $(fzf)'
+alias vi='vim'
+# alias vim='nvim'
 alias zshrc-time='time  zsh -i -c exit'
 alias zshrc-time-bp='ZSHRC_CACHE_BYPASS=1;time  zsh -i -c exit'
 alias zshrc-time-f='rm -rf ${ZSHRC_CACHE}; time  zsh -i -c exit'
@@ -169,12 +169,25 @@ if _cache_gen_check; then
     unset env_file
 fi
 
-if [[ -e ${ZSHRC_LOCAL} ]]; then
-	. ${ZSHRC_LOCAL}
+if _cache_gen_check; then
+	for env_file in ~/.config/dotfiles/*.env(N); do
+	if [[ $env_file != *dotfiles.env ]]; then
+		_cache . $env_file
+	fi
+	done
+	unset env_file
+fi
+
+if [[ -e ${ZSHRC_LOCAL_AFTER} ]]; then
+	. ${ZSHRC_LOCAL_AFTER}
 fi
 
 if ! _cache_gen_check; then
 	source $ZSHRC_CACHE
+fi
+
+if ! zplug check; then
+    zplug install
 fi
 
 zplug load
@@ -190,3 +203,5 @@ unset ZSHRC_CACHE_CHECK
 unset __cache_guard
 
 # vim:ft=zsh:foldmethod=marker
+
+export PATH=$HOME/.toolbox/bin:$PATH

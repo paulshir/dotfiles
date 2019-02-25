@@ -22,4 +22,4 @@
 	default = simple
 
 [include]
-	path = ~/.config/local/git/gitconfig
+	path = ~/.config/git/gitconfig.local

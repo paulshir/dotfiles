@@ -78,4 +78,8 @@ a_bind:bind({}, 'escape', "Application Mode Exited", function() a_bind:exit() en
 a_bind:bind(hyper, 'a', "Application Mode Exited", function() a_bind:exit() end)
 
 -- Scratch --
+hs.hotkey.bind(hyper, 's', function()
+	hs.console.printStyledtext(hs.inspect(hs.window.orderedWindows()[1]:frame()))
+end)
+
 hs.alert.show("HS Config Reloaded", 0.2)
