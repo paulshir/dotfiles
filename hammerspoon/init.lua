@@ -21,6 +21,8 @@ local application_mode_shortcuts = {
 -- Constants --
 hyper = {"ctrl", "alt", "shift", "cmd"}
 isSierra = hs.host.operatingSystemVersion().major == 10 and hs.host.operatingSystemVersion().minor == 12
+isHighSierra = hs.host.operatingSystemVersion().major == 10 and hs.host.operatingSystemVersion().minor == 13
+isMojave = hs.host.operatingSystemVersion().major == 10 and hs.host.operatingSystemVersion().minor == 14
 
 -- Alert Style --
 for k,v in pairs(alert_style) do
@@ -62,6 +64,15 @@ function cmd_q_on_key_hold()
 end
 
 cmd_q_bind = hs.hotkey.bind({"cmd"}, 'q', cmd_q_on_key_down, cmd_q_on_key_up, cmd_q_on_key_hold)
+
+-- Lock Screen with ScreenSaver --
+hs.hotkey.bind(hyper, 'l', function()
+	if (isSierra) then
+		os.execute("open /System/Library/Frameworks/ScreenSaver.framework/Versions/A/Resources/ScreenSaverEngine.app")
+	else
+		os.execute("open -a /System/Library/CoreServices/ScreenSaverEngine.app/Contents/MacOS/ScreenSaverEngine"); 
+	end
+end)
 
 -- Application Mode --
 local a_bind = hs.hotkey.modal.new(hyper, 'a', "Application Mode")
