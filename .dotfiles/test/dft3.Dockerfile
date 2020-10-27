@@ -2,7 +2,7 @@ FROM alpine:latest
 
 RUN apk update
 RUN apk upgrade
-RUN apk add vim zsh tmux git sudo
+RUN apk add vim zsh tmux git sudo perl curl ncurses
 
 RUN addgroup sudo
 RUN adduser --disabled-password --shell /bin/zsh --ingroup sudo paul root

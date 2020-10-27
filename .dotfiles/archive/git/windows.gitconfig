@@ -1,6 +1,0 @@
-[include]
-	path = ~/.dotfiles/git/unix.gitconfig
-
-# Add overrides for any windows only settings here
-[core]
-	autocrlf = true

@@ -1,9 +1,0 @@
-{
-    "compilerOptions": {
-        "noImplicitAny": true,
-        "noImplicitReturns": true,
-        "noImplicitThis": true,
-        "strictNullChecks": true,
-        "target": "es2015"
-    }
-}

@@ -1,0 +1,3 @@
+[submodule ".dotfiles/external/zplug"]
+	path = .dotfiles/external/zplug
+	url = https://github.com/zplug/zplug

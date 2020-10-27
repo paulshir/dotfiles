@@ -30,4 +30,5 @@ else
     __dfgit checkout
 fi;
 __dfgit config status.showUntrackedFiles no
+__dfgit submodule update --init --recursive
 unset -f __dfgit
