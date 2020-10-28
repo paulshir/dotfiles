@@ -82,8 +82,8 @@ endif
 call plug#begin()
 
 " Local paths are just added to the rtp even if they don't exist
-Plug '/usr/local/opt/fzf'
-Plug '~/.fzf'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 
 Plug 'airblade/vim-gitgutter'
 Plug 'benmills/vimux'
