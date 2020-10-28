@@ -16,6 +16,7 @@ Run `./explore.sh` while the `./run.sh` command is running in a different window
 * dft2 - Install `dotfiles` and `dotfiles_local` when existing files
 * dft3 - Install `dotfiles` and `doftfiles_local`; uninstall `dotfiles_local`
 * dft4 - Install `doftiles` and `dotfiles_local` when existing files; uninstall `dotfiles_local` expecting existing files to be restored
+* dft4 - Same as `dft4` except uninstall everything.
 * dft5 - Same as `dft4` except install is in a directory other than home.
 
 

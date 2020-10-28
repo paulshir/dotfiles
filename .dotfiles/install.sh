@@ -13,6 +13,9 @@ function __dfgit {
    git --git-dir=$DIR/$DF_GIT/ --work-tree=$DIR $@
 }
 
+__dfgit config --local core.sparseCheckout true
+echo "/*\n!README.md\n!LICENSE" > $DF_GIT/info/sparse-checkout
+
 if __dfgit checkout; then
     echo "Checked out config.";
 else
