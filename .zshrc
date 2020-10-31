@@ -17,7 +17,7 @@ _error() {
 }
 
 # ENVIRONMENT {{{1
-df_dir="$(pwd)/.dotfiles"
+df_dir="${HOME}/.dotfiles"
 
 export ZPLUG_HOME=${df_dir}/external/zplug
 
@@ -116,12 +116,12 @@ setopt no_beep
 bindkey -v # vim mode
 
 # SOURCE OTHER FILES AND LOAD PLUGINS {{{1
-if [ -f $(pwd)/.dev.env ]; then
-    source $(pwd)/.dev.env
+if [ -f ${HOME}/.dev.env ]; then
+    source ${HOME}/.dev.env
 fi
 
-if [ -f $(pwd)/.zshrc_local ]; then
-    source $(pwd)/.zshrc_local
+if [ -f ${HOME}/.zshrc_local ]; then
+    source $${HOME}/.zshrc_local
 fi
 
 zplug load
