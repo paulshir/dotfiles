@@ -786,10 +786,6 @@
                                             {
                                                 "product_id": 632,
                                                 "vendor_id": 1452
-                                            },
-                                            {
-                                                "product_id": 832,
-                                                "vendor_id": 1452
                                             }
                                         ],
                                         "type": "device_if"
@@ -832,6 +828,10 @@
                                             {
                                                 "product_id": 627,
                                                 "vendor_id": 1452
+                                            },
+                                            {
+                                                "product_id": 832,
+                                                "vendor_id": 1452
                                             }
                                         ],
                                         "type": "device_if"
@@ -868,6 +868,10 @@
                                         "identifiers": [
                                             {
                                                 "product_id": 627,
+                                                "vendor_id": 1452
+                                            },
+                                            {
+                                                "product_id": 832,
                                                 "vendor_id": 1452
                                             }
                                         ],
