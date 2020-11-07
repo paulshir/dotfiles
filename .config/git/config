@@ -25,5 +25,8 @@
 [push]
 	default = simple
 
+[pull]
+	ff = only
+
 [include]
 	path = ~/.config/git/config_local
