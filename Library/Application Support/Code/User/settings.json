@@ -9,7 +9,6 @@
         "*.jinja": "yaml"
     },
     "window.zoomLevel": -1,
-    "workbench.colorTheme": "One Dark Pro",
     // "editor.semanticHighlighting.enabled": false,
     "editor.semanticTokenColorCustomizations": {
         "[One Dark Pro]": {
@@ -35,5 +34,7 @@
     "rust-analyzer.cargo.loadOutDirsFromCheck": true,
     "rust-analyzer.inlayHints.typeHints": false,
     "editor.columnSelection": false,
+    "workbench.editor.untitled.hint": "hidden",
+    "workbench.colorTheme": "Atom One Dark",
     // "rust-analyzer.rustfmt.overrideCommand": null
 }
