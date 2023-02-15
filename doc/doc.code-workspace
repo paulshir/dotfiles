@@ -1,0 +1,69 @@
+{
+    "folders": [
+        {
+            "path": "."
+        }
+    ],
+    "settings": {
+        "[markdown]": {
+            "editor.quickSuggestions": {
+                "comments": "on",
+                "other": "on",
+                "strings": "on"
+            }
+        },
+        "editor.lineHeight": 24,
+        "editor.minimap.enabled": false,
+        "editor.overviewRulerBorder": false,
+        "editor.wrappingIndent": "indent",
+        "files.autoSave": "onFocusChange",
+        "files.defaultLanguage": "markdown",
+        "files.exclude": {
+            "**/node_modules": true
+        },
+        "files.watcherExclude": {
+            "**/node_modules": true
+        },
+        "foam.edit.linkReferenceDefinitions": "off",
+        "foam.files.ignore": [
+            "**/.vscode/**/*",
+            "**/_layouts/**/*",
+            "**/_site/**/*",
+            "**/node_modules/**/*",
+            "**/.foam/**/*",
+            "**/archive/**/*"
+        ],
+        "git.enableSmartCommit": true,
+        "git.postCommitCommand": "sync",
+        "markdown.preview.breaks": true,
+        "pasteImage.path": "${projectRoot}/lambda/attachments",
+        "pasteImage.showFilePathConfirmInputBox": true,
+        "prettier.singleQuote": false,
+        "regExpSaver.savedForWorkspace": [
+            {
+                "label": "Increment Task Marker",
+                "regExp": "^(\\s*- \\[\\s\\] .*?)(\\s)?([~]*)(\\s)?$",
+                "regExpFlags": "gm",
+                "replacePattern": "$1 $3●"
+            },
+            {
+                "label": "Decrement Task Marker",
+                "regExp": "^(\\s*- \\[\\s\\] .*?)(\\s)?([~]*)([~])(\\s)?$",
+                "regExpFlags": "gm",
+                "replacePattern": "$1 $3"
+            }
+        ],
+        "spellright.notificationClass": "warning",
+        "vscodeMarkdownNotes.noteCompletionConvention": "noExtension",
+        "vscodeMarkdownNotes.slugifyMethod": "github-slugger",
+        "workbench.colorCustomizations": {
+            "[Bearded Theme Solarized Light]": {
+                "editorCursor.background": "#2aa19700",
+                // "terminalCursor.background": "#2aa19729",
+                // "terminalCursor.foreground": "#2aa19729",
+                "editorCursor.foreground": "#2aa19729"
+            }
+        },
+        "workbench.colorTheme": "Bearded Theme Solarized Light"
+    }
+}
