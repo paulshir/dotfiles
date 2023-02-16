@@ -1,5 +1,9 @@
 #!/bin/bash
-cd .foam/templates
+srcDir=.scripts/templates
+destDir=.foam/templates
+
+t=$1
+tn=${2:-$1}
 
 confirm() {
     read -r -p "${1} " response
@@ -14,30 +18,32 @@ confirm() {
 }
 
 gen() {
-    t=$1
-    tn=${2:-$1}
+    pushd $srcDir > /dev/null
+    files=$(ls {{type}}-*)
+    popd > /dev/null
 
-    for f in $(ls {{type}}-*); do
-        echo "Processing $f for $t"
+    for f in $files; do
+        file=$srcDir/$f
         fn=$(echo $f | sed "s/{{type}}/$t/g");
-        wrk="$fn.wrk"
-        cp $f $wrk
+        echo "Processing $fn"
+        filen=$destDir/$fn
+        wrk="$filen.wrk"
+        cp $file $wrk
         sed -i.bak "s/{{type}}/$t/g" $wrk
         sed -i.bak "s/{{type_name}}/$tn/g" $wrk
 
-        if [[ -f "$fn" ]]; then
-            diff $wrk $fn || confirm "$fn file already exists and it's contents differ. Do you want to continue [y/N]?" || echo "Skipping" && continue
+        if [[ -f "$filen" ]]; then
+            if ! (diff $wrk $filen || confirm "$fn file already exists and it's contents differ. Do you want to continue [y/N]?"); then
+                echo "Skipping"
+                continue
+            fi
         fi
 
-        mv $wrk $fn
+        mv $wrk $filen
     done
 }
 
-for s in home work shared; do
-    gen $s
-done
+gen $t $tn
 
-# gen '${TM_BLAH}' generic
-
-rm -rf *.wrk
-rm -rf *.bak
+rm -rf $destDir/*.wrk
+rm -rf $destDir/*.bak

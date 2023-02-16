@@ -10,7 +10,9 @@
                 "comments": "on",
                 "other": "on",
                 "strings": "on"
-            }
+            },
+            "editor.acceptSuggestionOnCommitCharacter": false,
+            "editor.acceptSuggestionOnEnter": "off"
         },
         "editor.lineHeight": 24,
         "editor.minimap.enabled": false,
@@ -31,7 +33,9 @@
             "**/_site/**/*",
             "**/node_modules/**/*",
             "**/.foam/**/*",
-            "**/archive/**/*"
+            "**/archive/**/*",
+            "**/.scripts/**/*",
+            "README.md"
         ],
         "git.enableSmartCommit": true,
         "git.postCommitCommand": "sync",

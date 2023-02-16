@@ -8,5 +8,6 @@ foam_template:
   filepath: '{{type}}/notes/${FOAM_DATE_YEAR}/${FOAM_SLUG}.md'
 ---
 # ${FOAM_TITLE}
-${FOAM_SELECTED_TEXT}
-$0
+- [${FOAM_TITLE}](#${FOAM_SLUG})
+
+${FOAM_SELECTED_TEXT}${0}

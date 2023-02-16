@@ -20,7 +20,10 @@ copy() {
     to=$2
 
     if [[ -f "$to" ]]; then
-        diff $from $to || confirm "$to file already exists and it's contents differ. Do you want to continue [y/N]?" || echo "Skipping" && return
+        if ! (diff $from $to || confirm "$to file already exists and it's contents differ. Do you want to continue [y/N]?"); then
+            echo "Skipping"
+            return 0
+        fi
     fi
 
     cp $from $to
