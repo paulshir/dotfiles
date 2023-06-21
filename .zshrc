@@ -41,6 +41,7 @@ fi
 export LS_COLORS='di=34:ln=35:so=36:pi=33:ex=32:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43'
 export LSCOLORS='exfxgxdxcxegedabagacad'
 export CLICOLOR=1
+export EDITOR=hx
 
 # ALIASES {{{1
 alias g='git'
@@ -54,8 +55,9 @@ alias gcm='git commit -m'
 alias gdc='git diff --cached'
 alias gdd='git difftool'
 alias gddc='git difftool --cached'
-alias gf='git fetch'
-alias gr='git rebase -i'
+alias gf='git commit --fixup HEAD'
+alias gr='git rebase -i --autosquash'
+alias gfr='git commit --fixup HEAD && git rebase -i --autosquash'
 alias gs='git status'
 alias pd='popd'
 alias isodate='date +"%FT%TZ"'
@@ -65,11 +67,26 @@ alias ta='tmux new-session -A -s'
 alias td='tmux detach -s'
 alias tl='tmux list-sessions'
 alias tk='tmux kill-session -t'
-alias vf='vim $(fzf)'
-alias vi='vim'
+alias vf='hx $(fzf)'
+alias vi='hx'
+alias vim='hx'
+alias zls='zellij ls'
+alias zk='zellij kill-session'
 alias zshrc-time='time  zsh -i -c exit'
 
 # FUNCTIONS {{{1
+
+function za {
+	session=$1
+	shift
+
+	if $(zellij ls | grep -w "$session" > /dev/null); then
+    zellij attach $session
+		return
+  fi
+
+	zellij -s $session "$@"
+}
 
 # PLUGINS {{{1
 
@@ -129,3 +146,4 @@ zplug load
 # CLEANUP {{{1
 
 # vim:ft=zsh:foldmethod=marker
+export JAVA_TOOLS_OPTIONS="-Dlog4j2.formatMsgNoLookups=true"

@@ -1,0 +1,4 @@
+[[language]]
+name = "rust"
+language-server = { command = "rustup", args = ["run", "stable", "rust-analyzer"]}
+
