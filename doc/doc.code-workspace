@@ -39,7 +39,9 @@
         ],
         "git.enableSmartCommit": true,
         "git.postCommitCommand": "sync",
+        "markdown.extension.toc.updateOnSave": false,
         "markdown.preview.breaks": true,
+        "markdown.on"
         "pasteImage.path": "${projectRoot}/lambda/attachments",
         "pasteImage.showFilePathConfirmInputBox": true,
         "prettier.singleQuote": false,
@@ -66,8 +68,21 @@
                 // "terminalCursor.background": "#2aa19729",
                 // "terminalCursor.foreground": "#2aa19729",
                 "editorCursor.foreground": "#2aa19729"
+            },
+            "[Solarized Dark]": {
+                "editorCursor.background": "#2aa19700",
+                // "terminalCursor.background": "#2aa19729",
+                // "terminalCursor.foreground": "#2aa19729",
+                "editorCursor.foreground": "#2aa19729"
             }
         },
-        "workbench.colorTheme": "Bearded Theme Solarized Light"
+        "workbench.colorTheme": "Bearded Theme Solarized Light",
+        "command-runner.terminal.name": "runCommand",
+        "command-runner.terminal.autoClear": true,
+        "command-runner.terminal.autoFocus": true,
+        "command-runner.commands": {
+            "test": "echo A: ${workspaceRoot} B: ${workspaceFolder} C: ${workspaceFolderBasename}",
+            "export mermaid diagrams": "echo removing old diagrams; rm -rf ${file}-*.png; mmdc -i ${file} -e png -t neutral -w 1600 -H 1200 -c ${workspaceFolder}/.config/mermaidConfig.json"
+        }
     }
 }
