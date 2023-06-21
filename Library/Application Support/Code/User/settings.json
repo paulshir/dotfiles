@@ -36,5 +36,6 @@
     "editor.columnSelection": false,
     "workbench.editor.untitled.hint": "hidden",
     "workbench.colorTheme": "Atom One Dark",
+    "mermaid-editor.generate.type": "png",
     // "rust-analyzer.rustfmt.overrideCommand": null
 }

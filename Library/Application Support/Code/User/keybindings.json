@@ -78,5 +78,15 @@
     {
         "key": "ctrl+9",
         "command": "-workbench.action.openEditorAtIndex9"
+    },
+    {
+        "key": "alt+b",
+        "command": "markdown.extension.checkTaskList",
+        "when": "editorTextFocus && editorLangId == 'markdown'"
+    },
+    {
+        "key": "alt+c",
+        "command": "-markdown.extension.checkTaskList",
+        "when": "editorTextFocus && editorLangId == 'markdown'"
     }
 ]
