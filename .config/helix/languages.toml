@@ -2,3 +2,7 @@
 name = "rust"
 language-server = { command = "rustup", args = ["run", "stable", "rust-analyzer"]}
 
+[[language]]
+name = "javascript"
+indent = { tab-width = 4, unit = " " }
+

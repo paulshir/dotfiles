@@ -1,6 +1,33 @@
 theme = "onedark"
 
 [editor]
+true-color = true
 line-number = "relative"
 auto-save = true
+cursorline = true
+rulers = [120]
+bufferline = "always"
+color-modes = true
+text-width = 120
+
+[editor.statusline]
+left = ["mode", "spinner", "file-name", "file-encoding"]
+center = []
+right = ["selections", "primary-selection-length", "position", "position-percentage", "spacer", "diagnostics", "version-control"]
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[editor.file-picker]
+hidden = false
+
+[keys.normal."C-w"]
+d = "hsplit"
+r = "vsplit"
+
+[keys.normal.space.w]
+d = "hsplit"
+r = "vsplit"
 

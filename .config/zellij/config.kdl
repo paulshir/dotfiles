@@ -182,5 +182,5 @@ plugins {
 
 theme "nord"
 mirror_session true
-
+default_layout "compact"
 
