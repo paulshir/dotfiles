@@ -1,3 +1,4 @@
 *
 !init.lua
 !.gitignore
+!.luarc.json

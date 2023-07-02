@@ -1,3 +1,6 @@
+-- Typings --
+-- hs.loadSpoon("EmmyLua")
+
 -- Config --
 local alert_style = {
 	strokeColor = { white = 0, alpha = 0.75},
@@ -19,10 +22,7 @@ local application_mode_shortcuts = {
 }
 
 -- Constants --
-hyper = {"ctrl", "alt", "shift", "cmd"}
-isSierra = hs.host.operatingSystemVersion().major == 10 and hs.host.operatingSystemVersion().minor == 12
-isHighSierra = hs.host.operatingSystemVersion().major == 10 and hs.host.operatingSystemVersion().minor == 13
-isMojave = hs.host.operatingSystemVersion().major == 10 and hs.host.operatingSystemVersion().minor == 14
+local hyper = {"ctrl", "alt", "shift", "cmd"}
 
 -- Alert Style --
 for k,v in pairs(alert_style) do
@@ -39,12 +39,12 @@ local cmd_q_bind
 local cmd_q_trigger
 local cmd_q_key_down_time
 
-function cmd_q_on_key_down()
+local function cmd_q_on_key_down()
 	cmd_q_trigger = false
 	cmd_q_key_down_time = hs.timer.secondsSinceEpoch()
 end
 
-function cmd_q_on_key_up()
+local function cmd_q_on_key_up()
 	if cmd_q_trigger then
 		cmd_q_bind:disable()
 		hs.eventtap.keyStroke({"cmd"}, 'q')
@@ -54,7 +54,7 @@ function cmd_q_on_key_up()
 	end
 end
 
-function cmd_q_on_key_hold()
+local function cmd_q_on_key_hold()
 	if not cmd_q_trigger then
 		local diff = hs.timer.secondsSinceEpoch() - cmd_q_key_down_time
 		if diff >= 0.3 then
@@ -67,21 +67,17 @@ cmd_q_bind = hs.hotkey.bind({"cmd"}, 'q', cmd_q_on_key_down, cmd_q_on_key_up, cm
 
 -- Lock Screen with ScreenSaver --
 hs.hotkey.bind(hyper, 'l', function()
-	if (isSierra) then
-		os.execute("open /System/Library/Frameworks/ScreenSaver.framework/Versions/A/Resources/ScreenSaverEngine.app")
-	else
-		os.execute("open -a /System/Library/CoreServices/ScreenSaverEngine.app/Contents/MacOS/ScreenSaverEngine"); 
-	end
+		os.execute("open -a /System/Library/CoreServices/ScreenSaverEngine.app/Contents/MacOS/ScreenSaverEngine");
 end)
 
 -- Application Mode --
 local a_bind = hs.hotkey.modal.new(hyper, 'a', "Application Mode")
-for i, v in ipairs(application_mode_shortcuts) do
+for _, v in ipairs(application_mode_shortcuts) do
 	local title;
 	if v.alias then title = v.alias else title = v.app end
 	a_bind:bind({}, v.shortcut, title, function()
 		hs.application.launchOrFocus(v.app)
-		a_bind:exit()	
+		a_bind:exit()
 	end)
 end
 
@@ -93,4 +89,9 @@ hs.hotkey.bind(hyper, 's', function()
 	hs.console.printStyledtext(hs.inspect(hs.window.orderedWindows()[1]:title()))
 end)
 
-hs.alert.show("HS Config Reloaded", 0.2)
+hs.hotkey.bind(hyper, 'v', function()
+	hs.eventtap.keyStrokes(hs.pasteboard.getContents())
+end)
+
+hs.alert.show("HS Config Reloaded: " .. os.date("!%Y-%m-%dT%TZ"), 0.2)
+
