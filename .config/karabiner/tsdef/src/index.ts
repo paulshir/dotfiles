@@ -3,14 +3,19 @@ import {
 	rule,
 	withMapper,
 	writeToProfile,
+	toSetVar,
 	type FromKeyCode,
 	type ToKeyCode,
 } from 'karabiner.ts';
 import {fnAppKeys, fnKeys, ifAppleKeyboard, ifAppleVendor, ifNonUsAppleKeyboard, ifUsAppleKeyboard} from './common';
+import {hyperP} from './modalLayer';
 
 function profile(p: string): string {
 	return process.argv.includes('--dry-run') ? '--dry-run' : p;
 }
+
+const hyperActiveVar = toSetVar('hyper_active', 1);
+const hyperDeactiveVar = toSetVar('hyper_active', 0);
 
 const capsLock = rule('caps_lock on apple keyboards to left_control/escape')
 	.manipulators([
@@ -59,23 +64,29 @@ const fnMedia = rule('fn+q/w/e/a/s/d/f to media keys')
 const hyperEscape = rule('escape to hyper/escape')
 	.manipulators([
 		map('escape', '', 'any')
+			.to(hyperActiveVar)
 			.to('left_control', ['left_shift', 'left_command', 'left_option'])
-			.toIfAlone('escape'),
+			.toIfAlone('escape')
+			.toAfterKeyUp(hyperDeactiveVar),
 	]);
 
 const leftControlApple = rule('left_control on apple keyboards to hyper')
 	.manipulators([
 		map('left_control', '', 'any')
 			.condition(ifAppleVendor)
-			.to('left_control', ['left_shift', 'left_command', 'left_option']),
+			.to(hyperActiveVar)
+			.to('left_control', ['left_shift', 'left_command', 'left_option'])
+			.toAfterKeyUp(hyperDeactiveVar),
 	]);
 
 const graveAccentTildeUs = rule('grave_accent_and_tilde on US apple keyboards to hyper/grave_accent_and_tilde')
 	.manipulators([
 		map('grave_accent_and_tilde', '', 'any')
 			.condition(ifUsAppleKeyboard)
+			.to(hyperActiveVar)
 			.to('left_control', ['left_shift', 'left_command', 'left_option'])
-			.toIfAlone('grave_accent_and_tilde'),
+			.toIfAlone('grave_accent_and_tilde')
+			.toAfterKeyUp(hyperDeactiveVar),
 	]);
 
 const graveAccentTildeNonUs = rule('non_us_backslash on non US apple keyboards to hyper/grave_accent_and_tilde')
@@ -106,5 +117,6 @@ writeToProfile(profile('default'), [
 	graveAccentTildeUs,
 	graveAccentTildeNonUs,
 	fnZ,
+	hyperP,
 ]);
 
