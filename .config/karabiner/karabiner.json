@@ -29,11 +29,11 @@
                                                 "vendor_id": 1452
                                             },
                                             {
-                                                "product_id": 832,
+                                                "product_id": 627,
                                                 "vendor_id": 1452
                                             },
                                             {
-                                                "product_id": 627,
+                                                "product_id": 832,
                                                 "vendor_id": 1452
                                             }
                                         ],
@@ -43,6 +43,7 @@
                                 "from": {
                                     "key_code": "caps_lock",
                                     "modifiers": {
+                                        "mandatory": [],
                                         "optional": [
                                             "any"
                                         ]
@@ -76,7 +77,7 @@
                                 ],
                                 "to_if_held_down": [
                                     {
-                                        "consumer_key_code": "display_brightness_decrement"
+                                        "key_code": "display_brightness_decrement"
                                     }
                                 ],
                                 "type": "basic"
@@ -92,7 +93,7 @@
                                 ],
                                 "to_if_held_down": [
                                     {
-                                        "consumer_key_code": "display_brightness_increment"
+                                        "key_code": "display_brightness_increment"
                                     }
                                 ],
                                 "type": "basic"
@@ -172,7 +173,7 @@
                                 ],
                                 "to_if_held_down": [
                                     {
-                                        "consumer_key_code": "rewind"
+                                        "key_code": "rewind"
                                     }
                                 ],
                                 "type": "basic"
@@ -188,7 +189,7 @@
                                 ],
                                 "to_if_held_down": [
                                     {
-                                        "consumer_key_code": "play_or_pause"
+                                        "key_code": "play_or_pause"
                                     }
                                 ],
                                 "type": "basic"
@@ -204,7 +205,7 @@
                                 ],
                                 "to_if_held_down": [
                                     {
-                                        "consumer_key_code": "fastforward"
+                                        "key_code": "fastforward"
                                     }
                                 ],
                                 "type": "basic"
@@ -220,7 +221,7 @@
                                 ],
                                 "to_if_held_down": [
                                     {
-                                        "consumer_key_code": "mute"
+                                        "key_code": "mute"
                                     }
                                 ],
                                 "type": "basic"
@@ -236,7 +237,7 @@
                                 ],
                                 "to_if_held_down": [
                                     {
-                                        "consumer_key_code": "volume_decrement"
+                                        "key_code": "volume_decrement"
                                     }
                                 ],
                                 "type": "basic"
@@ -252,7 +253,7 @@
                                 ],
                                 "to_if_held_down": [
                                     {
-                                        "consumer_key_code": "volume_increment"
+                                        "key_code": "volume_increment"
                                     }
                                 ],
                                 "type": "basic"
@@ -260,7 +261,7 @@
                         ]
                     },
                     {
-                        "description": "fn+numbers to f1-f2",
+                        "description": "fn+numbers to f1-f12",
                         "manipulators": [
                             {
                                 "from": {
@@ -712,7 +713,7 @@
                         ]
                     },
                     {
-                        "description": "escape to hyper/esc",
+                        "description": "escape to hyper/escape",
                         "manipulators": [
                             {
                                 "from": {
@@ -1241,6 +1242,34 @@
                         "vendor_id": 1452
                     },
                     "ignore": false,
+                    "manipulate_caps_lock_led": false,
+                    "simple_modifications": [],
+                    "treat_as_built_in_keyboard": false
+                },
+                {
+                    "disable_built_in_keyboard_if_exists": false,
+                    "fn_function_keys": [],
+                    "identifiers": {
+                        "is_keyboard": true,
+                        "is_pointing_device": false,
+                        "product_id": 632,
+                        "vendor_id": 1452
+                    },
+                    "ignore": false,
+                    "manipulate_caps_lock_led": true,
+                    "simple_modifications": [],
+                    "treat_as_built_in_keyboard": false
+                },
+                {
+                    "disable_built_in_keyboard_if_exists": false,
+                    "fn_function_keys": [],
+                    "identifiers": {
+                        "is_keyboard": false,
+                        "is_pointing_device": true,
+                        "product_id": 632,
+                        "vendor_id": 1452
+                    },
+                    "ignore": true,
                     "manipulate_caps_lock_led": false,
                     "simple_modifications": [],
                     "treat_as_built_in_keyboard": false
