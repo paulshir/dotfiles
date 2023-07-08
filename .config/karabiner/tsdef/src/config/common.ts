@@ -1,4 +1,4 @@
-import {ifDevice, type DeviceIdentifier, type ToKeyCode, type FunctionKeyCode} from 'karabiner.ts';
+import {ifDevice, type DeviceIdentifier, type ToKeyCode, type FunctionKeyCode, toSetVar} from 'karabiner.ts';
 
 /* eslint-disable @typescript-eslint/naming-convention */
 export const ifAppleVendor = ifDevice({
@@ -44,3 +44,8 @@ export const fnAppKeys: ToKeyCode[] = [
 	'volume_decrement',
 	'volume_increment',
 ];
+
+export const hyperVarName = 'hyper_active';
+export const activateHyper = toSetVar(hyperVarName, 1);
+export const deactivateHyper = toSetVar(hyperVarName, 0);
+

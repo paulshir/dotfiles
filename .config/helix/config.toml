@@ -9,6 +9,7 @@ rulers = [120]
 bufferline = "always"
 color-modes = true
 text-width = 120
+auto-pairs = false
 
 [editor.statusline]
 left = ["mode", "spinner", "file-name", "file-encoding"]

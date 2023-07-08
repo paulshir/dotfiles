@@ -4,9 +4,12 @@
     "scripts": {
         "build": "npm run-script lint && npm run-script check",
         "check": "tsc --noEmit",
+        "karabiner": "/Library/Application\\ Support/org.pqrs/Karabiner-Elements/bin/karabiner_cli",
+        "karabiner:flipProfile": "(npm run karabiner -- --show-current-profile-name | grep off) && npm run karabiner -- --select-profile default || npm run karabiner -- --select-profile off",
+        "karabiner:fmt": "npm run karabiner:flipProfile && npm run karabiner:flipProfile",
         "lint": "eslint .",
         "lint:fix": "eslint . --fix",
-        "synth": "ts-node src/index.ts",
+        "synth": "ts-node src/index.ts && npm run karabiner:fmt",
         "synth:dry": "ts-node src/index.ts -- --dry-run",
         "update": "npm update karabiner.ts"
     },
