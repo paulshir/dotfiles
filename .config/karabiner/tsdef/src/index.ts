@@ -3,13 +3,15 @@ import {
 } from 'karabiner.ts';
 import {fnRules} from './config/fn';
 import {modifierRules} from './config/modifiers';
+import {modalRules} from './config/modals';
 
 function profile(p: string): string {
 	return process.argv.includes('--dry-run') ? '--dry-run' : p;
 }
 
 writeToProfile(profile('default'), [
-	...modifierRules([]),
+	...modifierRules([...modalRules.map(b => b.varName)]),
+	...modalRules,
 	...fnRules,
 ]);
 
