@@ -11,7 +11,7 @@ function glazed(sub: string): string {
 }
 
 function focus(dir: string): string {
-	return glazed(`focus_window_${dir}_overlapping`);
+	return glazed(`focus_window_${dir}_visible`);
 }
 
 // Window Manipulation
@@ -24,7 +24,9 @@ const hyperW = hyperModalLayer('w', hyperVarName, 'hyper_w')
 		map('k', 'shift').to$(glazed('resize_window_maximize')),
 		map('l', 'shift').to$(glazed('resize_window_right_half')),
 		map('h').to$(focus('left')),
+		map('left_arrow').to$(focus('left')),
 		map('l').to$(focus('right')),
+		map('right_arrow').to$(focus('right')),
 	])
 	.fireOnceManipulators([
 		...numberToSpaces,

@@ -683,7 +683,25 @@
                                 },
                                 "to": [
                                     {
-                                        "shell_command": "${HOME}/.local/bin/glazed focus_window_left_overlapping"
+                                        "shell_command": "${HOME}/.local/bin/glazed focus_window_left_visible"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "hyper_w",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "left_arrow"
+                                },
+                                "to": [
+                                    {
+                                        "shell_command": "${HOME}/.local/bin/glazed focus_window_left_visible"
                                     }
                                 ],
                                 "type": "basic"
@@ -701,7 +719,25 @@
                                 },
                                 "to": [
                                     {
-                                        "shell_command": "${HOME}/.local/bin/glazed focus_window_right_overlapping"
+                                        "shell_command": "${HOME}/.local/bin/glazed focus_window_right_visible"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "hyper_w",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "right_arrow"
+                                },
+                                "to": [
+                                    {
+                                        "shell_command": "${HOME}/.local/bin/glazed focus_window_right_visible"
                                     }
                                 ],
                                 "type": "basic"
