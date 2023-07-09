@@ -72,6 +72,7 @@ class BasicModalLayerRuleBuilder implements ModalLayerRuleBuilder {
 			...this.layerKeys.map(k => this.buildTriggerBase(k)).map(k => this.applyEnableLayer(k)),
 			...this.layerKeys.map(k => this.buildTriggerBase(k)).map(k => this.applyDisableLayer(k)),
 			this.applyDisableLayer(map('escape')),
+			this.applyDisableLayer(map('return_or_enter')),
 			...this.manipulatorSources.map(m => this.applyManipulatorCondition(m)),
 			...this.fireOnceManipulatorSources.map(m => this.applyFireOnceManipulatorCondition(m)),
 			// This.applyManipulatorCondition(map({any: 'key_code'}).toNone()),

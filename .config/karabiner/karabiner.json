@@ -569,6 +569,51 @@
                                     }
                                 ],
                                 "from": {
+                                    "key_code": "return_or_enter"
+                                },
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "hyper_w",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
+                                        "set_notification_message": {
+                                            "id": "hyper_w_deactivated",
+                                            "text": "hyper_w Layer deactivated"
+                                        }
+                                    }
+                                ],
+                                "to_delayed_action": {
+                                    "to_if_canceled": [
+                                        {
+                                            "set_notification_message": {
+                                                "id": "hyper_w_deactivated",
+                                                "text": ""
+                                            }
+                                        }
+                                    ],
+                                    "to_if_invoked": [
+                                        {
+                                            "set_notification_message": {
+                                                "id": "hyper_w_deactivated",
+                                                "text": ""
+                                            }
+                                        }
+                                    ]
+                                },
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "hyper_w",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
                                     "key_code": "m"
                                 },
                                 "to": [
