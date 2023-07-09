@@ -1,5 +1,11 @@
-import {type BuildContext, type LayerKeyCode, type Rule, type RuleBuilder, ifVar, map, rule, toRemoveNotificationMessage, type Modifier} from 'karabiner.ts';
+import {type BuildContext, type LayerKeyCode, type Rule, type RuleBuilder, ifVar, map, rule, toRemoveNotificationMessage, type Modifier, type FromKeyCode} from 'karabiner.ts';
 import {type BasicManipulatorBuilder, type BasicRuleBuilder} from './types';
+
+const blockKeys: FromKeyCode[] = [
+	...[...`${'`'}1234567890-=qwertyuiop[]\\asdfghjkl;'zxcvbnm,./`].map(v => v as FromKeyCode),
+	'return_or_enter',
+	'delete_or_backspace',
+];
 
 export type ModalLayerRuleBuilder = {
 	readonly varName: string;
@@ -68,7 +74,7 @@ class BasicModalLayerRuleBuilder implements ModalLayerRuleBuilder {
 			this.applyDisableLayer(map('escape')),
 			...this.manipulatorSources.map(m => this.applyManipulatorCondition(m)),
 			...this.fireOnceManipulatorSources.map(m => this.applyFireOnceManipulatorCondition(m)),
-			this.applyManipulatorCondition(map({any: 'key_code', modifiers: {optional: ['any']}}).toNone()),
+			// This.applyManipulatorCondition(map({any: 'key_code'}).toNone()),
 		]);
 
 		return this.baseBuilder.build(context);

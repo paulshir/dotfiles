@@ -1,0 +1,60 @@
+#!/bin/bash
+
+set -euo pipefail
+
+
+# Applications {{{1
+function yabai() {
+  /usr/local/bin/yabai "$@"
+}
+
+function jq() {
+  /usr/local/bin/jq "$@"
+}
+
+# Query Utils {{{1
+function get_active_space() {
+  yabai -m query --spaces | jq '[.[] | select(."is-visible")][0] | .index'
+}
+
+function get_active_window() {
+  yabai -m query --windows | jq '[.[] | select(."has-focus")][0] | .id'
+}
+
+# Focus {{{1
+function focus_window_right_overlapping() {
+    yabai -m window --focus $(yabai -m query --windows | jq '[.[] | select(."has-focus")][0] as $aw | [.[] | select(."is-visible" and .id != $aw.id and (.frame.x) >= ($aw.frame.x))] | sort_by(.frame.x, .frame.y) | .[0].id')
+}
+
+function focus_window_left_overlapping() {
+  yabai -m window --focus $(yabai -m query --windows | jq '[.[] | select(."has-focus")][0] as $aw | [.[] | select(."is-visible" and .id != $aw.id and (.frame.x+.frame.w) <= ($aw.frame.x+$aw.frame.w))] | sort_by((-.frame.x-.frame.w), .frame.y) | .[0].id')
+}
+
+# Resize {{{1
+function resize_window_left_half() {
+  open -g "rectangle-pro://execute-action?name=left-half"
+}
+
+function resize_window_right_half() {
+  open -g "rectangle-pro://execute-action?name=right-half"
+}
+
+function resize_window_maximize() {
+  open -g "rectangle-pro://execute-action?name=maximize"
+}
+
+function resize_window_center() {
+  open -g "rectangle-pro://execute-action?name=center"
+}
+
+# Move {{{1
+
+# Scracth {{{1
+function scratch() {
+  yabai -m query --windows | jq '[.[] | select(."has-focus")][0] as $aw | .[] | select(."is-visible" and .id != $aw.id and .frame.x == $aw.frame.x)'
+}
+
+# Run {{{1
+sub=$1
+shift
+$sub "$@"
