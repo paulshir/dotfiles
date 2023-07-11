@@ -374,8 +374,7 @@
                                     }
                                 ],
                                 "from": {
-                                    "key_code": "w",
-                                    "varNameActive": "hyper_active"
+                                    "key_code": "w"
                                 },
                                 "to": [
                                     {
@@ -467,19 +466,13 @@
                             {
                                 "conditions": [
                                     {
-                                        "name": "hyper_active",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    },
-                                    {
                                         "name": "hyper_w",
                                         "type": "variable_if",
                                         "value": 1
                                     }
                                 ],
                                 "from": {
-                                    "key_code": "w",
-                                    "varNameActive": "hyper_active"
+                                    "key_code": "w"
                                 },
                                 "to": [
                                     {
@@ -641,7 +634,7 @@
                                 },
                                 "to": [
                                     {
-                                        "shell_command": "${HOME}/.local/bin/glazed resize_window_left_half"
+                                        "shell_command": "glazedc=${HOME}/.local/bin/glazed; if [ -e ${glazedc} ]; then ${glazedc} resize_window_left_half; else ${glazedc}.swift resize_window_left_half; fi"
                                     }
                                 ],
                                 "type": "basic"
@@ -664,7 +657,7 @@
                                 },
                                 "to": [
                                     {
-                                        "shell_command": "${HOME}/.local/bin/glazed resize_window_center"
+                                        "shell_command": "glazedc=${HOME}/.local/bin/glazed; if [ -e ${glazedc} ]; then ${glazedc} resize_window_center; else ${glazedc}.swift resize_window_center; fi"
                                     }
                                 ],
                                 "type": "basic"
@@ -687,7 +680,7 @@
                                 },
                                 "to": [
                                     {
-                                        "shell_command": "${HOME}/.local/bin/glazed resize_window_maximize"
+                                        "shell_command": "glazedc=${HOME}/.local/bin/glazed; if [ -e ${glazedc} ]; then ${glazedc} resize_window_maximize; else ${glazedc}.swift resize_window_maximize; fi"
                                     }
                                 ],
                                 "type": "basic"
@@ -710,7 +703,7 @@
                                 },
                                 "to": [
                                     {
-                                        "shell_command": "${HOME}/.local/bin/glazed resize_window_right_half"
+                                        "shell_command": "glazedc=${HOME}/.local/bin/glazed; if [ -e ${glazedc} ]; then ${glazedc} resize_window_right_half; else ${glazedc}.swift resize_window_right_half; fi"
                                     }
                                 ],
                                 "type": "basic"
@@ -728,7 +721,7 @@
                                 },
                                 "to": [
                                     {
-                                        "shell_command": "${HOME}/.local/bin/glazed focus_window_left_visible"
+                                        "shell_command": "glazedc=${HOME}/.local/bin/glazed; if [ -e ${glazedc} ]; then ${glazedc} focus_window_left; else ${glazedc}.swift focus_window_left; fi"
                                     }
                                 ],
                                 "type": "basic"
@@ -746,7 +739,7 @@
                                 },
                                 "to": [
                                     {
-                                        "shell_command": "${HOME}/.local/bin/glazed focus_window_left_visible"
+                                        "shell_command": "glazedc=${HOME}/.local/bin/glazed; if [ -e ${glazedc} ]; then ${glazedc} focus_window_left; else ${glazedc}.swift focus_window_left; fi"
                                     }
                                 ],
                                 "type": "basic"
@@ -764,7 +757,7 @@
                                 },
                                 "to": [
                                     {
-                                        "shell_command": "${HOME}/.local/bin/glazed focus_window_right_visible"
+                                        "shell_command": "glazedc=${HOME}/.local/bin/glazed; if [ -e ${glazedc} ]; then ${glazedc} focus_window_right; else ${glazedc}.swift focus_window_right; fi"
                                     }
                                 ],
                                 "type": "basic"
@@ -782,7 +775,7 @@
                                 },
                                 "to": [
                                     {
-                                        "shell_command": "${HOME}/.local/bin/glazed focus_window_right_visible"
+                                        "shell_command": "glazedc=${HOME}/.local/bin/glazed; if [ -e ${glazedc} ]; then ${glazedc} focus_window_right; else ${glazedc}.swift focus_window_right; fi"
                                     }
                                 ],
                                 "type": "basic"
@@ -1996,6 +1989,101 @@
                                 "type": "basic"
                             }
                         ]
+                    },
+                    {
+                        "description": "cmd + q safety",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "q",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "left_command"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "set_notification_message": {
+                                            "id": "cmdqsafety",
+                                            "text": "⌘+Q Safety is on"
+                                        }
+                                    }
+                                ],
+                                "to_delayed_action": {
+                                    "to_if_canceled": [
+                                        {
+                                            "set_notification_message": {
+                                                "id": "cmdqsafety",
+                                                "text": ""
+                                            }
+                                        }
+                                    ],
+                                    "to_if_invoked": [
+                                        {
+                                            "set_notification_message": {
+                                                "id": "cmdqsafety",
+                                                "text": ""
+                                            }
+                                        }
+                                    ]
+                                },
+                                "to_if_held_down": [
+                                    {
+                                        "key_code": "q",
+                                        "modifiers": [
+                                            "left_command"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "q",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "right_command"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "set_notification_message": {
+                                            "id": "cmdqsafety",
+                                            "text": "⌘+Q Safety is on"
+                                        }
+                                    }
+                                ],
+                                "to_delayed_action": {
+                                    "to_if_canceled": [
+                                        {
+                                            "set_notification_message": {
+                                                "id": "cmdqsafety",
+                                                "text": ""
+                                            }
+                                        }
+                                    ],
+                                    "to_if_invoked": [
+                                        {
+                                            "set_notification_message": {
+                                                "id": "cmdqsafety",
+                                                "text": ""
+                                            }
+                                        }
+                                    ]
+                                },
+                                "to_if_held_down": [
+                                    {
+                                        "key_code": "q",
+                                        "modifiers": [
+                                            "right_command"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
                     }
                 ]
             },
@@ -2023,7 +2111,7 @@
                         "product_id": 8961,
                         "vendor_id": 4617
                     },
-                    "ignore": true,
+                    "ignore": false,
                     "manipulate_caps_lock_led": false,
                     "simple_modifications": [],
                     "treat_as_built_in_keyboard": false
@@ -2287,7 +2375,7 @@
                         "product_id": 8961,
                         "vendor_id": 4617
                     },
-                    "ignore": true,
+                    "ignore": false,
                     "manipulate_caps_lock_led": true,
                     "simple_modifications": [],
                     "treat_as_built_in_keyboard": false

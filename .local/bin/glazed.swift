@@ -72,6 +72,27 @@ func sortX(lhs: Window, rhs: Window) -> Bool {
 }
 
 // Utility Functions {{{1
+// Only works using relative path or full path
+func compile() {
+	let swiftc = Process()
+	swiftc.executableURL = URL(fileURLWithPath: "/usr/bin/swiftc")
+	let (script, binary) = CommandLine.arguments[0].contains("/glazed.swift") ? 
+		(CommandLine.arguments[0], CommandLine.arguments[0].replacingOccurrences(of: "/glazed.swift", with: "/glazed")) :
+		(CommandLine.arguments[0].replacingOccurrences(of: "/glazed", with: "/glazed.swift"), CommandLine.arguments[0])
+	let args = ["-o", binary, script]
+	swiftc.arguments = args
+
+	let pipe = Pipe()
+	swiftc.standardOutput = pipe
+	swiftc.standardError = pipe
+	try! swiftc.run()
+	let data = try! pipe.fileHandleForReading.readToEnd()
+	if let data = data, let s = String(data: data, encoding: .utf8) {
+		print(s)
+	} else {
+		print("compiled successfully")
+	}
+}
 
 func runYabai(arguments: [String]) -> Data? {
 	let yabai = Process()
@@ -130,6 +151,10 @@ func queryWindowRight() -> Window? {
 	}
 }
 
+func focusWindowRight() {
+	let id = queryWindowRight()!.id
+	let _ = runYabai(arguments: ["-m", "window", "--focus", "\(id)"])
+}
 
 // Debug {{{1
 func printWindow(win: Window?) {
@@ -151,8 +176,12 @@ func debug() {
 
 if (CommandLine.argc > 1) {
 	switch CommandLine.arguments[1] {
+	case "compile":
+		compile()
 	case "debug":
 		debug()
+	case "focus_window_right", "focusWindowRight":
+		focusWindowRight()
 	default:
 		print("No subcommand provided")
 		exit(1)

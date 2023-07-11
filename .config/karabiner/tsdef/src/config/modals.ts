@@ -6,12 +6,14 @@ const numberToSpaces = Array.of<NumberKeyValue>(1, 2, 3, 4, 5, 6, 7, 8, 9).map(i
 
 /* eslint-disable-next-line */
 const HOME = '${HOME}';
+/* eslint-disable-next-line */
+const glazedc = '${glazedc}'
 function glazed(sub: string): string {
-	return `${HOME}/.local/bin/glazed ${sub}`;
+	return `glazedc=${HOME}/.local/bin/glazed; if [ -e ${glazedc} ]; then ${glazedc} ${sub}; else ${glazedc}.swift ${sub}; fi`;
 }
 
 function focus(dir: string): string {
-	return glazed(`focus_window_${dir}_visible`);
+	return glazed(`focus_window_${dir}`);
 }
 
 // Window Manipulation

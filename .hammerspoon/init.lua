@@ -9,18 +9,6 @@ local alert_style = {
 	radius = 10
 }
 
-local application_mode_shortcuts = {
-	{shortcut = "c", app = "Google Chrome", alias = "Chrome"},
-	{shortcut = "f", app = "Firefox"},
-	{shortcut = "i", app = "Intellij IDEA CE", alias = "Intellij"},
-	{shortcut = "m", app = "Spotify"},
-	{shortcut = "s", app = "Sublime Text"},
-	{shortcut = "t", app = "iTerm"},
-	{shortcut = "v", app = "Visual Studio Code", alias = "VS Code"},
-	{shortcut = "w", app = "WhatsApp"},
-	{shortcut = "return", app = "Finder"},
-}
-
 -- Constants --
 local hyper = {"ctrl", "alt", "shift", "cmd"}
 
@@ -32,61 +20,6 @@ end
 -- Reload Config --
 hs.hotkey.bind(hyper, 'r', function()
 	hs.reload()
-end)
-
--- CMD+Q Safety --
-local cmd_q_bind
-local cmd_q_trigger
-local cmd_q_key_down_time
-
-local function cmd_q_on_key_down()
-	cmd_q_trigger = false
-	cmd_q_key_down_time = hs.timer.secondsSinceEpoch()
-end
-
-local function cmd_q_on_key_up()
-	if cmd_q_trigger then
-		cmd_q_bind:disable()
-		hs.eventtap.keyStroke({"cmd"}, 'q')
-		cmd_q_bind:enable()
-	else
-		hs.alert.show("⌘+Q Safety is on")
-	end
-end
-
-local function cmd_q_on_key_hold()
-	if not cmd_q_trigger then
-		local diff = hs.timer.secondsSinceEpoch() - cmd_q_key_down_time
-		if diff >= 0.3 then
-			cmd_q_trigger = true
-		end
-	end
-end
-
-cmd_q_bind = hs.hotkey.bind({"cmd"}, 'q', cmd_q_on_key_down, cmd_q_on_key_up, cmd_q_on_key_hold)
-
--- Lock Screen with ScreenSaver --
-hs.hotkey.bind(hyper, 'l', function()
-		os.execute("open -a /System/Library/CoreServices/ScreenSaverEngine.app/Contents/MacOS/ScreenSaverEngine");
-end)
-
--- Application Mode --
-local a_bind = hs.hotkey.modal.new(hyper, 'a', "Application Mode")
-for _, v in ipairs(application_mode_shortcuts) do
-	local title;
-	if v.alias then title = v.alias else title = v.app end
-	a_bind:bind({}, v.shortcut, title, function()
-		hs.application.launchOrFocus(v.app)
-		a_bind:exit()
-	end)
-end
-
-a_bind:bind({}, 'escape', "Application Mode Exited", function() a_bind:exit() end)
-a_bind:bind(hyper, 'a', "Application Mode Exited", function() a_bind:exit() end)
-
--- Scratch --
-hs.hotkey.bind(hyper, 's', function()
-	hs.console.printStyledtext(hs.inspect(hs.window.orderedWindows()[1]:title()))
 end)
 
 hs.hotkey.bind(hyper, 'v', function()

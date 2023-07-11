@@ -82,10 +82,12 @@ class BasicModalLayerRuleBuilder implements ModalLayerRuleBuilder {
 	}
 
 	private buildTriggerBase(t: ModalLayerTrigger): BasicManipulatorBuilder {
+		const {varNameActive} = t;
+		delete (t.varNameActive);
 		const r = map(t);
 
-		if (t.varNameActive) {
-			r.condition(ifVar(t.varNameActive, 1));
+		if (varNameActive) {
+			r.condition(ifVar(varNameActive, 1));
 		}
 
 		return r;
