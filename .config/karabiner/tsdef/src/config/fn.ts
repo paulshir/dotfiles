@@ -50,7 +50,7 @@ const fnZ = rule('fn+z to sleep')
 	]);
 
 export const fnRules = [
-	fnConsumer,
+	// fnConsumer,
 	fnAndNumbers,
 	fnArrows,
 	fnMedia,

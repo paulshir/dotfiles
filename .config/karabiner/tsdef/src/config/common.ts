@@ -1,20 +1,30 @@
 import {ifDevice, type DeviceIdentifier, type ToKeyCode, type FunctionKeyCode, toSetVar} from 'karabiner.ts';
 
 /* eslint-disable @typescript-eslint/naming-convention */
-export const ifAppleVendor = ifDevice({
-	vendor_id: 1452,
+export const ifBuiltInKeyboard = ifDevice({
+	is_built_in_keyboard: true,
 });
 
 export const usAppleKeyboards: DeviceIdentifier[] = [{
+	is_built_in_keyboard: true,
+	is_keyboard: true,
 	product_id: 632,
 	vendor_id: 1452,
+},
+{
+	is_built_in_keyboard: true,
+	product_id: 4294970239,
 }];
 
 export const nonUsAppleKeyboards: DeviceIdentifier[] = [{
+	is_built_in_keyboard: true,
+	is_keyboard: true,
 	product_id: 627,
 	vendor_id: 1452,
 },
 {
+	is_built_in_keyboard: true,
+	is_keyboard: true,
 	product_id: 832,
 	vendor_id: 1452,
 }];
@@ -34,9 +44,9 @@ export const fnAppKeys: ToKeyCode[] = [
 	'display_brightness_decrement',
 	'display_brightness_increment',
 	'mission_control',
-	'launchpad',
 	'illumination_decrement',
 	'illumination_increment',
+	'f16',
 	'rewind',
 	'play_or_pause',
 	'fastforward',

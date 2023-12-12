@@ -1,11 +1,11 @@
 import {type RuleBuilder, map, rule, toSetVar} from 'karabiner.ts';
-import {activateHyper, deactivateHyper, ifAppleVendor, ifNonUsAppleKeyboard, ifUsAppleKeyboard} from './common';
+import {activateHyper, deactivateHyper, ifBuiltInKeyboard, ifNonUsAppleKeyboard, ifUsAppleKeyboard} from './common';
 
 export const hyperVarName = 'hyper_active';
 
 function capsLock(clearVarsOnEscape: string[]): RuleBuilder {
 	const r = map('caps_lock', [], 'any')
-		.condition(ifAppleVendor)
+		.condition(ifBuiltInKeyboard)
 		.to('left_control')
 		.toIfAlone('escape');
 
@@ -16,7 +16,7 @@ function capsLock(clearVarsOnEscape: string[]): RuleBuilder {
 
 function hyperEscape(clearVarsOnEscape: string[]): RuleBuilder {
 	const r = map('escape', '', 'any')
-		.condition(ifAppleVendor)
+		.condition(ifBuiltInKeyboard)
 		.to(activateHyper)
 		.to('left_control', ['left_shift', 'left_command', 'left_option'])
 		.toIfAlone('escape')
@@ -30,7 +30,7 @@ function hyperEscape(clearVarsOnEscape: string[]): RuleBuilder {
 const leftControlApple = rule('left_control on apple keyboards to hyper')
 	.manipulators([
 		map('left_control', '', 'any')
-			.condition(ifAppleVendor)
+			.condition(ifBuiltInKeyboard)
 			.to(activateHyper)
 			.to('left_control', ['left_shift', 'left_command', 'left_option'])
 			.toAfterKeyUp(deactivateHyper),
