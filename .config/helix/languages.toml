@@ -1,6 +1,12 @@
+[language-server.rust-analyzer]
+command = "rustup"
+args = ["run", "stable", "rust-analyzer"]
+
 [[language]]
 name = "rust"
-language-server = { command = "rustup", args = ["run", "stable", "rust-analyzer"]}
+language-servers = [
+  { name = "rust-analyzer" }
+]
 
 [[language]]
 name = "javascript"

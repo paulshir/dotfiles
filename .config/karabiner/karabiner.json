@@ -1275,6 +1275,483 @@
                                     }
                                 ],
                                 "from": {
+                                    "key_code": "1",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "shift"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "shell_command": "glazedc=${HOME}/.local/bin/glazed; if [ -e ${glazedc} ]; then ${glazedc} move_window_to_space 1; else ${glazedc}.swift move_window_to_space 1; fi"
+                                    },
+                                    {
+                                        "set_variable": {
+                                            "name": "hyper_w",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
+                                        "set_notification_message": {
+                                            "id": "hyper_w_deactivated",
+                                            "text": "hyper_w Layer deactivated"
+                                        }
+                                    }
+                                ],
+                                "to_delayed_action": {
+                                    "to_if_canceled": [
+                                        {
+                                            "set_notification_message": {
+                                                "id": "hyper_w_deactivated",
+                                                "text": ""
+                                            }
+                                        }
+                                    ],
+                                    "to_if_invoked": [
+                                        {
+                                            "set_notification_message": {
+                                                "id": "hyper_w_deactivated",
+                                                "text": ""
+                                            }
+                                        }
+                                    ]
+                                },
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "hyper_w",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "2",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "shift"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "shell_command": "glazedc=${HOME}/.local/bin/glazed; if [ -e ${glazedc} ]; then ${glazedc} move_window_to_space 2; else ${glazedc}.swift move_window_to_space 2; fi"
+                                    },
+                                    {
+                                        "set_variable": {
+                                            "name": "hyper_w",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
+                                        "set_notification_message": {
+                                            "id": "hyper_w_deactivated",
+                                            "text": "hyper_w Layer deactivated"
+                                        }
+                                    }
+                                ],
+                                "to_delayed_action": {
+                                    "to_if_canceled": [
+                                        {
+                                            "set_notification_message": {
+                                                "id": "hyper_w_deactivated",
+                                                "text": ""
+                                            }
+                                        }
+                                    ],
+                                    "to_if_invoked": [
+                                        {
+                                            "set_notification_message": {
+                                                "id": "hyper_w_deactivated",
+                                                "text": ""
+                                            }
+                                        }
+                                    ]
+                                },
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "hyper_w",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "3",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "shift"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "shell_command": "glazedc=${HOME}/.local/bin/glazed; if [ -e ${glazedc} ]; then ${glazedc} move_window_to_space 3; else ${glazedc}.swift move_window_to_space 3; fi"
+                                    },
+                                    {
+                                        "set_variable": {
+                                            "name": "hyper_w",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
+                                        "set_notification_message": {
+                                            "id": "hyper_w_deactivated",
+                                            "text": "hyper_w Layer deactivated"
+                                        }
+                                    }
+                                ],
+                                "to_delayed_action": {
+                                    "to_if_canceled": [
+                                        {
+                                            "set_notification_message": {
+                                                "id": "hyper_w_deactivated",
+                                                "text": ""
+                                            }
+                                        }
+                                    ],
+                                    "to_if_invoked": [
+                                        {
+                                            "set_notification_message": {
+                                                "id": "hyper_w_deactivated",
+                                                "text": ""
+                                            }
+                                        }
+                                    ]
+                                },
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "hyper_w",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "4",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "shift"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "shell_command": "glazedc=${HOME}/.local/bin/glazed; if [ -e ${glazedc} ]; then ${glazedc} move_window_to_space 4; else ${glazedc}.swift move_window_to_space 4; fi"
+                                    },
+                                    {
+                                        "set_variable": {
+                                            "name": "hyper_w",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
+                                        "set_notification_message": {
+                                            "id": "hyper_w_deactivated",
+                                            "text": "hyper_w Layer deactivated"
+                                        }
+                                    }
+                                ],
+                                "to_delayed_action": {
+                                    "to_if_canceled": [
+                                        {
+                                            "set_notification_message": {
+                                                "id": "hyper_w_deactivated",
+                                                "text": ""
+                                            }
+                                        }
+                                    ],
+                                    "to_if_invoked": [
+                                        {
+                                            "set_notification_message": {
+                                                "id": "hyper_w_deactivated",
+                                                "text": ""
+                                            }
+                                        }
+                                    ]
+                                },
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "hyper_w",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "5",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "shift"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "shell_command": "glazedc=${HOME}/.local/bin/glazed; if [ -e ${glazedc} ]; then ${glazedc} move_window_to_space 5; else ${glazedc}.swift move_window_to_space 5; fi"
+                                    },
+                                    {
+                                        "set_variable": {
+                                            "name": "hyper_w",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
+                                        "set_notification_message": {
+                                            "id": "hyper_w_deactivated",
+                                            "text": "hyper_w Layer deactivated"
+                                        }
+                                    }
+                                ],
+                                "to_delayed_action": {
+                                    "to_if_canceled": [
+                                        {
+                                            "set_notification_message": {
+                                                "id": "hyper_w_deactivated",
+                                                "text": ""
+                                            }
+                                        }
+                                    ],
+                                    "to_if_invoked": [
+                                        {
+                                            "set_notification_message": {
+                                                "id": "hyper_w_deactivated",
+                                                "text": ""
+                                            }
+                                        }
+                                    ]
+                                },
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "hyper_w",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "6",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "shift"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "shell_command": "glazedc=${HOME}/.local/bin/glazed; if [ -e ${glazedc} ]; then ${glazedc} move_window_to_space 6; else ${glazedc}.swift move_window_to_space 6; fi"
+                                    },
+                                    {
+                                        "set_variable": {
+                                            "name": "hyper_w",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
+                                        "set_notification_message": {
+                                            "id": "hyper_w_deactivated",
+                                            "text": "hyper_w Layer deactivated"
+                                        }
+                                    }
+                                ],
+                                "to_delayed_action": {
+                                    "to_if_canceled": [
+                                        {
+                                            "set_notification_message": {
+                                                "id": "hyper_w_deactivated",
+                                                "text": ""
+                                            }
+                                        }
+                                    ],
+                                    "to_if_invoked": [
+                                        {
+                                            "set_notification_message": {
+                                                "id": "hyper_w_deactivated",
+                                                "text": ""
+                                            }
+                                        }
+                                    ]
+                                },
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "hyper_w",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "7",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "shift"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "shell_command": "glazedc=${HOME}/.local/bin/glazed; if [ -e ${glazedc} ]; then ${glazedc} move_window_to_space 7; else ${glazedc}.swift move_window_to_space 7; fi"
+                                    },
+                                    {
+                                        "set_variable": {
+                                            "name": "hyper_w",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
+                                        "set_notification_message": {
+                                            "id": "hyper_w_deactivated",
+                                            "text": "hyper_w Layer deactivated"
+                                        }
+                                    }
+                                ],
+                                "to_delayed_action": {
+                                    "to_if_canceled": [
+                                        {
+                                            "set_notification_message": {
+                                                "id": "hyper_w_deactivated",
+                                                "text": ""
+                                            }
+                                        }
+                                    ],
+                                    "to_if_invoked": [
+                                        {
+                                            "set_notification_message": {
+                                                "id": "hyper_w_deactivated",
+                                                "text": ""
+                                            }
+                                        }
+                                    ]
+                                },
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "hyper_w",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "8",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "shift"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "shell_command": "glazedc=${HOME}/.local/bin/glazed; if [ -e ${glazedc} ]; then ${glazedc} move_window_to_space 8; else ${glazedc}.swift move_window_to_space 8; fi"
+                                    },
+                                    {
+                                        "set_variable": {
+                                            "name": "hyper_w",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
+                                        "set_notification_message": {
+                                            "id": "hyper_w_deactivated",
+                                            "text": "hyper_w Layer deactivated"
+                                        }
+                                    }
+                                ],
+                                "to_delayed_action": {
+                                    "to_if_canceled": [
+                                        {
+                                            "set_notification_message": {
+                                                "id": "hyper_w_deactivated",
+                                                "text": ""
+                                            }
+                                        }
+                                    ],
+                                    "to_if_invoked": [
+                                        {
+                                            "set_notification_message": {
+                                                "id": "hyper_w_deactivated",
+                                                "text": ""
+                                            }
+                                        }
+                                    ]
+                                },
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "hyper_w",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "9",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "shift"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "shell_command": "glazedc=${HOME}/.local/bin/glazed; if [ -e ${glazedc} ]; then ${glazedc} move_window_to_space 9; else ${glazedc}.swift move_window_to_space 9; fi"
+                                    },
+                                    {
+                                        "set_variable": {
+                                            "name": "hyper_w",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
+                                        "set_notification_message": {
+                                            "id": "hyper_w_deactivated",
+                                            "text": "hyper_w Layer deactivated"
+                                        }
+                                    }
+                                ],
+                                "to_delayed_action": {
+                                    "to_if_canceled": [
+                                        {
+                                            "set_notification_message": {
+                                                "id": "hyper_w_deactivated",
+                                                "text": ""
+                                            }
+                                        }
+                                    ],
+                                    "to_if_invoked": [
+                                        {
+                                            "set_notification_message": {
+                                                "id": "hyper_w_deactivated",
+                                                "text": ""
+                                            }
+                                        }
+                                    ]
+                                },
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "hyper_w",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
                                     "key_code": "comma"
                                 },
                                 "to": [
@@ -1304,6 +1781,80 @@
                                         }
                                     ],
                                     "to_if_invoked": [
+                                        {
+                                            "set_notification_message": {
+                                                "id": "hyper_w_deactivated",
+                                                "text": ""
+                                            }
+                                        }
+                                    ]
+                                },
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "hyper_w",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "c",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "command",
+                                            "option",
+                                            "control",
+                                            "shift"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "set_notification_message": {
+                                            "id": "compile",
+                                            "text": "compiling glazed.swift"
+                                        }
+                                    },
+                                    {
+                                        "shell_command": "glazedc=${HOME}/.local/bin/glazed; if [ -e ${glazedc} ]; then ${glazedc} compile; else ${glazedc}.swift compile; fi"
+                                    },
+                                    {
+                                        "set_variable": {
+                                            "name": "hyper_w",
+                                            "value": 0
+                                        }
+                                    },
+                                    {
+                                        "set_notification_message": {
+                                            "id": "hyper_w_deactivated",
+                                            "text": "hyper_w Layer deactivated"
+                                        }
+                                    }
+                                ],
+                                "to_delayed_action": {
+                                    "to_if_canceled": [
+                                        {
+                                            "set_notification_message": {
+                                                "id": "compile",
+                                                "text": ""
+                                            }
+                                        },
+                                        {
+                                            "set_notification_message": {
+                                                "id": "hyper_w_deactivated",
+                                                "text": ""
+                                            }
+                                        }
+                                    ],
+                                    "to_if_invoked": [
+                                        {
+                                            "set_notification_message": {
+                                                "id": "compile",
+                                                "text": ""
+                                            }
+                                        },
                                         {
                                             "set_notification_message": {
                                                 "id": "hyper_w_deactivated",
@@ -2263,7 +2814,7 @@
                         "product_id": 8963,
                         "vendor_id": 4617
                     },
-                    "ignore": true,
+                    "ignore": false,
                     "manipulate_caps_lock_led": true,
                     "simple_modifications": [],
                     "treat_as_built_in_keyboard": false

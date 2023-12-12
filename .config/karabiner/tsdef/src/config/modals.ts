@@ -1,8 +1,6 @@
-import {map, type NumberKeyValue} from 'karabiner.ts';
+import {map, toRemoveNotificationMessage, type NumberKeyValue} from 'karabiner.ts';
 import {hyperModalLayer, type ModalLayerRuleBuilder} from '../helpers/modalLayer';
 import {hyperVarName} from './common';
-
-const numberToSpaces = Array.of<NumberKeyValue>(1, 2, 3, 4, 5, 6, 7, 8, 9).map(i => map(i).to(i, 'Hyper'));
 
 /* eslint-disable-next-line */
 const HOME = '${HOME}';
@@ -15,6 +13,15 @@ function glazed(sub: string): string {
 function focus(dir: string): string {
 	return glazed(`focus_window_${dir}`);
 }
+
+function moveToSpace(space: number): string {
+	return glazed(`move_window_to_space ${space}`)
+}
+
+const numbers = Array.of<NumberKeyValue>(1, 2, 3, 4, 5, 6, 7, 8, 9)
+const numberToSpaces = numbers.map(i => map(i).to(i, 'Hyper'));
+const moveToSpaces = numbers.map(i => map(i, "shift").to$(moveToSpace(i)));
+
 
 // Window Manipulation
 const hyperW = hyperModalLayer('w', hyperVarName, 'hyper_w')
@@ -32,7 +39,15 @@ const hyperW = hyperModalLayer('w', hyperVarName, 'hyper_w')
 	])
 	.fireOnceManipulators([
 		...numberToSpaces,
+		...moveToSpaces,
 		map(',').to$('open -g "rectangle-pro://execute-layout?name=layout1"'),
+		map('c', 'Hyper')
+			.toNotificationMessage('compile', 'compiling glazed.swift')
+			.to$(glazed('compile'))
+			.toDelayedAction(
+				toRemoveNotificationMessage('compile'),
+				toRemoveNotificationMessage('compile')
+			),
 	]);
 
 export const modalRules: ModalLayerRuleBuilder[] = [
