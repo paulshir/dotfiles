@@ -71,7 +71,7 @@ alias vf='hx $(fzf)'
 alias vi='hx'
 alias vim='hx'
 alias zls='zellij ls'
-alias zk='zellij kill-session'
+alias zk='zellij delete-session'
 alias zshrc-time='time  zsh -i -c exit'
 
 # FUNCTIONS {{{1

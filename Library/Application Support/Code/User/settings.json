@@ -34,7 +34,7 @@
     "rust-analyzer.cargo.loadOutDirsFromCheck": true,
     "rust-analyzer.inlayHints.typeHints": false,
     "editor.columnSelection": false,
-    "workbench.colorTheme": "Atom One Dark",
+    "workbench.colorTheme": "Default Dark Modern",
     "mermaid-editor.generate.type": "png",
     "workbench.editor.empty.hint": "hidden",
     // "rust-analyzer.rustfmt.overrideCommand": null

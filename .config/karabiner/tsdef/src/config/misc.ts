@@ -16,6 +16,8 @@ const cmdQSafety = rule('cmd + q safety').manipulators([
 			toRemoveNotificationMessage('cmdqsafety'),
 		)
 		.toIfHeldDown(toKey('q', 'right_command')),
+	map('f13', 'Hyper')
+		.to$('open https://stackoverflow.com'),
 ]);
 
 export const miscRules: RuleBuilder[] = [

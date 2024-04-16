@@ -152,7 +152,7 @@ func open(_ uri: String) {
 	if let data = data, let s = String(data: data, encoding: .utf8) {
 		print(s)
 	} else {
-		print("compiled successfully")
+		print("opened successfully")
 	}
 }
 
@@ -230,7 +230,7 @@ func queryWindowLeft() -> Window? {
 	}
 }
 
-func focusWindow(_ window: Window?) {
+func focusWindow(window: Window?) {
 	if let window = window {
 		let _ = runYabai(arguments: ["-m", "window", "--focus", "\(window.id)"])
 	}
