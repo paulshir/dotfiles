@@ -30,9 +30,11 @@ HISTFILE=~/.histfile
 HISTSIZE=100000
 SAVEHIST=100000
 
-if [[ -f ${HOME}/.fzf.zsh ]]; then
-	export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,node_modules}/*" 2> /dev/null'
-	export FZF_CTRL_T_COMMAND=${FZF_DEFAULT_COMMAND}
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,node_modules}/*" 2> /dev/null'
+export FZF_CTRL_T_COMMAND=${FZF_DEFAULT_COMMAND}
+if command -v fzf &> /dev/null; then
+	eval "$(fzf --zsh)"	
+elif [[ -f ${HOME}/.fzf.zsh ]]; then
 	source ~/.fzf.zsh
 else
 	_error "fzf is not installed"
@@ -147,3 +149,5 @@ zplug load
 
 # vim:ft=zsh:foldmethod=marker
 export JAVA_TOOLS_OPTIONS="-Dlog4j2.formatMsgNoLookups=true"
+
+export PATH=$PATH:/Users/psshirle/.toolbox/bin
