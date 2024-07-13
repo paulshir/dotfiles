@@ -76,8 +76,8 @@ alias zshrc-time='time  zsh -i -c exit'
 alias ,cm='chezmoi'
 alias chezmoi2='chezmoi --source ~/.local/share/chezmoi2 --config ~/.config/chezmoi2/chezmoi.toml'
 alias ,cm2='chezmoi2'
-alias ,cm_update='chezmoi git pull -- --autostash --rebase && chezmoi diff'
-alias ,cm2_update='chezmoi2 git pull -- --autostash --rebase && chezmoi2 diff'
+alias ,cm_origin_diff='chezmoi git pull -- --autostash --rebase && chezmoi diff'
+alias ,cm2_origin_diff='chezmoi2 git pull -- --autostash --rebase && chezmoi2 diff'
 
 # FUNCTIONS {{{1
 
@@ -144,7 +144,7 @@ if [ -f ${HOME}/.dev.env ]; then
 fi
 
 if [ -f ${HOME}/.zshrc_local ]; then
-    source $${HOME}/.zshrc_local
+    source ${HOME}/.zshrc_local
 fi
 
 zplug load
@@ -152,6 +152,3 @@ zplug load
 # CLEANUP {{{1
 
 # vim:ft=zsh:foldmethod=marker
-export JAVA_TOOLS_OPTIONS="-Dlog4j2.formatMsgNoLookups=true"
-
-export PATH=$PATH:/Users/psshirle/.toolbox/bin
