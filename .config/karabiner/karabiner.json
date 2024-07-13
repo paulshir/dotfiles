@@ -2471,6 +2471,74 @@
                                 "type": "basic"
                             }
                         ]
+                    },
+                    {
+                        "description": "cut, copy, paste combos",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "simultaneous": [
+                                        {
+                                            "key_code": "z"
+                                        },
+                                        {
+                                            "key_code": "x"
+                                        }
+                                    ]
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "x",
+                                        "modifiers": [
+                                            "left_command"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "simultaneous": [
+                                        {
+                                            "key_code": "x"
+                                        },
+                                        {
+                                            "key_code": "c"
+                                        }
+                                    ]
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "c",
+                                        "modifiers": [
+                                            "left_command"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "simultaneous": [
+                                        {
+                                            "key_code": "c"
+                                        },
+                                        {
+                                            "key_code": "v"
+                                        }
+                                    ]
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "v",
+                                        "modifiers": [
+                                            "left_command"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
                     }
                 ]
             },

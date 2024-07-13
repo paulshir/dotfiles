@@ -24,6 +24,10 @@ select = "underline"
 [editor.file-picker]
 hidden = false
 
+[keys.normal]
+C-u = ["page_cursor_half_up", "align_view_center"]
+C-d = ["page_cursor_half_down", "align_view_center"]
+
 [keys.normal."C-w"]
 d = "hsplit"
 r = "vsplit"
@@ -31,4 +35,3 @@ r = "vsplit"
 [keys.normal.space.w]
 d = "hsplit"
 r = "vsplit"
-

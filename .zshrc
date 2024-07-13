@@ -82,7 +82,7 @@ function za {
 	session=$1
 	shift
 
-	if $(zellij ls | grep -w "$session" > /dev/null); then
+	if $(zellij ls -s | grep -w "$session" > /dev/null); then
     zellij attach $session
 		return
   fi
@@ -124,6 +124,7 @@ setopt complete_in_word
 # history
 setopt append_history
 setopt extended_history
+setopt share_history
 setopt hist_expire_dups_first
 setopt hist_ignore_dups
 setopt hist_reduce_blanks
