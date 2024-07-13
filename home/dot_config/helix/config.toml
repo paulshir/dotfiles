@@ -1,0 +1,37 @@
+theme = "onedark"
+
+[editor]
+true-color = true
+line-number = "relative"
+auto-save = true
+cursorline = true
+rulers = [120]
+bufferline = "always"
+color-modes = true
+text-width = 120
+auto-pairs = false
+
+[editor.statusline]
+left = ["mode", "spinner", "file-name", "file-encoding"]
+center = []
+right = ["selections", "primary-selection-length", "position", "position-percentage", "spacer", "diagnostics", "version-control"]
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[editor.file-picker]
+hidden = false
+
+[keys.normal]
+C-u = ["page_cursor_half_up", "align_view_center"]
+C-d = ["page_cursor_half_down", "align_view_center"]
+
+[keys.normal."C-w"]
+d = "hsplit"
+r = "vsplit"
+
+[keys.normal.space.w]
+d = "hsplit"
+r = "vsplit"

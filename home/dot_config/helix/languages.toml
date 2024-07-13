@@ -1,0 +1,22 @@
+[language-server.rust-analyzer]
+command = "rustup"
+args = ["run", "stable", "rust-analyzer"]
+
+[[language]]
+name = "rust"
+language-servers = [
+  { name = "rust-analyzer" }
+]
+
+[[language]]
+name = "javascript"
+indent = { tab-width = 4, unit = " " }
+
+[[language]]
+name = "typescript"
+indent = { tab-width = 4, unit = " " }
+
+[[language]]
+name = "json"
+indent = { tab-width = 4, unit = " " }
+

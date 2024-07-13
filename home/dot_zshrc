@@ -17,9 +17,7 @@ _error() {
 }
 
 # ENVIRONMENT {{{1
-df_dir="${HOME}/.dotfiles"
-
-export ZPLUG_HOME=${df_dir}/external/zplug
+export ZPLUG_HOME=${HOME}/.local/share/zplug
 
 if [[ ! -f ${ZPLUG_HOME}/init.zsh ]]; then
 	_error "currently zplug must be installed for this to work; exiting"
@@ -79,7 +77,7 @@ alias ,cm='chezmoi'
 alias chezmoi2='chezmoi --source ~/.config/chezmoi2'
 alias ,cm2='chezmoi2'
 alias ,cm_update='chezmoi git pull -- --autostash --rebase && chezmoi diff'
-alais ,cm2_update='chezmoi2 git pull -- --autostash --rebase && chezmoi2 diff'
+alias ,cm2_update='chezmoi2 git pull -- --autostash --rebase && chezmoi2 diff'
 
 # FUNCTIONS {{{1
 

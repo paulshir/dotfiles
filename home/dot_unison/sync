@@ -1,0 +1,7 @@
+auto = true
+batch = true
+times = true
+confirmbigdel = false
+terse = true
+force = newer
+
