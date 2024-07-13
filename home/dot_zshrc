@@ -76,7 +76,10 @@ alias zls='zellij ls'
 alias zk='zellij delete-session'
 alias zshrc-time='time  zsh -i -c exit'
 alias ,cm='chezmoi'
-alias ,cml='chezmoi --source ~/.config/chezmoil'
+alias chezmoi2='chezmoi --source ~/.config/chezmoi2'
+alias ,cm2='chezmoi2'
+alias ,cm_update='chezmoi git pull -- --autostash --rebase && chezmoi diff'
+alais ,cm2_update='chezmoi2 git pull -- --autostash --rebase && chezmoi2 diff'
 
 # FUNCTIONS {{{1
 
