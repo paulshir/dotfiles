@@ -17,6 +17,7 @@ _error() {
 }
 
 # ENVIRONMENT {{{1
+export PATH=${HOME}/.local/bin:$PATH
 export ZPLUG_HOME=${HOME}/.local/share/zplug
 
 if [[ ! -f ${ZPLUG_HOME}/init.zsh ]]; then
@@ -74,7 +75,7 @@ alias zls='zellij ls'
 alias zk='zellij delete-session'
 alias zshrc-time='time  zsh -i -c exit'
 alias ,cm='chezmoi'
-alias chezmoi2='chezmoi --source ~/.local/share/chezmoi2 --config ~/.config/chezmoi2/chezmoi.toml'
+alias chezmoi2='chezmoi --source ~/.local/share/chezmoi2 --persistent-state ~/.config/chezmoi2/chezmoistate.boltdb --config ~/.config/chezmoi2/chezmoi.toml'
 alias ,cm2='chezmoi2'
 alias ,cm_origin_diff='chezmoi git pull -- --autostash --rebase && chezmoi diff'
 alias ,cm2_origin_diff='chezmoi2 git pull -- --autostash --rebase && chezmoi2 diff'

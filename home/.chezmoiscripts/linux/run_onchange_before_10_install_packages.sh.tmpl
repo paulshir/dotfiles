@@ -1,0 +1,7 @@
+{{- if eq .chezmoi.os "linux" -}}
+#!/bin/sh
+
+{{- if and (eq .chezmoi.osRelease.id "amzn") (eq .chezmoi.osRelease.version 2) -}}
+sudo apt install -y {{ range .packages.linux.al2 }}{{ . }} {{ end }}
+{{- end -}}
+{{- end -}}
