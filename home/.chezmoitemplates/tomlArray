@@ -1,0 +1,14 @@
+{{- $list := (index . 0) -}}
+{{- $indent := (index . 1 | int) -}}
+{{- $lastIndent := sub (index . 1) 4 | int -}}
+{{- if not $list -}}
+[]
+{{- else -}}[
+{{- range $i, $el := $list -}}
+{{ if $i }},
+{{ else }}
+{{ end }}
+{{- repeat $indent  " " }}{{ $el | quote }}
+{{- end }}
+{{ repeat $lastIndent " " }}]
+{{- end -}}

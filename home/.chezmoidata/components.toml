@@ -1,0 +1,11 @@
+[components]
+  all = [
+    "rustToolchainStable",
+    "rustToolchaingNightly"
+  ]
+  minimal = []
+  default = [
+    "rustToolchainStable",
+  ]
+
+

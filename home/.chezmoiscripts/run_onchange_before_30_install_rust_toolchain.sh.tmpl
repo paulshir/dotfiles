@@ -1,0 +1,23 @@
+{{- $hasStable := or (has "rustToolchainStable" .selectedComponents) (has "rustToolchainStable" (get .components .profile)) -}}
+{{- $hasNightly := or (has "rustToolchainNightly" .selectedComponents) (has "rustToolchainNightly" (get .components .profile)) -}}
+{{- if or $hasStable $hasNightly -}}
+#!/bin/zsh
+
+set -euo pipefail
+
+if [[ ! -d ~/.rustup ]]; then
+  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --default-toolchain none --no-modify-path
+fi
+{{ "" }}
+
+{{- if $hasStable }}
+rustup toolchain install stable
+(rustup default > /dev/null || rustup default stable)
+{{ end }}
+
+{{- if $hasNightly }}
+rustup toolchain install nightly
+(rustup default > /dev/null || rustup default nightly)
+{{ end -}}
+
+{{ end }}

@@ -1,7 +1,15 @@
+{{- $components := list -}}
+{{- if hasKey . "selectedComponents" -}}
+{{-   $components = .selectedComponents -}}
+{{- end -}}
+{{- $profileChoices := list "minimal" "default" "all" -}}
+{{- $profile := promptChoiceOnce . "profile" "Installation profile" $profileChoices -}}
 {{- $email := promptStringOnce . "email" "Email address" -}}
 
 [data]
+    profile = {{ $profile | quote }}
     email = {{ $email | quote }}
+    selectedComponents = {{ includeTemplate "./home/.chezmoitemplates/tomlArray" (list $components 8) }}
 
 [git]
     autoCommit = false
