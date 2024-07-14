@@ -6,7 +6,7 @@
 set -euo pipefail
 
 if [[ ! -d ~/.rustup ]]; then
-  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --default-toolchain none --no-modify-path
+  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --default-toolchain none --no-modify-path -q -y
 fi
 {{ "" }}
 
