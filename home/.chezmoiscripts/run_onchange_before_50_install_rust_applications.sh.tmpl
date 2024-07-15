@@ -4,6 +4,10 @@
 {{- if eq .chezmoi.os "linux" -}} 
 #!/bin/zsh
 
+set -euo pipefail
+
+source ~/.cargo/env
+
 {{ if $has.cmdLineEssentials }}
 cargo install ripgrep
 {{ end }}
@@ -15,6 +19,7 @@ if [[ ! -d helix ]]; then
 	(cd helix
 	git reset --hard 24.03
 	cargo install --path helix-term --locked
+	mkdir -p ~/.config/helix
 	ln -Ts $PWD/runtime ~/.config/helix/runtime
 	)
 fi)

@@ -9,6 +9,8 @@ if [[ ! -d ~/.rustup ]]; then
 fi
 {{ "" }}
 
+source ~/.cargo/env
+
 {{- if $has.rustToolchainStable }}
 rustup toolchain install stable
 (rustup default > /dev/null || rustup default stable)

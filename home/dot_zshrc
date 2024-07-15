@@ -148,6 +148,10 @@ if [ -f ${HOME}/.zshrc_local ]; then
     source ${HOME}/.zshrc_local
 fi
 
+if [ -f ${HOME}/.cargo/env ]; then
+	  source ${HOME}/.cargo/env
+fi
+
 zplug load
 
 # CLEANUP {{{1
