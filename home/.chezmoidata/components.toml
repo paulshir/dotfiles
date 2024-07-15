@@ -1,11 +1,17 @@
 [components]
   all = [
+    "cmdLineEssentials",
+    "helixEditor",
     "rustToolchainStable",
-    "rustToolchaingNightly"
+    "rustToolchainNightly",
+    "zellij"
   ]
   minimal = []
   default = [
+    "cmdLineEssentials",
+    "helixEditor",
     "rustToolchainStable",
+    "zellij"
   ]
 
 

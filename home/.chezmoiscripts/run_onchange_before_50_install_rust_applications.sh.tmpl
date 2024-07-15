@@ -1,0 +1,32 @@
+{{- $hasStable := or (has "rustToolchainStable" .selectedComponents) (has "rustToolchainStable" (get .components .profile)) -}}
+{{- $hasNightly := or (has "rustToolchainNightly" .selectedComponents) (has "rustToolchainNightly" (get .components .profile)) -}}
+{{- $hasRipGrep := or (has "rustToolchainStable" .selectedComponents) (has "rustToolchainStable" (get .components .profile)) -}}
+{{- $hasHelix := or (has "rustToolchainStable" .selectedComponents) (has "rustToolchainStable" (get .components .profile)) -}}
+{{- $hasZellij := or (has "rustToolchainStable" .selectedComponents) (has "rustToolchainStable" (get .components .profile)) -}}
+{{- if or $hasRipGrep $hasHelix $hasZellij -}}
+{{- if not (or $hasStable $hasNightly) -}}{{- fail "Selected components require rust toolchain" -}}{{- end -}}
+{{- if eq .chezmoi.os "linux" -}} 
+#!/bin/zsh
+
+{{ if $hasRipGrep }}
+cargo install ripgrep
+{{ end }}
+
+{{ if $hasHelix }}
+(cd ~/.local/share
+if [[ ! -d helix ]]; then
+	git clone https://github.com/helix-editor/helix
+	(cd helix
+	git reset --hard 24.03
+	cargo install --path helix-term --locked
+	ln -Ts $PWD/runtime ~/.config/helix/runtime
+	)
+fi)
+{{ end }}
+
+{{ if $hasZellij }}
+	cargo install --locked zellij
+{{ end }}
+
+{{ end -}}
+{{- end -}}
