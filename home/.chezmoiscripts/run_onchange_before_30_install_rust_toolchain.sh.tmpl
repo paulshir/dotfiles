@@ -1,6 +1,5 @@
-{{- $hasStable := or (has "rustToolchainStable" .selectedComponents) (has "rustToolchainStable" (get .components .profile)) -}}
-{{- $hasNightly := or (has "rustToolchainNightly" .selectedComponents) (has "rustToolchainNightly" (get .components .profile)) -}}
-{{- if or $hasStable $hasNightly -}}
+{{- $has := includeTemplate "has" (list . "rustToolchainStable" "rustToolchainNightly") | fromToml -}}
+{{- if (or $has.rustToolchainStable $has.rustToolchainNightly) -}}
 #!/bin/zsh
 
 set -euo pipefail
@@ -10,12 +9,12 @@ if [[ ! -d ~/.rustup ]]; then
 fi
 {{ "" }}
 
-{{- if $hasStable }}
+{{- if $has.rustToolchainStable }}
 rustup toolchain install stable
 (rustup default > /dev/null || rustup default stable)
 {{ end }}
 
-{{- if $hasNightly }}
+{{- if $has.rustToolchainNightly }}
 rustup toolchain install nightly
 (rustup default > /dev/null || rustup default nightly)
 {{ end -}}

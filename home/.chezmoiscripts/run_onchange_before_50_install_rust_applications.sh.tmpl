@@ -1,18 +1,14 @@
-{{- $hasStable := or (has "rustToolchainStable" .selectedComponents) (has "rustToolchainStable" (get .components .profile)) -}}
-{{- $hasNightly := or (has "rustToolchainNightly" .selectedComponents) (has "rustToolchainNightly" (get .components .profile)) -}}
-{{- $hasRipGrep := or (has "rustToolchainStable" .selectedComponents) (has "rustToolchainStable" (get .components .profile)) -}}
-{{- $hasHelix := or (has "rustToolchainStable" .selectedComponents) (has "rustToolchainStable" (get .components .profile)) -}}
-{{- $hasZellij := or (has "rustToolchainStable" .selectedComponents) (has "rustToolchainStable" (get .components .profile)) -}}
-{{- if or $hasRipGrep $hasHelix $hasZellij -}}
-{{- if not (or $hasStable $hasNightly) -}}{{- fail "Selected components require rust toolchain" -}}{{- end -}}
+{{- $has := includeTemplate "has" (list . "rustToolchainStable" "rustToolchainNightly" "cmdLineEssentials" "helixEditor" "zellij") | fromToml -}}
+{{- if or $has.cmdLineEssentials $has.helixEditor $has.zellij -}}
+{{- if not (or $has.rustToolchainStable $has.rustToolchainNightly) -}}{{- fail "Selected components require rust toolchain" -}}{{- end -}}
 {{- if eq .chezmoi.os "linux" -}} 
 #!/bin/zsh
 
-{{ if $hasRipGrep }}
+{{ if $has.cmdLineEssentials }}
 cargo install ripgrep
 {{ end }}
 
-{{ if $hasHelix }}
+{{ if $has.helixEditor }}
 (cd ~/.local/share
 if [[ ! -d helix ]]; then
 	git clone https://github.com/helix-editor/helix
@@ -24,7 +20,7 @@ if [[ ! -d helix ]]; then
 fi)
 {{ end }}
 
-{{ if $hasZellij }}
+{{ if $has.zellij }}
 	cargo install --locked zellij
 {{ end }}
 

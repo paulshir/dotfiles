@@ -1,0 +1,10 @@
+{{- /* Usage:
+{{- $has := includeTemplate "has" (list . "comp1 "comp2") | fromToml -}}
+{{- if $has.comp1 -}}
+...
+*/ -}}
+
+{{- $ctx := first . -}}
+{{- range (rest .) -}}
+{{ . }} = {{ or (has . $ctx.selectedComponents) (has . (get $ctx.components $ctx.profile))}}
+{{ end -}}
