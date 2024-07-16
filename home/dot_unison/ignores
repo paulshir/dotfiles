@@ -6,18 +6,18 @@ ignore = Name {.DocumentRevisions-V100,.Spotlight-V100,.Trashes,.fseventsd,.Temp
 ignore = Name {.*~,*~,.Trash-*}
 
 # ignore common build and cache folders
-ignore = Name {build,out,debug,target,__pycache__}
+ignore = Name {build,out,debug,target,__pycache__,dist}
 
 # ignore temp files
 ignore = Name {.*.swp}
 
 # lang specific
-ignore = Name node_modules
+ignore = Name {node_modules,.eslintcache}
 ignore = Name {.gradle,gradlew,gradlew.bat,wrapper}
 ignore = Name *.rs.bk # rustfmt
 
 # editors
-ignore = Name {.idea,*.iml}
+ignore = Name {*.idea,.idea,*.iml}
 ignore = Name .vscode/*
 ignorenot = Name .vscode/{settings.json,tasks.json,launch.json,extensions.json,*.code-snippets}
 
