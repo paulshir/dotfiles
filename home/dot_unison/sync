@@ -5,3 +5,5 @@ confirmbigdel = false
 terse = true
 force = newer
 
+backup = Name *
+maxbackups = 5
