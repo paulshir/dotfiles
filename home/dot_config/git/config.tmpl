@@ -1,7 +1,13 @@
+{{- $has := includeTemplate "has" (list . "gitDelta") | fromToml -}}
+
 [core]
 	autocrlf = false
-	editor = vim
-	pager = less -FMRiX
+	editor = hx
+	pager = {{ if $has.gitDelta -}}
+		delta
+		{{- else -}}
+		less -FMRiX
+		{{- end }}
 	excludesfile = ~/.config/git/gitignore
    
 [alias]
@@ -10,27 +16,35 @@
     cfdx = clean -fdx -e *.iml
 	fx = commit --fixup HEAD
 
+[delta]
+	navigate = true
+
 [color]
 	ui = auto
 
 [diff]
-    tool = vimdiff
-
-[merge]
+	colorMoved = default
 	tool = vimdiff
-
-[user]
-	email = {{ .email }}
-	name = Paul Shirley
-    
-[push]
-	default = simple
-
-[pull]
-	ff = only
 
 [include]
 	path = ~/.config/git/config_local
 
 [init]
 	defaultBranch = main
+
+[interactive]
+    diffFilter = delta --color-only --features=interactive
+
+[merge]
+	conflictstyle = diff3
+	tool = vimdiff
+
+[push]
+	default = simple
+
+[pull]
+	ff = only
+
+[user]
+	email = {{ .email }}
+	name = Paul Shirley

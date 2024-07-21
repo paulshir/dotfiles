@@ -1,0 +1,12 @@
+{{- $antidoteVersion := (gitHubLatestTag "mattmc3/antidote").Name -}}
+[".local/share/zplug"]
+    type = "archive"
+    url = "https://github.com/zplug/zplug/archive/refs/heads/master.tar.gz"
+    exact = true
+    stripComponents = 1
+    refreshPeriod = "168h"
+[".local/share/antidote"]
+    type = "archive"
+    url = "https://github.com/mattmc3/antidote/archive/refs/tags/{{ $antidoteVersion }}.tar.gz"
+    exact = true
+    stripComponents = 1

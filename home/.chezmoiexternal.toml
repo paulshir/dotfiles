@@ -1,6 +1,0 @@
-[".local/share/zplug"]
-    type = "archive"
-    url = "https://github.com/zplug/zplug/archive/refs/heads/master.tar.gz"
-    exact = true
-    stripComponents = 1
-    refreshPeriod = "168h"

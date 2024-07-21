@@ -3,8 +3,11 @@
 {{- if $has.comp1 -}}
 ...
 */ -}}
-
 {{- $ctx := first . -}}
+{{- $profiles := keys $ctx.components -}}
+{{- if not (has $ctx.profile $profiles) -}}
+{{- print "Profile " $ctx.profile " must be one of " $profiles | fail -}}
+{{- end -}}
 {{- range (rest .) -}}
 {{ . }} = {{ or (has . $ctx.selectedComponents) (has . (get $ctx.components $ctx.profile))}}
 {{ end -}}

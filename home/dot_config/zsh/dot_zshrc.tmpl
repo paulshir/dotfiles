@@ -1,0 +1,100 @@
+#!/bin/zsh
+
+# load plugin manager + plugins
+source ~/.local/share/antidote/antidote.zsh
+antidote load ~/.config/zsh/plugins.txt
+
+# zsh options
+bindkey -v # vim mode
+setopt auto_cd
+setopt auto_pushd
+setopt pushd_ignore_dups
+setopt pushd_silent
+setopt extended_glob
+setopt no_beep
+
+# history
+HISTFILE=~/.histfile
+HISTSIZE=100000
+SAVEHIST=100000
+HISTDUP=erase
+setopt append_history
+setopt extended_history
+setopt share_history
+setopt hist_expire_dups_first
+setopt hist_ignore_space
+setopt hist_ignore_dups
+setopt hist_save_no_dups
+setopt hist_find_no_dups
+setopt hist_reduce_blanks
+setopt hist_verify
+
+# key bindings
+for key ('^[[A' '^P' ${terminfo[kcuu1]}) bindkey ${key} history-substring-search-up
+for key ('^[[B' '^N' ${terminfo[kcud1]}) bindkey ${key} history-substring-search-down
+unset key
+bindkey -M vicmd 'k' history-substring-search-up
+bindkey -M vicmd 'j' history-substring-search-down
+
+# aliases
+alias chezmoi2='chezmoi --source ~/.local/share/chezmoi2 --persistent-state ~/.config/chezmoi2/chezmoistate.boltdb --config ~/.config/chezmoi2/chezmoi.toml'
+alias ,cm='chezmoi'
+alias ,cm2='chezmoi2'
+alias ,cmu='chezmoi git pull -- --autostash --rebase && chezmoi diff'
+alias ,cm2u='chezmoi2 git pull -- --autostash --rebase && chezmoi2 diff'
+alias gdd='git difftool'
+alias gfr='git commit --fixup HEAD && git rebase -i --autosquash'
+alias isodate='date +"%FT%TZ"'
+alias ita='tmux -CC new-session -A -s'
+alias ls='eza'
+alias l='eza -lbF --git'
+alias lt='eza --tree --level=2'
+alias pd='popd'
+alias reload='. ~${ZDOTDIR:-$HOME}/.zshrc'
+alias ta='tmux new-session -A -s'
+alias td='tmux detach -s'
+alias tl='tmux list-sessions'
+alias tk='tmux kill-session -t'
+alias vf='$EDITOR $(fzf)'
+alias vi='$EDITOR'
+alias vim='$EDITOR'
+alias zls='zellij ls'
+alias zk='zellij delete-session'
+
+# functions
+function za {
+	session=$1
+	shift
+
+	if $(zellij ls -s | grep -w "$session" > /dev/null); then
+    zellij attach $session
+		return
+  fi
+
+	zellij -s $session "$@"
+}
+
+# zstyle options
+zstyle ':completion:*:descriptions' format '[%d]'
+zstyle ':completion:*:git-checkout:*' sort false
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+zstyle ':completion:*' menu 'no'
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
+zstyle ':fzf-tab:*' switch-group '<' '>'
+zstyle ':zephyr:plugin:*' use-cache 'yes'
+
+# env vars + poth
+export EDITOR=hx
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,node_modules}/*" 2> /dev/null'
+export FZF_CTRL_T_COMMAND=${FZF_DEFAULT_COMMAND}
+[[ -f ~/.cargo/env ]] && source ~/.cargo/env
+
+# extra soruce files
+[[ -f ~/.dev.env ]] && source ~/.dev.env
+[[ -f ${ZDOTDIR:-$HOME}/.zshrc_local ]] && source ${ZDOTDIR:=$HOME}/.zshrc_local
+
+# shell integrations
+eval "$(fzf --zsh)"
+eval "$(starship init zsh)"
+eval "$(zoxide init zsh --cmd cd)"
