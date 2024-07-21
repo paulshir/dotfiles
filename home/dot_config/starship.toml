@@ -5,6 +5,9 @@ discharging_symbol = "⇣ "
 unknown_symbol = "❓ "
 empty_symbol = "❗ "
 
+[cmd_duration]
+format = "[$duration]($style)"
+
 [erlang]
 symbol = "ⓔ "
 
@@ -16,3 +19,4 @@ symbol = "🧊 "
 
 [typst]
 symbol = "t "
+
