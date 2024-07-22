@@ -1,14 +1,14 @@
 [packages.linux]
-  al2 = [
-    "autoconf",
-    "automake",
-    "cmake",
-    "gcc",
-    "gcc+c++",
-    "glibc-devel",
-    "openssl-devel",
-    "perl-core",
-    "tree",
-    "vim",
-    "wget"
-  ]
+al2 = [
+  "autoconf",
+  "automake",
+  "cmake",
+  "gcc",
+  "gcc+c++",
+  "glibc-devel",
+  "openssl-devel",
+  "perl-core",
+  "tree",
+  "vim",
+  "wget"
+]

@@ -1,19 +1,18 @@
 [components]
-  all = [
-    "cmdLineEssentials",
-    "gitDelta",
-    "helixEditor",
-    "rustToolchainStable",
-    "rustToolchainNightly",
-    "zellij"
-  ]
-  minimal = []
-  default = [
-    "cmdLineEssentials",
-    "gitDelta",
-    "helixEditor",
-    "rustToolchainStable",
-    "zellij"
-  ]
-
+all = [
+  "cmdLineEssentials",
+  "gitDelta",
+  "helixEditor",
+  "rustToolchainStable",
+  "rustToolchainNightly",
+  "zellij"
+]
+default = [
+  "cmdLineEssentials",
+  "gitDelta",
+  "helixEditor",
+  "rustToolchainStable",
+  "zellij"
+]
+minimal = []
 

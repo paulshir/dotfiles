@@ -2,7 +2,7 @@
 romkatv/zsh-defer
 
 # ohmyzsh + others
-ohmyzsh/ohmyzsh path:plugins/aws kind:fpath
+ohmyzsh/ohmyzsh path:plugins/aws kind:fpath 
 ohmyzsh/ohmyzsh path:plugins/git kind:fpath
 MichaelAquilina/zsh-you-should-use
 
@@ -10,17 +10,17 @@ MichaelAquilina/zsh-you-should-use
 mattmc3/zephyr path:plugins/color
 
 # completions
-zsh-users/zsh-completions
+zsh-users/zsh-completions path:src kind:fpath
 mattmc3/zephyr path:plugins/completion
+
+# fully load ohmyzsh plugins after completion
+ohmyzsh/ohmyzsh path:plugins/aws 
+ohmyzsh/ohmyzsh path:plugins/git
 
 # fzf-tab
 Aloxaf/fzf-tab
 
 # later plugins
 zsh-users/zsh-autosuggestions
-zdharma-continuum/fast-syntax-highlighting
 zsh-users/zsh-history-substring-search
-
-# load any plugins that require compinit
-ohmyzsh/ohmyzsh path:plugins/aws
-ohmyzsh/ohmyzsh path:plugins/git
+zdharma-continuum/fast-syntax-highlighting
