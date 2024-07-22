@@ -50,7 +50,7 @@ alias ls='eza'
 alias l='eza -lbF --git'
 alias lt='eza --tree --level=2'
 alias pd='popd'
-alias reload='. ~${ZDOTDIR:-$HOME}/.zshrc'
+alias reload='. ${ZDOTDIR:-$HOME}/.zshrc'
 alias ta='tmux new-session -A -s'
 alias td='tmux detach -s'
 alias tl='tmux list-sessions'
@@ -100,7 +100,7 @@ export PATH=~/.local/bin:$PATH
 
 # extra soruce files
 [[ -f ~/.dev.env ]] && source ~/.dev.env
-[[ -f ${ZDOTDIR:-$HOME}/.zshrc_local ]] && source ${ZDOTDIR:=$HOME}/.zshrc_local
+[[ -f ${ZDOTDIR:-$HOME}/.zshrc_local ]] && source ${ZDOTDIR:-$HOME}/.zshrc_local
 
 # shell integrations
 if command -v fzf &> /dev/null; then
