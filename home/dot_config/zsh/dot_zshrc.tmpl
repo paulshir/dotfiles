@@ -62,6 +62,12 @@ alias zls='zellij ls'
 alias zk='zellij delete-session'
 
 # functions
+_error() {
+	echo
+	echo "[31;1m$*[0m"
+	echo
+}
+
 function za {
 	session=$1
 	shift
@@ -90,12 +96,21 @@ export EDITOR=hx
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,node_modules}/*" 2> /dev/null'
 export FZF_CTRL_T_COMMAND=${FZF_DEFAULT_COMMAND}
 [[ -f ~/.cargo/env ]] && source ~/.cargo/env
+export PATH=~/.local/bin:$PATH
 
 # extra soruce files
 [[ -f ~/.dev.env ]] && source ~/.dev.env
 [[ -f ${ZDOTDIR:-$HOME}/.zshrc_local ]] && source ${ZDOTDIR:=$HOME}/.zshrc_local
 
 # shell integrations
+if command -v fzf &> /dev/null; then
+	eval "$(fzf --zsh)"	
+elif [[ -d ${HOME}/.fzf ]]; then
+	eval "$(~/.fzf/bin/fzf --zsh)"
+else
+	_error "fzf is not installed"
+fi
+
 eval "$(fzf --zsh)"
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh --cmd cd)"
