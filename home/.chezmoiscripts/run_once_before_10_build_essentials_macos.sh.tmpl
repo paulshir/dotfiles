@@ -1,0 +1,17 @@
+{{- $has := includeTemplate "has" (list . "buildEssentials") | fromToml -}}
+{{- $distro := (includeTemplate "distro" . | fromToml).distro -}}
+{{- if and ($has.buildEssentials) (eq $distro "darwin") -}}
+#!/bin/zsh
+set -euo pipefail
+
+if xcode-select -p 1>/dev/null; then
+	echo "xcode-select already installed"
+else
+	xcode-select --install
+fi
+
+if [[ ! -f /opt/homebrew/bin/brew ]]; then
+	NONINTERACTIVE=1 /bin/zsh -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+fi
+
+{{- end -}}

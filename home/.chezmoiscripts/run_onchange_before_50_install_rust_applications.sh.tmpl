@@ -1,33 +1,11 @@
-{{- $has := includeTemplate "has" (list . "rustToolchainStable" "rustToolchainNightly" "cmdLineEssentials" "helixEditor" "zellij") | fromToml -}}
-{{- if or $has.cmdLineEssentials $has.helixEditor $has.zellij -}}
-{{- if not (or $has.rustToolchainStable $has.rustToolchainNightly) -}}{{- fail "Selected components require rust toolchain" -}}{{- end -}}
+{{- $has := includeTemplate "has" (list . "rustToolchainStable" "rustToolchainNightly" "cmdLineEssentials") | fromToml -}}
+{{- if or $has.cmdLineEssentials -}}
 {{- if eq .chezmoi.os "linux" -}} 
 #!/bin/zsh
 
 set -euo pipefail
 
-source ~/.cargo/env
+{{ template "installers.zsh" dict "ctx" . "cargo" (list "ripgrep" "zellij") "custom" (list "helixEditor") }}
 
-{{ if $has.cmdLineEssentials }}
-cargo install ripgrep
-{{ end }}
-
-{{ if $has.helixEditor }}
-(cd ~/.local/share
-if [[ ! -d helix ]]; then
-	git clone https://github.com/helix-editor/helix
-	(cd helix
-	git reset --hard 24.03
-	cargo install --path helix-term --locked
-	mkdir -p ~/.config/helix
-	ln -Ts $PWD/runtime ~/.config/helix/runtime
-	)
-fi)
-{{ end }}
-
-{{ if $has.zellij }}
-	cargo install --locked zellij
-{{ end }}
-
-{{ end -}}
+{{- end -}}
 {{- end -}}

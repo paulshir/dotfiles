@@ -1,8 +1,9 @@
 {{- /* Usage:
-{{- $has := includeTemplate "has" (list . "comp1 "comp2") | fromToml -}}
+{{- $has := includeTemplate "has" (list . "comp1" "comp2") | fromToml -}}
 {{- if $has.comp1 -}}
 ...
 */ -}}
+
 {{- $ctx := first . -}}
 {{- $profiles := keys $ctx.components -}}
 {{- if not (has $ctx.profile $profiles) -}}

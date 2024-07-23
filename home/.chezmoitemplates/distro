@@ -1,0 +1,19 @@
+{{- /* Usage:
+{{- $distro := (includeTemplate "distro" . | fromToml).distro -}}
+{{- if eq $distro "darwin" -}}
+...
+{{- end }}
+*/ -}}
+
+distro = {{- " " -}}
+{{- if eq .chezmoi.os "darwin" -}}
+  "darwin"
+{{- else if eq .chezmoi.os "linux" -}}
+{{-   if and (eq .chezmoi.osRelease.id "amzn") (eq .chezmoi.osRelease.version "2") -}}
+        "al2"
+{{-   else -}}
+{{-     fail (print .chezmoi.osRelease.id " " .chezmoi.osRelease.version " is currently not supported") -}}
+{{-   end -}}
+{{- else -}}
+{{-   fail (print .chezmoz.os " is currently not supported") -}}
+{{- end -}}

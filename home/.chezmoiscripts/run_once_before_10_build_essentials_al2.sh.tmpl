@@ -1,0 +1,6 @@
+{{- $has := includeTemplate "has" (list . "buildEssentials") | fromToml -}}
+{{- $distro := (includeTemplate "distro" . | fromToml).distro -}}
+{{- if and ($has.buildEssentials) (eq $distro "al2") -}}
+#!/bin/sh
+{{ template "installers.sh" dict "yum" .buildEssentials.al2 }}
+{{- end -}}
