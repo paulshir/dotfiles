@@ -1,7 +1,11 @@
 keybinds {
+    // Ctrl-o to Ctrl-a
     unbind "Ctrl o"
     session {
         bind "Ctrl a" { SwitchToMode "Normal"; }
+
+        // New keybinds
+        bind "e" { EditScrollback; SwitchToMode "Normal"; }
         bind "Ctrl q" { Quit; }
     }
 
