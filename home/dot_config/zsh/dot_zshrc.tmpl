@@ -58,26 +58,17 @@ alias tk='tmux kill-session -t'
 alias vf='$EDITOR $(fzf)'
 alias vi='$EDITOR'
 alias vim='$EDITOR'
-alias zls='zellij ls'
-alias zk='zellij delete-session'
+alias za='zellij attach -c'
+alias zj='zellij'
+alias zja='zellij attach -c'
+alias zjls='zellij ls'
+alias zjk='zellij delete-session'
 
 # functions
 _error() {
 	echo
 	echo "[31;1m$*[0m"
 	echo
-}
-
-function za {
-	session=$1
-	shift
-
-	if $(zellij ls -s | grep -w "$session" > /dev/null); then
-    zellij attach $session
-		return
-  fi
-
-	zellij -s $session "$@"
 }
 
 # zstyle options
