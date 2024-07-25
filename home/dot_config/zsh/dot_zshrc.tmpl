@@ -58,9 +58,8 @@ alias tk='tmux kill-session -t'
 alias vf='$EDITOR $(fzf)'
 alias vi='$EDITOR'
 alias vim='$EDITOR'
-alias za='zellij attach -c'
+alias za='zja'
 alias zj='zellij'
-alias zja='zellij attach -c'
 alias zjls='zellij ls'
 alias zjk='zellij delete-session'
 
@@ -69,6 +68,22 @@ _error() {
 	echo
 	echo "[31;1m$*[0m"
 	echo
+}
+
+zja() {
+	(
+		if [ $# -eq 0 ]; then
+			zellij attach -c $(basename $(pwd))
+			return 0
+		fi
+
+		(
+			cd $1 2>/dev/null || true
+			name=$(basename $1)
+			shift
+		  zellij attach -c $name "$@"
+		)
+	)
 }
 
 # zstyle options
