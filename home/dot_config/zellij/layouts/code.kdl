@@ -12,10 +12,36 @@ layout {
                 pane size="30%"
             }
         }
-        tab {
+        tab exact=3 {
             pane split_direction="vertical" {
                 pane size="70%"
                 pane size="30%" {
+                    pane
+                    pane
+                }
+            }
+        }
+    }
+    swap_tiled_layout name="side" {
+        tab split_direction="vertical" {
+            pane
+            pane
+            pane
+            pane
+        }
+    }
+    swap_tiled_layout name="stacked" {
+        tab {
+            pane split_direction="vertical" {
+                pane size="70%"
+                pane size="30%" stacked=true {
+                    pane
+                    pane
+                    pane
+                    pane
+                    pane
+                    pane
+                    pane
                     pane
                     pane
                 }
