@@ -33,8 +33,8 @@ empty_symbol = "❗ "
 [directory]
 style = "blue"
 truncate_to_repo = false
-truncation_length = 7
-truncation_symbol = ""
+truncation_length = 8
+truncation_symbol = "…/"
 before_repo_root_style = "bright-black"
 repo_root_style = "bold cyan"
 
