@@ -1,9 +1,9 @@
-{{- $has := includeTemplate "has" (list . "gitDelta") | fromToml -}}
+{{- $has := includeTemplate "has" (list . "cmdLineEssentials") | fromToml -}}
 
 [core]
 	autocrlf = false
 	editor = hx
-	pager = {{ if $has.gitDelta -}}
+	pager = {{ if $has.cmdLineEssentials -}}
 		delta
 		{{- else -}}
 		less -FMRiX

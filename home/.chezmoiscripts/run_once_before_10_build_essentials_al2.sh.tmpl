@@ -2,5 +2,5 @@
 {{- $distro := (includeTemplate "distro" . | fromToml).distro -}}
 {{- if and ($has.buildEssentials) (eq $distro "al2") -}}
 #!/bin/sh
-{{ template "installers.sh" dict "yum" .buildEssentials.al2 }}
+{{ template "installers.sh" dict "ctx" . "yum" .packageGroup.buildEssentials.al2.yum }}
 {{- end -}}

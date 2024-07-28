@@ -1,4 +1,4 @@
-theme = "onedark"
+theme = "catppuccin_macchiato"
 
 [editor]
 true-color = true
@@ -25,6 +25,7 @@ select = "underline"
 hidden = false
 
 [keys.normal]
+C-y = ":sh ~/.config/helix/scripts/zellij_popup.sh ~/.config/helix/scripts/yazi-picker.sh"
 C-u = ["page_cursor_half_up", "align_view_center"]
 C-d = ["page_cursor_half_down", "align_view_center"]
 

@@ -1,5 +1,0 @@
-.local/share/zplug/bin/**
-.local/share/zplug/cache/**
-.local/share/zplug/log/**
-.local/share/zplug/repos/**
-.local/share/zplug/zcompdump

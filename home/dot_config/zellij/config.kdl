@@ -1,4 +1,8 @@
 keybinds {
+    pane {
+        bind "f" { ToggleFocusFullscreen; TogglePaneFrames; SwitchToMode "Normal"; }
+    }
+
     // Ctrl-o to Ctrl-a
     unbind "Ctrl o"
     session {
@@ -37,6 +41,6 @@ keybinds {
     }
 }
 
-theme "nord"
+theme "catppuccin-macchiato"
 mirror_session true
 default_layout "code"
