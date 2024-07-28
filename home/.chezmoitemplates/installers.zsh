@@ -28,7 +28,7 @@ sudo yum install -y {{ range .yum }}{{ . }} {{ end }}
 {{- if not (or $has.rustToolchainStable $has.rustToolchainNightly) -}}{{- fail "Cargo installs require rust toolchain" -}}{{- end -}}
 source ~/.cargo/env
 {{ range .cargo -}}
-cargo install --locked -y {{ . | quote }}
+cargo install --locked {{ . | quote }}
 {{ end -}}
 {{ end -}}
 
