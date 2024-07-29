@@ -37,6 +37,7 @@ bindkey -M vicmd 'k' history-substring-search-up
 bindkey -M vicmd 'j' history-substring-search-down
 
 # aliases
+alias cat='bat'
 alias chezmoi2='chezmoi --source ~/.local/share/chezmoi2 --persistent-state ~/.config/chezmoi2/chezmoistate.boltdb --config ~/.config/chezmoi2/chezmoi.toml'
 alias ,cm='chezmoi'
 alias ,cm2='chezmoi2'
@@ -97,12 +98,20 @@ _zja() {
 }
 
 yy() {
-	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
-	yazi "$@" --cwd-file="$tmp"
-	if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
-		builtin cd -- "$cwd"
-	fi
-	rm -f -- "$tmp"
+    local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+    yazi "$@" --cwd-file="$tmp"
+    if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+        builtin cd -- "$cwd"
+    fi
+    rm -f -- "$tmp"
+}
+
+,cm_remap_symlinks() {
+    myhome=${1:-$HOME}
+    echo 'Remapping Symlinks'
+    rg -l $myhome -g 'symlink_*.tmpl'
+    rg -l $myhome -g 'symlink_*.tmpl' | tr \\n \\0 | xargs -0 sed -i '' "s|$myhome|{{"{{-"}} .chezmoi.homeDir {{"-}}"}}|g"
+    echo 'Done'
 }
 
 # zstyle options
