@@ -5,7 +5,6 @@ $directory\
 $git_branch\
 $git_state\
 $git_status\
-$package\
 $aws\
 $sudo\
 $line_break\

@@ -5642,6 +5642,19 @@
 					<key>Text</key>
 					<string>0x00</string>
 				</dict>
+				<key>0x32-0x80000-0x13</key>
+				<dict>
+					<key>Action</key>
+					<integer>12</integer>
+					<key>Apply Mode</key>
+					<integer>0</integer>
+					<key>Escaping</key>
+					<integer>2</integer>
+					<key>Text</key>
+					<string>€</string>
+					<key>Version</key>
+					<integer>2</integer>
+				</dict>
 				<key>0x33-0x40000</key>
 				<dict>
 					<key>Action</key>
@@ -5649,12 +5662,38 @@
 					<key>Text</key>
 					<string>0x1b</string>
 				</dict>
+				<key>0x33-0x80000-0x14</key>
+				<dict>
+					<key>Action</key>
+					<integer>12</integer>
+					<key>Apply Mode</key>
+					<integer>0</integer>
+					<key>Escaping</key>
+					<integer>2</integer>
+					<key>Text</key>
+					<string>#</string>
+					<key>Version</key>
+					<integer>2</integer>
+				</dict>
 				<key>0x34-0x40000</key>
 				<dict>
 					<key>Action</key>
 					<integer>11</integer>
 					<key>Text</key>
 					<string>0x1c</string>
+				</dict>
+				<key>0x34-0x80000-0x15</key>
+				<dict>
+					<key>Action</key>
+					<integer>12</integer>
+					<key>Apply Mode</key>
+					<integer>0</integer>
+					<key>Escaping</key>
+					<integer>2</integer>
+					<key>Text</key>
+					<string>¢</string>
+					<key>Version</key>
+					<integer>2</integer>
 				</dict>
 				<key>0x35-0x40000</key>
 				<dict>
@@ -5909,6 +5948,8 @@
 					<string>[1;5F</string>
 				</dict>
 			</dict>
+			<key>Left Option Key Changeable</key>
+			<true/>
 			<key>Link Color</key>
 			<dict>
 				<key>Alpha Component</key>
@@ -6004,11 +6045,13 @@
 			<key>Only The Default BG Color Uses Transparency</key>
 			<false/>
 			<key>Option Key Sends</key>
-			<integer>0</integer>
+			<integer>2</integer>
 			<key>Prompt Before Closing 2</key>
 			<integer>0</integer>
+			<key>Right Option Key Changeable</key>
+			<true/>
 			<key>Right Option Key Sends</key>
-			<integer>2</integer>
+			<integer>0</integer>
 			<key>Rows</key>
 			<integer>45</integer>
 			<key>Screen</key>

@@ -62,7 +62,7 @@ alias vim='$EDITOR'
 alias za='zja'
 alias zja='_zja'
 alias zjax='ZJA_SAVE_SESS=false _zja'
-alias zjn='ZJA_REQ_DIR=false ZJA_SAVE_SESS=false _zja'
+alias zjn='_zjn'
 alias zj='zellij'
 alias zjls='zellij ls'
 alias zjk='zellij delete-session'
@@ -70,13 +70,18 @@ alias zjk='zellij delete-session'
 # functions
 _error() {
     echo
-    echo "[31;1m$*[0m"
+    echo "\033[31;1m$*\033[0m"
     echo
 }
 
 _zja() {
     (
         name=$(basename ${1:-$(pwd)})
+        if $(zellij ls -s | grep -w "$name" > /dev/null); then
+            zellij attach $name
+            return $?
+        fi
+        
         if [ $# -eq 0 ]; then
             wd=$(git rev-parse --show-toplevel 2>/dev/null) && cd $wd|| true
             name=$(basename $(pwd))
@@ -95,6 +100,15 @@ _zja() {
         zellij attach -c $name "$@"
     )
     return $?
+}
+
+_zjn() {
+    if [ $# -eq 0 ]; then
+        _error "No session name supplied"
+        return 1
+    fi
+
+    zellij attach -c $1 options --session-serialization false
 }
 
 yy() {
