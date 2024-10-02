@@ -45,6 +45,7 @@ alias ,cmu='chezmoi git pull -- --autostash --rebase && chezmoi diff'
 alias ,cm2u='chezmoi2 git pull -- --autostash --rebase && chezmoi2 diff'
 alias gdd='git difftool'
 alias gfr='git commit --fixup HEAD && git rebase -i --autosquash'
+unalias gp # prevent accidental pushing
 alias isodate='date +"%FT%TZ"'
 alias ita='tmux -CC new-session -A -s'
 alias ls='eza'
