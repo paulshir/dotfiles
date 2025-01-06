@@ -1,4 +1,5 @@
 font-family = DankMono Nerd Font Mono
+font-size = 15
 macos-option-as-alt = true
 macos-titlebar-style = tabs
 theme = catppuccin-macchiato
