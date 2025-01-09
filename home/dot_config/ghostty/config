@@ -3,3 +3,14 @@ font-size = 15
 macos-option-as-alt = true
 macos-titlebar-style = tabs
 theme = catppuccin-macchiato
+
+keybind = alt+1=text:¡
+keybind = alt+2=text:€
+keybind = alt+3=text:#
+keybind = alt+4=text:¢
+keybind = alt+5=text:§
+keybind = alt+6=text:ˆ
+keybind = alt+7=text:¶
+keybind = alt+8=text:¨
+keybind = alt+9=text:ª
+keybind = alt+0=text:º
