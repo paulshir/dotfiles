@@ -1,5 +1,23 @@
 {{- $has := includeTemplate "has" (list . "cmdLineEssentials") | fromToml -}}
 
+[alias]
+	dag = log --graph --format='format:%C(yellow)%h%C(reset) %C(blue)\"%an\" <%ae>%C(reset) %C(magenta)%cr%C(reset)%C(auto)%d%C(reset)%n%s' --date-order
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+	cfdx = clean -fdx -e *.iml
+	fx = commit --fixup HEAD
+
+[branch]
+	sort = -committerdate
+
+[color]
+	ui = auto
+
+[column]
+    ui = auto
+
+[commit]
+    verbose = true
+
 [core]
 	autocrlf = false
 	editor = hx
@@ -10,22 +28,24 @@
 		{{- end }}
 	excludesfile = ~/.config/git/gitignore
    
-[alias]
-	dag = log --graph --format='format:%C(yellow)%h%C(reset) %C(blue)\"%an\" <%ae>%C(reset) %C(magenta)%cr%C(reset)%C(auto)%d%C(reset)%n%s' --date-order
-	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
-    cfdx = clean -fdx -e *.iml
-	fx = commit --fixup HEAD
-
 [delta]
 	navigate = true
 	features = catppuccin-macchiato
 
-[color]
-	ui = auto
-
 [diff]
-	colorMoved = default
+    algorithm = histogram
+	colorMoved = plain
+	mnemonicPrefix = true
+	renames = true
 	tool = vimdiff
+
+[fetch]
+	prune = true
+	pruneTags = true
+	all = true
+
+[help]
+	autocorrect = prompt
 
 [include]
 	path = ~/.local/share/catppuccin/delta/catppuccin.gitconfig
@@ -38,14 +58,25 @@
     diffFilter = delta --color-only --features=interactive
 
 [merge]
-	conflictstyle = diff3
+	conflictstyle = zdiff3
 	tool = vimdiff
 
 [push]
 	default = simple
+	autoSetupRemote = true
+    followTags = true
 
 [pull]
 	ff = only
+
+[rerere]
+	autoupdate = true
+	enabled = true
+
+[rebase]
+	autoSquash = true
+	autoStash = true
+	updateRefs = true
 
 [user]
 	email = {{ .email }}

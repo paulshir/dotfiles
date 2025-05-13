@@ -11,7 +11,7 @@
     profile = {{ $profile | quote }}
     personal = {{ $personal }}
     email = {{ $email | quote }}
-    selectedComponents = {{ includeTemplate "./home/.chezmoitemplates/tomlArray" (list $components 8) }}
+    selectedComponents = {{ includeTemplate (joinPath .chezmoi.sourceDir ".chezmoitemplates/tomlArray") (list $components 8) }}
 
 [git]
     autoCommit = false

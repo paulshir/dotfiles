@@ -1,0 +1,26 @@
+{{- /* Usage:
+{{- includeTemplate "mergeJson" (list .
+	(joinPath .chezmoi.homeDir ".config/file1.json")
+	(joinPath .chezmoi.homeDir ".config/file2.json")
+)-}}
+...
+*/ -}}
+
+{{- $merged := dict -}}
+{{- $ctx := first . -}}
+{{- $files := rest . -}}
+
+{{- range $files -}}
+    {{- $filePath := . -}}
+    {{- if stat $filePath -}}
+        {{- $content := include $filePath -}}
+        
+        {{- $fileContent := $content | fromJsonc -}}
+        
+        {{- /* Merge with accumulated result */ -}}
+        {{- $merged = mergeOverwrite $merged $fileContent -}}
+    {{- end -}}
+{{- end -}}
+
+{{- /* Output the final merged JSON */ -}}
+{{- $merged | toPrettyJson -}}
