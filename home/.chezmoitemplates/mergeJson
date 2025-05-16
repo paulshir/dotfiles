@@ -14,9 +14,9 @@
     {{- $filePath := . -}}
     {{- if stat $filePath -}}
         {{- $content := include $filePath -}}
-        
+
         {{- $fileContent := $content | fromJsonc -}}
-        
+
         {{- /* Merge with accumulated result */ -}}
         {{- $merged = mergeOverwrite $merged $fileContent -}}
     {{- end -}}

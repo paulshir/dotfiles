@@ -21,5 +21,6 @@
     {{- if stat $filePath }}
 //  - {{ $filePath }}
     {{- end -}}
-{{- end }}
-{{ includeTemplate "mergeJson" (concat (list .) $files) -}}
+{{- end -}}
+{{- $merged := includeTemplate "mergeJson" (concat (list .) $files) | fromJson }}
+{{ unset $merged "$schema" | toPrettyJson -}}
