@@ -47,7 +47,11 @@
   },
 
   // Language Settings
-  "languages": {},
+  "languages": {
+    "Markdown": {
+      "language_servers": ["markdown-oxide", "marksman"]
+    }
+  },
 
   // Assistants
   "agent": {
