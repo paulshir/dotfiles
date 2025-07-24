@@ -24,3 +24,4 @@ Aloxaf/fzf-tab
 zsh-users/zsh-autosuggestions
 zsh-users/zsh-history-substring-search
 zdharma-continuum/fast-syntax-highlighting
+

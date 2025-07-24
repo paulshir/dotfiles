@@ -59,9 +59,8 @@
     "model_parameters": [],
     "default_model": {
       "provider": "ollama",
-      "model": "qwen2.5-coder:14b"
-    },
-    "version": "2"
+      "model": "devstral:latest"
+    }
   },
   "show_edit_predictions": false,
   "edit_predictions": {

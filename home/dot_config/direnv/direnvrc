@@ -1,0 +1,36 @@
+#!/bin/bash
+
+get() {
+  local cmd=$1
+  log_status "getting $*"
+  shift
+  "get_$cmd" "$@"
+}
+
+get_tool() {
+  local tool=$1
+  local version=$2
+  local mise_root="$HOME/.local/share/mise"
+  
+  if [[ -d "$mise_root/installs/$tool/$version" ]]; then
+    echo "$mise_root/installs/$tool/$version/bin"
+  else
+    echo "Error: $tool@$version not found. Run: mise install $tool@$version" >&2
+    return 1
+  fi
+}
+
+use_tool() {
+  local tool=$1
+  local version=$2
+  
+  local bin_path
+  bin_path=$(get tool "$tool" "$version")
+  
+  if [[ $? -eq 0 ]]; then
+    PATH_add "$bin_path"
+  else
+    return 1
+  fi
+}
+

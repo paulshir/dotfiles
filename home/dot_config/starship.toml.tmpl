@@ -1,0 +1,5 @@
+{{- includeTemplate "mergeToml" (list .
+    (joinPath .chezmoi.sourceDir "dot_config/starship/nerd-font-symbols.toml")
+    (joinPath .chezmoi.sourceDir "dot_config/starship/starship.toml")
+    (joinPath .chezmoi.homeDir ".config/starship/lang-format.toml")
+) -}}

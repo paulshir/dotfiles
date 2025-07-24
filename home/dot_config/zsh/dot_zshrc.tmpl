@@ -148,6 +148,7 @@ export FZF_CTRL_T_COMMAND=${FZF_DEFAULT_COMMAND}
 [[ -f ~/.cargo/env ]] && source ~/.cargo/env
 export PATH=~/.local/bin:$PATH
 export YSU_IGNORED_ALIASES=("za")
+export DIRENV_LOG_FORMAT=
 
 # extra soruce files
 [[ -f ~/.dev.env ]] && source ~/.dev.env
@@ -162,6 +163,9 @@ else
     _error "fzf is not installed"
 fi
 
+# Hooks
 eval "$(fzf --zsh)"
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh --cmd cd)"
+eval "$(direnv hook zsh)"
+# eval "$(mise activate zsh)"

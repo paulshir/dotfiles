@@ -5,7 +5,7 @@
 
 set -euo pipefail
 
-{{ template "installers.zsh" dict "ctx" . "cargo" (list "ripgrep" "zellij") "custom" (list "helixEditor") }}
+{{ template "installers.zsh" dict "ctx" . "cargo" (list "ripgrep" "zellij" "git-delta") "custom" (list "helixEditor") }}
 
 {{- end -}}
 {{- end -}}

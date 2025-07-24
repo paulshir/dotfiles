@@ -1,0 +1,45 @@
+right_format = """
+$direnv\
+$c\
+$cpp\
+$cmake\
+$deno\
+$golang\
+$haskell\
+$java\
+$julia\
+$kotlin\
+$nodejs\
+$pulumi\
+$python\
+$ruby\
+$rust\
+$scala\
+$swift\
+$terraform\
+$zig\
+$time\
+$cmd_duration"""
+
+{{- $langsWithName := list "c" "cpp" -}}
+{{- $langs := list "cmake" "deno" "golang" "haskell" "java" "julia" "kotlin" "nodejs" "ruby" "rust" "scala" "swift" "zig" }}
+
+{{ range $langsWithName }}[{{ . }}]
+format = '[$symbol($version(-$name) )]($style)'
+
+{{ end -}}
+
+{{ range $langs }}[{{ . }}]
+format = '[$symbol($version )]($style)'
+
+{{ end -}}
+
+[pulumi]
+format = '[$symbol($username@)$stack]($style) '
+
+[python]
+format = '[${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
+
+[terraform]
+format = '[$symbol$workspace]($style) '
+

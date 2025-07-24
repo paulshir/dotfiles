@@ -13,7 +13,9 @@ $container\
 $shell\
 $character"""
 
+# Overwritten in lang-format
 right_format = """
+$direnv\
 $time\
 $cmd_duration"""
 
@@ -29,6 +31,9 @@ discharging_symbol = "⇣ "
 unknown_symbol = "❓ "
 empty_symbol = "❗ "
 
+[cmd_duration]
+format = "[$duration]($style)"
+
 [directory]
 style = "blue"
 truncate_to_repo = false
@@ -37,8 +42,16 @@ truncation_symbol = "…/"
 before_repo_root_style = "bright-black"
 repo_root_style = "bold cyan"
 
-[cmd_duration]
-format = "[$duration]($style)"
+[direnv]
+disabled = false
+format = '[$symbol$loaded$allowed]($style) '
+symbol = ''
+allowed_msg = ''
+denied_msg = '🚫'
+not_allowed_msg = '×'
+loaded_msg = '▲'
+unloaded_msg = ' △'
+style = 'bold green'
 
 [fill]
 symbol = ' '
@@ -48,7 +61,7 @@ format = "[$branch]($style)"
 style = "bright-black"
 
 [git_status]
-format = "[[(*$conflicted$untracked$modified$staged$renamed$deleted)](218) ($ahead_behind$stashed)]($style)"
+format = "[[(*$conflicted$untracked$modified$staged$renamed$deleted)](218) ($ahead_behind$stashed)]($style) "
 style = "cyan"
 conflicted = "​"
 untracked = "​"
@@ -71,9 +84,6 @@ style = "bright-black"
 format = '[$time]($style) '
 style = "bright-black"
 disabled = false
-
-[nodejs]
-symbol = "[⬢](bold green) "
 
 [username]
 style_user = "bright-black"
