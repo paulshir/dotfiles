@@ -11,7 +11,7 @@ else
 fi
 
 if [[ ! -f /opt/homebrew/bin/brew ]]; then
-	NONINTERACTIVE=1 /bin/zsh -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+	NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
 
 {{- end -}}
