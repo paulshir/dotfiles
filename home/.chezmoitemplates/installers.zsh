@@ -43,7 +43,7 @@ mise install {{ . | quote }}
 
 {{- else if hasPrefix "custom" $installer -}}{{ "" }}
 {{ $script := trimPrefix "custom:" $installer }}
-echo {{ $ctx.chezmoi.sourceDir }}/scripts/installers/{{ $script }} {{ $packages | join " " }}
+{{ $ctx.chezmoi.workingTree }}/scripts/installers/{{ $script }} {{ $packages | join " " }}
 
 {{- else -}}
 {{- print "No installer found for " $installer | fail -}}
