@@ -1,0 +1,95 @@
+#!/bin/bash
+if [ $# -eq 0 ]; then
+    echo "Usage: $0 <tool1> [tool2] ..."
+    echo "Supported tools: helix, fzf, direnv"
+    exit 1
+fi
+
+tools=("$@")
+echo "Installing command line tools: ${tools[*]}"
+
+install_helix() {
+    echo "Installing Helix editor..."
+    
+    # Get the latest release version
+    helix_version=$(curl -s https://api.github.com/repos/helix-editor/helix/releases/latest | grep '"tag_name"' | sed 's/.*"tag_name": "\([^"]*\)".*/\1/')
+    
+    if [ -z "$helix_version" ]; then
+        echo "Could not determine latest Helix version, using master"
+        helix_version="master"
+    fi
+    
+    echo "Installing Helix version: $helix_version"
+    
+    (cd ~/.local/share
+    if [[ ! -d helix ]]; then
+        echo "Cloning Helix repository..."
+        git clone https://github.com/helix-editor/helix
+        (cd helix
+        echo "Checking out version $helix_version..."
+        git reset --hard "$helix_version"
+        echo "Building Helix..."
+        cargo install --path helix-term --locked
+        echo "Setting up runtime directory..."
+        mkdir -p ~/.config/helix
+        ln -Ts $PWD/runtime ~/.config/helix/runtime
+        )
+    else
+        echo "Helix directory already exists, skipping installation"
+    fi)
+    
+    echo "Helix installation complete"
+}
+
+install_fzf() {
+    echo "Installing fzf..."
+    
+    if ! command -v fzf >/dev/null 2>&1; then
+        # Clone fzf repository
+        if [[ ! -d ~/.fzf ]]; then
+            echo "Cloning fzf repository..."
+            git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+        fi
+        
+        echo "Installing fzf..."
+        ~/.fzf/install --all --no-bash --no-fish
+    else
+        echo "fzf already installed, skipping"
+    fi
+    
+    echo "fzf installation complete"
+}
+
+install_direnv() {
+    echo "Installing direnv..."
+    
+    if ! command -v direnv >/dev/null 2>&1; then
+        echo "Installing direnv using official installer..."
+        curl -sfL https://direnv.net/install.sh | bash
+    else
+        echo "direnv already installed, skipping"
+    fi
+    
+    echo "direnv installation complete"
+}
+
+for tool in "${tools[@]}"; do
+    case "$tool" in
+        helix)
+            install_helix
+            ;;
+        fzf)
+            install_fzf
+            ;;
+        direnv)
+            install_direnv
+            ;;
+        *)
+            echo "Unknown tool: $tool"
+            echo "Supported tools: helix, fzf, direnv"
+            exit 1
+            ;;
+    esac
+done
+
+echo "All requested tools installation complete: ${tools[*]}"

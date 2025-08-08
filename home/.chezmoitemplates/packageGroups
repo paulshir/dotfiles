@@ -1,0 +1,45 @@
+{{- /* Usage:
+{{- $packageGroups := (includeTemplate "packageGroups" (list .) | fromJson) -}}
+
+...
+*/ -}}
+{{- $ctx := first . -}}
+{{- $distro := (includeTemplate "distro" $ctx | fromToml).distro -}}
+
+{{- $flavours := keys $ctx.flavours -}}
+{{- if not (has $ctx.flavour $flavours) -}}
+{{- print "Flavour " $ctx.flavour " must be one of " $flavours | fail -}}
+{{- end -}}
+
+{{- $flavourDef := get $ctx.flavours $ctx.flavour -}}
+{{- $flavourPackageGroups := $flavourDef.packageGroups | default list -}}
+{{- $extraPackageGroups := $ctx.extraPackageGroups | default list -}}
+{{- $allSelectedPackageGroups := concat $flavourPackageGroups $extraPackageGroups -}}
+{{- $packageGroups := list -}}
+
+{{- range $groupName := $allSelectedPackageGroups -}}
+  {{- $packageGroupEntries := index $ctx.packageGroup $groupName -}}
+  {{- if not $packageGroupEntries -}}
+    {{- print "Warning: Package group " $groupName " not found" | fail -}}
+  {{- end -}}
+  {{- $matchingGroupFound := false -}}
+  {{- range $entry := $packageGroupEntries -}}
+    {{- $distroList := list "*" -}}
+    {{- if hasKey $entry "distro" -}}
+      {{- $distroList = $entry.distro -}}
+    {{- end -}}
+
+    {{- if or (has $distro $distroList) (has "*" $distroList) -}}
+      {{- $matchingGroupFound = true -}}
+      {{- $copy := deepCopy $entry -}}
+      {{- $copy = set $copy "name" $groupName -}}
+      {{- $packageGroups = append $packageGroups $copy -}}
+    {{- end -}}
+  {{- end -}}
+
+  {{- if not $matchingGroupFound -}}
+    {{- print "No matching packageGroup " $groupName " found for " $distro | fail -}}
+  {{- end -}}
+  
+{{- end -}}
+{{- $packageGroups | toJson -}}

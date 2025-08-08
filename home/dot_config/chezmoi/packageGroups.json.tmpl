@@ -1,0 +1,2 @@
+{{- $packageGroups := includeTemplate "packageGroups" (list .) | fromJson -}}
+{{- $packageGroups | toPrettyJson -}}

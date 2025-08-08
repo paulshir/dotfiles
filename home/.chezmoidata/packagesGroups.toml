@@ -1,0 +1,41 @@
+# Package Groups - array format for flexibility
+# Note: distro defaults to ["*"] if not specified
+# First matching package group will be used. If package group requested and no matching group found error will be thrown.
+# Use systerm installer or empty package list as a no-op
+
+[[packageGroup.buildEssentials]]
+packages = ["autoconf", "automake", "cmake", "gcc", "gcc-c++", "glibc-devel", "openssl-devel", "perl-core", "wget"]
+distro = ["al2", "rhel", "centos"]
+installer = "yum"
+
+[[packageGroup.buildEssentials]]
+packages = ["brew"]
+distro = ["darwin"]
+installer = "system" # Handled by run_once_before script
+
+[[packageGroup.buildEssentialsExtra]]
+packages = ["git", "vim", "tree"]
+
+[[packageGroup.cmdLineToolsCargo]]
+distro = ["al2", "rhel", "centos"]
+packages = ["ripgrep", "bat", "eza", "starship", "zoxide", "git-delta", "yazi"]
+installer = "cargo"
+
+[[packageGroup.cmdLineToolsCargo]]
+packages = ["ripgrep", "bat", "eza", "starship", "zoxide", "git-delta", "yazi"]
+
+[[packageGroup.cmdLineToolsCustom]]
+packages = ["helix", "fzf", "direnv"]
+distro = ["al2"]
+installer = "custom:installCmdLineTools"
+
+[[packageGroup.cmdLineToolsCustom]]
+packages = ["helix", "fzf", "direnv"]
+
+[[packageGroup.rustToolchainStable]]
+packages = ["stable"]
+installer = "custom:installRust"
+
+[[packageGroup.rustToolchainNightly]]
+packages = ["nightly"]
+installer = "custom:installRust"

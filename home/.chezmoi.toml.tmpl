@@ -1,17 +1,17 @@
-{{- $components := list -}}
-{{- if hasKey . "selectedComponents" -}}
-{{-   $components = .selectedComponents -}}
-{{- end -}}
-{{- $profileChoices := list "minimal" "default" "all" -}}
-{{- $profile := promptChoiceOnce . "profile" "Installation profile" $profileChoices -}}
+{{- $flavourChoices := list "base" "essential" "developer" "complete" -}}
+{{- $flavour := promptChoiceOnce . "flavour" "Flavour to install" $flavourChoices -}}
 {{- $personal := promptBoolOnce . "personal" "Personal Machine" -}}
 {{- $email := promptStringOnce . "email" "Email address" -}}
+{{- $extraPackageGroups := list -}}
+{{- if hasKey . "extraPackageGroups" -}}
+{{-   $extraPackageGroups = .extraPackageGroups -}}
+{{- end -}}
 
 [data]
-    profile = {{ $profile | quote }}
+    flavour = {{ $flavour | quote }}
     personal = {{ $personal }}
     email = {{ $email | quote }}
-    selectedComponents = {{ includeTemplate (joinPath .chezmoi.sourceDir ".chezmoitemplates/tomlArray") (list $components 8) }}
+    extraPackageGroups = {{ includeTemplate (joinPath .chezmoi.sourceDir ".chezmoitemplates/tomlArray") (list $extraPackageGroups 8) }}
 
 [git]
     autoCommit = false

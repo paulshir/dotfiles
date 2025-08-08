@@ -1,0 +1,22 @@
+# Distro defaults for package managers
+[distroDefaultInstaller]
+darwin = "brew"
+al2 = "yum"
+ubuntu = "apt"
+debian = "apt"
+rhel = "yum"
+centos = "yum"
+
+# Flavours reference packageGroups
+[flavours.base]
+packageGroups = []
+
+[flavours.essential]
+packageGroups = ["buildEssentials", "buildEssentialsExtra"]
+
+[flavours.developer]
+packageGroups = ["buildEssentials", "buildEssentialsExtra", "cmdLineToolsCustom", "cmdLineToolsCargo", "rustToolchainStable"]
+
+[flavours.complete]
+packageGroups = ["buildEssentials", "buildEssentialsExtra", "cmdLineEssentials", "rustToolchainStable", "rustToolchainNightly"]
+

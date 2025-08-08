@@ -1,0 +1,28 @@
+#!/bin/bash
+if [ $# -eq 0 ]; then
+    echo "Usage: $0 <toolchain1> [toolchain2] ..."
+    echo "Example: $0 stable nightly"
+    exit 1
+fi
+
+toolchains=("$@")
+echo "Installing Rust toolchains: ${toolchains[*]}"
+
+if ! command -v rustc >/dev/null 2>&1; then
+    echo "Installing rustup and Rust ${toolchains[0]}"
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --default-toolchain "${toolchains[0]}"
+    source ~/.cargo/env
+else
+    echo "Rust already installed"
+fi
+
+for toolchain in "${toolchains[@]}"; do
+    echo "Installing/updating toolchain: $toolchain"
+    rustup toolchain install "$toolchain"
+    rustup update "$toolchain"
+done
+
+rustup default "${toolchains[0]}"
+echo "Set default toolchain to: ${toolchains[0]}"
+
+echo "Rust installation complete for toolchains: ${toolchains[*]}"

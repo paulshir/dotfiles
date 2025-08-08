@@ -1,0 +1,21 @@
+#!/bin/bash
+
+set -euo pipefail
+{{ "" }}
+
+{{- $distro := (includeTemplate "distro" . | fromToml).distro -}}
+{{- if not (hasKey .distroDefaultInstaller $distro) -}}
+  {{- print "No default installer found for " $distro " in " .distroDefaultInstaller | fail -}}
+{{- end -}}
+{{- $defaultInstaller := get .distroDefaultInstaller $distro -}}
+{{- $packageGroups := includeTemplate "packageGroups" (list .) | fromJson -}}
+
+{{- range $packageGroup := $packageGroups -}}
+echo ""
+echo "=== Installing {{ $packageGroup.name }} ==="
+  {{- $installerType := (and (hasKey $packageGroup "installer") (not (eq $packageGroup.installer "default")) | ternary (get $packageGroup "installer") $defaultInstaller) -}}
+  {{- $installerArgs := (hasKey $packageGroup "installerArgs" | ternary (get $packageGroup "installerArgs") list) -}}
+
+{{ includeTemplate "installers.zsh" (list $ $installerType $installerArgs $packageGroup.packages) }}
+{{ "" }}
+{{ end -}}
