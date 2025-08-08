@@ -1,0 +1,5 @@
+{{- $has := includeTemplate "has" (list . "buildEssentials") | fromToml -}}
+{{- $distro := (includeTemplate "distro" . | fromToml).distro -}}
+{{- if and ($has.buildEssentials) (eq $distro "darwin") -}}
+eval "$(/opt/homebrew/bin/brew shellenv)"
+{{- end -}}
