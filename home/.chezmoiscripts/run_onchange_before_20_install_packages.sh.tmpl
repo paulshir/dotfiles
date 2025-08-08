@@ -10,6 +10,13 @@ set -euo pipefail
 {{- $defaultInstaller := get .distroDefaultInstaller $distro -}}
 {{- $packageGroups := includeTemplate "packageGroups" (list .) | fromJson -}}
 
+{{- if eq $distro "darwin" }}
+if ! command -v brew >/dev/null 2>&1; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
+
+{{ end -}}
+
 {{- range $packageGroup := $packageGroups -}}
 echo ""
 echo "=== Installing {{ $packageGroup.name }} ==="

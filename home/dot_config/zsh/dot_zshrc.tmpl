@@ -143,7 +143,7 @@ zstyle ':fzf-tab:*' switch-group '<' '>'
 zstyle ':zephyr:plugin:*' use-cache 'yes'
 
 # env vars + poth
-export EDITOR={{- $has.cmdLineToolsCustom | ternary "hx" "vim" -}}
+export EDITOR={{ $has.cmdLineToolsCustom | ternary "hx" "vim" }}
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,node_modules}/*" 2> /dev/null'
 export FZF_CTRL_T_COMMAND=${FZF_DEFAULT_COMMAND}
 [[ -f ~/.cargo/env ]] && source ~/.cargo/env
@@ -164,10 +164,11 @@ elif [[ -d ${HOME}/.fzf ]]; then
 else
     _error "fzf is not installed"
 fi
+
 eval "$(direnv hook zsh)"
 {{- end -}}
 
 {{- if $has.cmdLineToolsCargo }}
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh --cmd cd)"
-{{- end -}}
+{{ end -}}
