@@ -24,16 +24,18 @@
   {{- end -}}
   {{- $matchingGroupFound := false -}}
   {{- range $entry := $packageGroupEntries -}}
-    {{- $distroList := list "*" -}}
-    {{- if hasKey $entry "distro" -}}
-      {{- $distroList = $entry.distro -}}
-    {{- end -}}
+    {{- if not $matchingGroupFound -}}
+      {{- $distroList := list "*" -}}
+      {{- if hasKey $entry "distro" -}}
+        {{- $distroList = $entry.distro -}}
+      {{- end -}}
 
-    {{- if or (has $distro $distroList) (has "*" $distroList) -}}
-      {{- $matchingGroupFound = true -}}
-      {{- $copy := deepCopy $entry -}}
-      {{- $copy = set $copy "name" $groupName -}}
-      {{- $packageGroups = append $packageGroups $copy -}}
+      {{- if or (has $distro $distroList) (has "*" $distroList) -}}
+        {{- $matchingGroupFound = true -}}
+        {{- $copy := deepCopy $entry -}}
+        {{- $copy = set $copy "name" $groupName -}}
+        {{- $packageGroups = append $packageGroups $copy -}}
+      {{- end -}}
     {{- end -}}
   {{- end -}}
 

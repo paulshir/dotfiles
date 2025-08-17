@@ -13,6 +13,9 @@ packages = ["brew"]
 distro = ["darwin"]
 installer = "system" # Handled by run_once_before script
 
+[[packageGroup.buildEssentials]]
+packages = ["noFallThrough"] # This shouldn't be hit
+
 [[packageGroup.buildEssentialsExtra]]
 packages = ["git", "vim", "tree"]
 

@@ -141,6 +141,7 @@ zstyle ':completion:*' format '[%d]'
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
 zstyle ':fzf-tab:*' switch-group '<' '>'
 zstyle ':zephyr:plugin:*' use-cache 'yes'
+zstyle ':plugin:ez-compinit' 'compstyle' 'zshzoo'
 
 # env vars + poth
 export EDITOR={{ $has.cmdLineToolsCustom | ternary "hx" "vim" }}

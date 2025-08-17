@@ -1,7 +1,0 @@
-{{- /* Usage:
-...
-*/ -}}
-
-{{- $distro := (includeTemplate "distro" . | fromToml).distro -}}
-{{- "" -}}
-{{- "" -}}
