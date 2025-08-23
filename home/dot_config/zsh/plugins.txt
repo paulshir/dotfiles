@@ -6,6 +6,7 @@ romkatv/zsh-defer
 ohmyzsh/ohmyzsh path:plugins/aws 
 ohmyzsh/ohmyzsh path:plugins/git
 MichaelAquilina/zsh-you-should-use
+# multirious/zsh-helix-mode
 
 # zephyr
 mattmc3/zephyr path:plugins/color

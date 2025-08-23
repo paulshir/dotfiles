@@ -6,7 +6,9 @@ source ~/.local/share/antidote/antidote.zsh
 antidote load ~/.config/zsh/plugins.txt
 
 # zsh options
-bindkey -v # vim mode
+# bindkey -v # vim mode
+autoload edit-command-line
+zle -N edit-command-line
 setopt auto_cd
 setopt auto_pushd
 setopt pushd_ignore_dups
@@ -36,6 +38,9 @@ for key ('^[[B' '^N' ${terminfo[kcud1]}) bindkey ${key} history-substring-search
 unset key
 bindkey -M vicmd 'k' history-substring-search-up
 bindkey -M vicmd 'j' history-substring-search-down
+bindkey -M vicmd 'v' edit-command-line
+bindkey '^H' backward-delete-char
+bindkey '^?' backward-delete-char
 
 # aliases
 alias cat='bat'
@@ -143,7 +148,7 @@ zstyle ':fzf-tab:*' switch-group '<' '>'
 zstyle ':zephyr:plugin:*' use-cache 'yes'
 zstyle ':plugin:ez-compinit' 'compstyle' 'zshzoo'
 
-# env vars + poth
+# env vars + path
 export EDITOR={{ $has.cmdLineToolsCustom | ternary "hx" "vim" }}
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow -g "!{.git,node_modules}/*" 2> /dev/null'
 export FZF_CTRL_T_COMMAND=${FZF_DEFAULT_COMMAND}
