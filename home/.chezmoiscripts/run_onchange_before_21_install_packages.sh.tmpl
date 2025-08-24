@@ -1,0 +1,14 @@
+{{- if or (eq .installMode "once") (eq .installMode "change") -}}
+{{- $changeIdentifier := "once" -}}
+{{- if (eq .installMode "change") -}}
+{{- $changeIdentifier = (include (printf "%s%s" .chezmoi.homeDir "/.config/chezmoi/chezmoi.toml") | sha256sum) -}}
+{{- end -}}
+
+#!/bin/bash
+
+set -euo pipefail
+
+# Install script - change identifier: {{ $changeIdentifier }}
+echo Do install
+
+{{ end -}}

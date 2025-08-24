@@ -15,8 +15,8 @@ packageGroups = []
 packageGroups = ["buildEssentials", "buildEssentialsExtra"]
 
 [flavours.developer]
-packageGroups = ["buildEssentials", "buildEssentialsExtra", "cmdLineToolsCustom", "cmdLineToolsCargo", "rustToolchainStable"]
+packageGroups = ["buildEssentials", "buildEssentialsExtra", "rustToolchainStable", "cmdLineToolsCargo", "cmdLineToolsCustom"]
 
 [flavours.complete]
-packageGroups = ["buildEssentials", "buildEssentialsExtra", "cmdLineEssentials", "rustToolchainStable", "rustToolchainNightly"]
+packageGroups = ["buildEssentials", "buildEssentialsExtra", "cmdLineEssentials", "rustToolchainStable", "rustToolchainNightly", "cmdLineToolsCargo", "cmdLineToolsCustom"]
 

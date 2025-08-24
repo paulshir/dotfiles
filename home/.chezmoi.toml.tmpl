@@ -2,6 +2,7 @@
 {{- $flavour := promptChoiceOnce . "flavour" "Flavour to install" $flavourChoices -}}
 {{- $personal := promptBoolOnce . "personal" "Personal Machine" -}}
 {{- $email := promptStringOnce . "email" "Email address" -}}
+{{- $install := promptChoiceOnce . "installMode" "Install moode" (list "never" "once" "change" "always") -}}
 {{- $extraPackageGroups := list -}}
 {{- if hasKey . "extraPackageGroups" -}}
 {{-   $extraPackageGroups = .extraPackageGroups -}}
@@ -12,6 +13,7 @@
     personal = {{ $personal }}
     email = {{ $email | quote }}
     extraPackageGroups = {{ includeTemplate (joinPath .chezmoi.sourceDir ".chezmoitemplates/tomlArray") (list $extraPackageGroups 8) }}
+    installMode = {{ $install | quote }}
 
 [git]
     autoCommit = false

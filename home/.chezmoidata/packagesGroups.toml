@@ -21,19 +21,19 @@ packages = ["git", "vim", "tree"]
 
 [[packageGroup.cmdLineToolsCargo]]
 distro = ["al2", "rhel", "centos"]
-packages = ["ripgrep", "bat", "eza", "starship", "zoxide", "git-delta", "yazi"]
+packages = ["ripgrep", "bat", "eza", "zoxide", "git-delta", "yazi-build"]
 installer = "cargo"
 
 [[packageGroup.cmdLineToolsCargo]]
-packages = ["ripgrep", "bat", "eza", "starship", "zoxide", "git-delta", "yazi"]
+packages = ["ripgrep", "bat", "eza", "zoxide", "git-delta", "yazi"]
 
 [[packageGroup.cmdLineToolsCustom]]
-packages = ["helix", "fzf", "direnv"]
+packages = ["helix", "fzf", "direnv", "starship"]
 distro = ["al2"]
 installer = "custom:installCmdLineTools"
 
 [[packageGroup.cmdLineToolsCustom]]
-packages = ["helix", "fzf", "direnv"]
+packages = ["helix", "fzf", "direnv", "starship"]
 
 [[packageGroup.rustToolchainStable]]
 packages = ["stable"]
