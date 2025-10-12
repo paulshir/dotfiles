@@ -3,18 +3,19 @@ theme = "catppuccin_macchiato"
 [editor]
 true-color = true
 line-number = "relative"
-auto-save = true
 cursorline = true
 rulers = [120]
 bufferline = "always"
 color-modes = true
 text-width = 120
 auto-pairs = false
+completion-replace = true
+trim-trailing-whitespace = true
 
-[editor.statusline]
-left = ["mode", "spinner", "file-name", "file-encoding"]
-center = []
-right = ["selections", "primary-selection-length", "position", "position-percentage", "spacer", "diagnostics", "version-control"]
+[editor.auto-save]
+focus-lost = true
+after-delay.enable = true
+after-delay.timeout = 300000
 
 [editor.cursor-shape]
 insert = "bar"
@@ -23,6 +24,16 @@ select = "underline"
 
 [editor.file-picker]
 hidden = false
+
+[editor.indent-guides]
+render = true
+character = "╎"
+skip-levels = 0
+
+[editor.statusline]
+left = ["mode", "spinner", "file-name", "file-encoding", "read-only-indicator", "file-modification-indicator",]
+center = []
+right = ["register", "selections", "primary-selection-length", "position", "position-percentage", "spacer", "diagnostics", "version-control"]
 
 [keys.normal]
 C-y = ":sh ~/.config/helix/scripts/zellij_popup.sh ~/.config/helix/scripts/yazi-picker.sh"
@@ -36,3 +47,9 @@ r = "vsplit"
 [keys.normal.space.w]
 d = "hsplit"
 r = "vsplit"
+
+[keys.normal.space.g]
+g = "changed_file_picker"
+r = ":reload-all"
+x = ":reset-diff-change"
+b = ":echo %sh{git blame -L %{cursor_line},+1 %{buffer_name}}"
