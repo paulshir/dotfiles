@@ -7,13 +7,10 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
-  // Can be found in LSP logs: `debug: open language server logs` -> `json-language-server` -> `Server Info`
-  "$schema": "../../../assets/zed/settings.schema.json",
-
   // UI Settings
   "theme": "Catppuccin Macchiato",
-  "buffer_font_family": "DankMono Nerd Font Mono",
-  "buffer_font_fallbacks": ["Zed Plex Mono"],
+  "buffer_font_family": "DankMono Nerd Font",
+  "buffer_font_fallbacks": [".ZedMono"],
   "buffer_font_size": 16,
   "ui_font_size": 16,
   "indent_guides": {
@@ -22,20 +19,23 @@
   "tab_bar": {
     "show": true
   },
+  "terminal": {
+    "font_family": "DankMono Nerd Font Mono"
+  },
 
   // Editor Settings - Editing
-  "vim_mode": true,
-  "vim": {
-    "default_mode": "helix_normal",
-    "use_system_clipboard": "never"
-  },
+  "helix_mode": true,
   "hide_mouse": "on_typing_and_movement",
   "inlay_hints": {
     "toggle_on_modifiers_press": {
       "alt": true
     }
   },
+  "tab_size": 4,
   "relative_line_numbers": true,
+  "vim": {
+    "use_system_clipboard": "never"
+  },
 
   // Editor Settings - Other
   "telemetry": {
@@ -50,6 +50,20 @@
   "languages": {
     "Markdown": {
       "language_servers": ["markdown-oxide", "marksman"]
+    }
+  },
+  "lsp": {
+    "json-language-server": {
+      "settings": {
+        "json": {
+          "schemas": [
+            {
+              "fileMatch": ["*/*_settings.json"],
+              "url": "zed://schemas/settings"
+            }
+          ]
+        }
+      }
     }
   },
 
