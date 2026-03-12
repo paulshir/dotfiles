@@ -14,6 +14,16 @@ distro = ["darwin"]
 installer = "system" # Handled by run_once_before script
 
 [[packageGroup.buildEssentials]]
+packages = ["autoconf", "automake", "cmake", "gcc", "gcc-c++", "glibc-devel", "openssl-devel", "perl-core", "wget"]
+distro = ["al2023"]
+installer = "dnf"
+
+[[packageGroup.buildEssentials]]
+packages = []
+distro = ["linux"]
+installer = "system"
+
+[[packageGroup.buildEssentials]]
 packages = ["noFallThrough"] # This shouldn't be hit
 
 [[packageGroup.buildEssentialsExtra]]
@@ -25,11 +35,21 @@ packages = ["ripgrep", "bat", "eza", "zoxide", "git-delta", "yazi-build"]
 installer = "cargo"
 
 [[packageGroup.cmdLineToolsCargo]]
+distro = ["al2023"]
+packages = ["ripgrep", "bat", "eza", "zoxide", "git-delta", "yazi-build"]
+installer = "cargo"
+
+[[packageGroup.cmdLineToolsCargo]]
 packages = ["ripgrep", "bat", "eza", "zoxide", "git-delta", "yazi"]
 
 [[packageGroup.cmdLineToolsCustom]]
 packages = ["helix", "fzf", "direnv", "starship"]
 distro = ["al2"]
+installer = "custom:installCmdLineTools"
+
+[[packageGroup.cmdLineToolsCustom]]
+packages = ["helix", "fzf", "direnv", "starship"]
+distro = ["al2023"]
 installer = "custom:installCmdLineTools"
 
 [[packageGroup.cmdLineToolsCustom]]

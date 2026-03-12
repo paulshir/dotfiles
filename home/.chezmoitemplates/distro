@@ -11,9 +11,11 @@ distro = {{- " " -}}
 {{- else if eq .chezmoi.os "linux" -}}
 {{-   if and (eq .chezmoi.osRelease.id "amzn") (eq .chezmoi.osRelease.version "2") -}}
         "al2"
+{{-   else if and (eq .chezmoi.osRelease.id "amzn") (eq .chezmoi.osRelease.version "2023") -}}
+        "al2023"
 {{-   else -}}
-{{-     fail (print .chezmoi.osRelease.id " " .chezmoi.osRelease.version " is currently not supported") -}}
+        "linux"
 {{-   end -}}
 {{- else -}}
-{{-   fail (print .chezmoz.os " is currently not supported") -}}
+{{-   fail (print .chezmoi.os " is currently not supported") -}}
 {{- end -}}

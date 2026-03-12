@@ -2,6 +2,8 @@
 [distroDefaultInstaller]
 darwin = "brew"
 al2 = "yum"
+al2023 = "dnf"
+linux = "system"
 ubuntu = "apt"
 debian = "apt"
 rhel = "yum"

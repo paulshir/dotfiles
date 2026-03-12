@@ -28,6 +28,9 @@ EOF
 {{- else if eq $installer "yum" -}}{{ "" }}
 sudo yum install -y {{ range $packages }}{{ . }} {{ end }}
 
+{{- else if eq $installer "dnf" -}}{{ "" }}
+sudo dnf install -y {{ range $packages }}{{ . }} {{ end }}
+
 
 {{- else if eq $installer "cargo" -}}{{ "" }}
 source ~/.cargo/env
