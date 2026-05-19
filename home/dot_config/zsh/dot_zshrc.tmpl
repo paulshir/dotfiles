@@ -89,7 +89,7 @@ _zja() {
             zellij attach $name
             return $?
         fi
-        
+
         if [ $# -eq 0 ]; then
             wd=$(git rev-parse --show-toplevel 2>/dev/null) && cd $wd|| true
             name=$(basename $(pwd))
@@ -97,7 +97,7 @@ _zja() {
             # Navigate to the directory
             if [ ! "$(basename $(pwd))" = "$name" ]; then
                 cd $1 2>/dev/null || { ${ZJA_REQ_DIR:-true} && echo "zja: no such directory: $1" && return 1 || true }
-            fi 
+            fi
             shift
         fi
 
@@ -164,7 +164,7 @@ export DIRENV_LOG_FORMAT=
 # shell integrations
 {{- if $has.cmdLineToolsCustom }}
 if command -v fzf &> /dev/null; then
-    eval "$(fzf --zsh)"	
+    eval "$(fzf --zsh)"
 elif [[ -d ${HOME}/.fzf ]]; then
     eval "$(~/.fzf/bin/fzf --zsh)"
 else

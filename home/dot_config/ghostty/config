@@ -5,6 +5,7 @@ macos-option-as-alt = true
 macos-titlebar-style = tabs
 theme = Catppuccin Macchiato
 window-inherit-working-directory = false
+shell-integration-features = ssh-env,ssh-terminfo
 
 keybind = alt+1=text:¡
 keybind = alt+2=text:€
@@ -17,3 +18,5 @@ keybind = alt+8=text:¨
 keybind = alt+9=text:ª
 keybind = alt+0=text:º
 keybind = shift+enter=text:\n
+
+keybind = ctrl+shift+escape=reset

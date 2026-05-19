@@ -11,8 +11,15 @@ get_tool() {
   local tool=$1
   local version=$2
   local mise_root="$HOME/.local/share/mise"
-  
+
   if [[ -d "$mise_root/installs/$tool/$version" ]]; then
+    echo "$mise_root/installs/$tool/$version/bin"
+  elif [[ "${DIRENV_WITH_MISE_INSTALL:-}" == "1" ]]; then
+    mise use "$tool@$version" >&2
+    if [[ $? -ne 0 ]]; then
+      echo "Error: $tool@$version not found. Failed to install. Run: mise install $tool@$version" >&2
+      return 1
+    fi
     echo "$mise_root/installs/$tool/$version/bin"
   else
     echo "Error: $tool@$version not found. Run: mise install $tool@$version" >&2
@@ -23,14 +30,21 @@ get_tool() {
 use_tool() {
   local tool=$1
   local version=$2
-  
+
   local bin_path
   bin_path=$(get tool "$tool" "$version")
-  
+
   if [[ $? -eq 0 ]]; then
     PATH_add "$bin_path"
   else
     return 1
+  fi
+}
+
+use_mise() {
+  local install=$1
+  if [[ "$install" == "install" ]]; then
+    export DIRENV_WITH_MISE_INSTALL=1
   fi
 }
 

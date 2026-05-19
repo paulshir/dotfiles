@@ -2,6 +2,11 @@
 command = "rustup"
 args = ["run", "stable", "rust-analyzer"]
 
+[language-server.deno]
+command = "deno"
+args = ["lsp"]
+required-root-patterns = ["deno.json", "deno.jsonc"]
+
 [[language]]
 name = "rust"
 language-servers = [

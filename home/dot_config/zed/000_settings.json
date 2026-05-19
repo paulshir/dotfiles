@@ -7,77 +7,93 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
-  // UI Settings
-  "theme": "Catppuccin Macchiato",
-  "buffer_font_family": "DankMono Nerd Font",
-  "buffer_font_fallbacks": [".ZedMono"],
-  "buffer_font_size": 16,
-  "ui_font_size": 16,
-  "indent_guides": {
-    "enabled": false
-  },
-  "tab_bar": {
-    "show": true
-  },
-  "terminal": {
-    "font_family": "DankMono Nerd Font Mono"
-  },
+    // UI Settings
+    "theme": "Catppuccin Macchiato",
+    "buffer_font_family": "DankMono Nerd Font",
+    "buffer_font_fallbacks": [".ZedMono"],
+    "buffer_font_size": 16,
+    "ui_font_size": 16,
+    "indent_guides": {
+        "enabled": false
+    },
+    "tab_bar": {
+        "show": true
+    },
+    "terminal": {
+        "font_family": "DankMono Nerd Font Mono"
+    },
+    "project_panel": {
+        "dock": "right"
+    },
+    "outline_panel": {
+        "dock": "right"
+    },
+    "collaboration_panel": {
+        "dock": "right"
+    },
+    "git_panel": {
+        "dock": "right"
+    },
 
-  // Editor Settings - Editing
-  "helix_mode": true,
-  "hide_mouse": "on_typing_and_movement",
-  "inlay_hints": {
-    "toggle_on_modifiers_press": {
-      "alt": true
-    }
-  },
-  "tab_size": 4,
-  "relative_line_numbers": true,
-  "vim": {
-    "use_system_clipboard": "never"
-  },
-
-  // Editor Settings - Other
-  "telemetry": {
-    "diagnostics": false,
-    "metrics": false
-  },
-  "auto_install_extensions": {
-    "catppuccin": true
-  },
-
-  // Language Settings
-  "languages": {
-    "Markdown": {
-      "language_servers": ["markdown-oxide", "marksman"]
-    }
-  },
-  "lsp": {
-    "json-language-server": {
-      "settings": {
-        "json": {
-          "schemas": [
-            {
-              "fileMatch": ["*/*_settings.json"],
-              "url": "zed://schemas/settings"
-            }
-          ]
+    // Editor Settings - Editing
+    "autosave": "on_focus_change",
+    "cli_default_open_behavior": "existing_window",
+    "helix_mode": true,
+    "hide_mouse": "on_typing_and_action",
+    "inlay_hints": {
+        "toggle_on_modifiers_press": {
+            "alt": true
         }
-      }
-    }
-  },
+    },
+    "tab_size": 4,
+    "relative_line_numbers": "enabled",
+    "vim": {
+        "use_system_clipboard": "never"
+    },
 
-  // Assistants
-  "agent": {
-    "default_profile": "ask",
-    "model_parameters": [],
-    "default_model": {
-      "provider": "ollama",
-      "model": "devstral:latest"
+    // Editor Settings - Other
+    "telemetry": {
+        "diagnostics": false,
+        "metrics": false
+    },
+    "auto_install_extensions": {
+        "catppuccin": true
+    },
+
+    // Language Settings
+    "languages": {
+        "Markdown": {
+            "language_servers": ["markdown-oxide", "marksman"]
+        }
+    },
+    "lsp": {
+        "json-language-server": {
+            "settings": {
+                "json": {
+                    "schemas": [
+                        {
+                            "fileMatch": ["*/*_settings.json"],
+                            "url": "zed://schemas/settings"
+                        }
+                    ]
+                }
+            }
+        }
+    },
+
+    // Assistants
+    "agent": {
+        "dock": "left",
+        "default_profile": "ask",
+        "model_parameters": [],
+        "default_model": {
+            "provider": "ollama",
+            "model": "devstral:latest"
+        }
+    },
+    "show_edit_predictions": false,
+    "edit_predictions": {
+        "provider": "none",
+        "mode": "subtle"
     }
-  },
-  "show_edit_predictions": false,
-  "edit_predictions": {
-    "mode": "subtle"
-  }
 }
