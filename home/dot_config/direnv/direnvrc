@@ -15,7 +15,7 @@ get_tool() {
   if [[ -d "$mise_root/installs/$tool/$version" ]]; then
     echo "$mise_root/installs/$tool/$version/bin"
   elif [[ "${DIRENV_WITH_MISE_INSTALL:-}" == "1" ]]; then
-    mise use "$tool@$version" >&2
+    mise install "$tool@$version" >&2
     if [[ $? -ne 0 ]]; then
       echo "Error: $tool@$version not found. Failed to install. Run: mise install $tool@$version" >&2
       return 1
