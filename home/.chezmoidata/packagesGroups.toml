@@ -55,6 +55,10 @@ installer = "custom:installCmdLineTools"
 [[packageGroup.cmdLineToolsCustom]]
 packages = ["helix", "fzf", "direnv", "starship"]
 
+[[packageGroup.coreRuntimes]]
+packages = ["mise"]
+installer = "custom:installMise"
+
 [[packageGroup.rustToolchainStable]]
 packages = ["stable"]
 installer = "custom:installRust"

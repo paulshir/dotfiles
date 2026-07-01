@@ -1,5 +1,5 @@
 #!/bin/zsh
-{{- $has := includeTemplate "has" (list . "cmdLineToolsCargo" "cmdLineToolsCustom") | fromToml }}
+{{- $has := includeTemplate "has" (list . "cmdLineToolsCargo" "cmdLineToolsCustom" "coreRuntimes") | fromToml }}
 
 # load plugin manager + plugins
 source ~/.local/share/antidote/antidote.zsh
