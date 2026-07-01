@@ -163,10 +163,12 @@ export DIRENV_LOG_FORMAT=
 
 # shell integrations
 {{- if $has.cmdLineToolsCustom }}
-if command -v fzf &> /dev/null; then
+if [[ -f ${HOME}/.fzf.zsh ]]; then
+    source ${HOME}/.fzf.zsh
+elif command -v fzf &> /dev/null; then
     eval "$(fzf --zsh)"
 elif [[ -d ${HOME}/.fzf ]]; then
-    eval "$(~/.fzf/bin/fzf --zsh)"
+    eval "$(${HOME}/.fzf/bin/fzf --zsh)"
 else
     _error "fzf is not installed"
 fi
