@@ -27,7 +27,7 @@
 		less -FMRiX
 		{{- end }}
 	excludesfile = ~/.config/git/gitignore
-   
+
 [delta]
 	navigate = true
 	features = catppuccin-macchiato
@@ -81,3 +81,9 @@
 [user]
 	email = {{ .email }}
 	name = Paul Shirley
+
+[filter "lfs"]
+	clean = git-lfs clearn -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true

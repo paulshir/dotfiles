@@ -21,4 +21,5 @@ ignore = Name {*.idea,.idea,*.iml}
 ignore = Name .vscode/*
 ignorenot = Name .vscode/{settings.json,tasks.json,launch.json,extensions.json,*.code-snippets}
 
-
+# synology
+ignore = Name {dsm,{#}recycle,@eaDir}
